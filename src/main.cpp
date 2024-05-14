@@ -4,16 +4,21 @@
  * @created     : Freitag Apr 12, 2024 15:10:53 CEST
  */
 
-#include "fsm.h"
-#include "sdc.hpp"
+#include "canzero.h"
+#include "can/can.hpp"
+#include "states.h"
+#include <unistd.h>
 
 int main() {
 
-  fsm_init();
+  canzero_init();
+  // starts the can0_poll, can1_poll and canzero update threads
+  can_threads_start(); 
+
+  printf("%lu\n", canzero_get_config_hash());
 
   while(true) {
-    update_sdc_status();
-    fsm_next();
+    sleep(10);
   }
 
 }
