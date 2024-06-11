@@ -1,58 +1,57 @@
-#include "can/socketcan.h"
-#include "canzero/canzero.h"
-#include "util/timestamp.h"
+#include "tcpcan.h"
 #include <cassert>
 #include <chrono>
 #include <condition_variable>
 #include <cstring>
+#include <memory>
 #include <mutex>
 #include <thread>
+#include "../canzero/canzero.h"
+#include "../util/timestamp.h"
 
-static socketcan_socket s_can0;
+static std::unique_ptr<TcpCan<2>> s_tcpcan = nullptr;
 
 void canzero_can0_setup(uint32_t baudrate, canzero_can_filter *filters,
                         int filter_count) {
-  assert(!socketcan_socket_open(&s_can0, SOCKETCAN_BUS_CAN0, nullptr, 0));
+  if (s_tcpcan.get() == nullptr) {
+    s_tcpcan = TcpCan<2>::connect();
+  }
 }
+
 void canzero_can0_send(canzero_frame *frame) {
-  socketcan_frame can_frame;
-  can_frame.len = frame->dlc;
-  memcpy(can_frame.data, frame->data, 8);
-  can_frame.can_id = frame->id;
-  socketcan_send_frame(&s_can0, &can_frame);
+  CanFrame can_frame(frame->id, *reinterpret_cast<uint64_t*>(frame->data), frame->dlc);
+  s_tcpcan->send<0>(can_frame);
 }
+
 int canzero_can0_recv(canzero_frame *frame) {
-  socketcan_frame can_frame;
-  if (socketcan_recv_frame(&s_can0, &can_frame)) {
+  std::optional<CanFrame> rx = s_tcpcan->recv<0>();
+  if (!rx.has_value()) {
     return 0;
   }
-  frame->dlc = can_frame.len;
-  memcpy(frame->data, can_frame.data, 8);
-  frame->id = can_frame.can_id;
+  frame->dlc = rx->dlc;
+  frame->id = rx->can_id;
+  *reinterpret_cast<uint64_t*>(frame->data) = rx->data;
   return 1;
 }
 
-static socketcan_socket s_can1;
-
 void canzero_can1_setup(uint32_t baudrate, canzero_can_filter *filters,
                         int filter_count) {
-  assert(!socketcan_socket_open(&s_can1, SOCKETCAN_BUS_CAN1, nullptr, 0));
+  if (s_tcpcan.get() == nullptr) {
+    s_tcpcan = TcpCan<2>::connect();
+  }
 }
 void canzero_can1_send(canzero_frame *frame) {
-  socketcan_frame can_frame;
-  can_frame.len = frame->dlc;
-  memcpy(can_frame.data, frame->data, 8);
-  can_frame.can_id = frame->id;
-  socketcan_send_frame(&s_can1, &can_frame);
+  CanFrame can_frame(frame->id, *reinterpret_cast<uint64_t*>(frame->data), frame->dlc);
+  s_tcpcan->send<1>(can_frame);
 }
 int canzero_can1_recv(canzero_frame *frame) {
-  socketcan_frame can_frame;
-  if (socketcan_recv_frame(&s_can1, &can_frame)) {
-    return 1;
+  std::optional<CanFrame> rx = s_tcpcan->recv<1>();
+  if (!rx.has_value()) {
+    return 0;
   }
-  frame->dlc = can_frame.len;
-  memcpy(frame->data, can_frame.data, 8);
-  frame->id = can_frame.can_id;
+  frame->dlc = rx->dlc;
+  frame->id = rx->can_id;
+  *reinterpret_cast<uint64_t*>(frame->data) = rx->data;
   return 1;
 }
 
@@ -66,41 +65,15 @@ static std::thread s_can_update_thread;
 static std::condition_variable s_can_update_sleep_cv;
 static std::mutex s_can_update_mutex;
 
-static std::chrono::time_point<std::chrono::steady_clock> s_sor = std::chrono::steady_clock::now();
-
-static std::chrono::time_point<std::chrono::steady_clock> s_can_next_update;
-
-
-static void can_update_thread() {
-  using namespace std::chrono;
-  while (true) {
-    std::unique_lock<std::mutex> lk(s_can_update_mutex);
-    s_can_update_sleep_cv.wait_for(lk, s_can_next_update - steady_clock::now(), [] {
-        return s_can_next_update < steady_clock::now();
-    });
-    canzero_update_continue(canzero_get_time());
-  }
-}
+static auto s_sor = std::chrono::high_resolution_clock::now();
 
 uint32_t canzero_get_time() { 
   using namespace std::chrono;
-  return duration_cast<milliseconds>(steady_clock::now() - s_sor).count(); 
+  return duration_cast<milliseconds>(high_resolution_clock::now() - s_sor).count(); 
 }
 
 void canzero_request_update(uint32_t time) {
-  using namespace std::chrono;
-  {
-    std::unique_lock<std::mutex> lk(s_can_update_mutex);
-    s_can_next_update = s_sor + duration<long, std::milli>(time);
-  }
-  s_can_update_sleep_cv.notify_all();
   // pass
-}
-
-void can_threads_start() {
-  s_can0_poll_thread = std::thread(canzero_can0_poll);
-  s_can1_poll_thread = std::thread(canzero_can1_poll);
-  s_can_update_thread = std::thread(can_update_thread);
 }
 
 static std::mutex s_canzero_critical;

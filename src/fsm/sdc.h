@@ -1,7 +1,11 @@
+#pragma once
+
+#include "canzero/canzero.h"
+
+namespace sdc{
 
 
+sdc_status status();
+  
 
-/// returns true if the sdc is closed
-static bool sdc_is_closed() {
-  return false; // <- TODO
 }

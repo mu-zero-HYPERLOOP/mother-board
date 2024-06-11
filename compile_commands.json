@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/main.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/main.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/main.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/main.cpp.o"
+},
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/canzero/canzero.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/canzero/canzero.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/canzero/canzero.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/canzero/canzero.cpp.o"
+},
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/can/can.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/can/can.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/can/can.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/can/can.cpp.o"
+},
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/fsm.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/fsm.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/fsm.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/fsm.cpp.o"
+},
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/init.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/init.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/init.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/init.cpp.o"
+},
+{
+  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
+  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/systems.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/systems.cpp",
+  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/systems.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/systems.cpp.o"
+}
+]

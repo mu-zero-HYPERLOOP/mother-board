@@ -14,10 +14,30 @@ add_executable(${PROJECT_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/canzero/canzero.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/can/can.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/can/socketcan.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/control/velocity.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/acceleration.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/arming45.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/calibrating.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/controller.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/cruising.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/deceleration.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/disarming45.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/guidance_stable.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/idle.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/init.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/levitation_stable.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/precharge.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/ready.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/restarting.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/shutdown.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/start_guidance.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/start_levitation.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/stop_guidance.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/states/stop_levitation.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/error_handling.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/fsm.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/init.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/systems.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/sdc.cpp
+
 )
 
 

@@ -4,21 +4,32 @@
  * @created     : Freitag Apr 12, 2024 15:10:53 CEST
  */
 
-#include "canzero.h"
-#include "can/can.hpp"
-#include "states.h"
+#include "canzero/canzero.h"
+#include "control/velocity.h"
+#include "fsm.h"
 #include <unistd.h>
+
+constexpr float MAX_ACCEL = 9.81;
 
 int main() {
 
   canzero_init();
-  // starts the can0_poll, can1_poll and canzero update threads
-  can_threads_start(); 
 
-  printf("%lu\n", canzero_get_config_hash());
+  fsm::begin();
+  control::velocity::begin();
 
   while(true) {
-    sleep(10);
+
+    canzero_can0_poll();
+    canzero_can1_poll();
+  
+    fsm::update();
+    control::velocity::update();
+
+    canzero_update_continue(canzero_get_time());
+
+    usleep(10);
+
   }
 
 }

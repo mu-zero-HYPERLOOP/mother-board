@@ -2,6 +2,7 @@
 
 #include "math.h"
 #include <cmath>
+#include <type_traits>
 
 template <int s, int m, int kg, int A, int K, int mol, int cd> struct Metric {
 public:
@@ -666,6 +667,31 @@ typedef Metric<3, -2, -1, 2, 0, 0, 0> Conductance;
 typedef Metric<-2, 2, 1, -2, 0, 0, 0> Inductance;
 typedef Metric<-1, 1, 0, 0, 0, 0, 0> Velocity;
 typedef Metric<-2, 1, 0, 0, 0, 0, 0> Acceleration;
+typedef Metric<0, 3, 0, 0, 0, 0, 0> Volume;
+typedef Metric<0, 2, 0, 0, 0, 0, 0> Area;
+typedef Metric<-1, 3, 0, 0, 0, 0, 0> FlowRate;
+
+// Volume literals
+constexpr Volume operator""_m3(const long double v) {
+  return Volume(v);
+}
+constexpr Volume operator""_m3(const unsigned long long v) {
+  return Volume(static_cast<float>(v));
+}
+
+constexpr Volume operator""_l(const long double v) {
+  return Volume(v / 1e3);
+}
+constexpr Volume operator""_l(const unsigned long long v) {
+  return Volume(static_cast<float>(v) / 1e3);
+}
+
+constexpr Volume operator""_ml(const long double v) {
+  return Volume(v / 1e6);
+}
+constexpr Volume operator""_ml(const unsigned long long v) {
+  return Volume(static_cast<float>(v) / 1e6);
+}
 
 // Time literals
 constexpr Time operator""_h(const long double v) { return Time(v * 60 * 60); }
@@ -686,8 +712,13 @@ constexpr Time operator""_ms(const unsigned long long v) {
 }
 constexpr Time operator""_us(const long double v) { return Time(v / 1e6); }
 constexpr Time operator""_us(const unsigned long long v) {
-  return Time(static_cast<float>(v) / 1e6);
+  return Time(static_cast<float>(v) / 1e9);
 }
+constexpr Time operator""_ns(const long double v) { return Time(v / 1e6); }
+constexpr Time operator""_ns(const unsigned long long v) {
+  return Time(static_cast<float>(v) / 1e9);
+}
+
 
 // Distance literals
 constexpr Distance operator""_km(const long double v) {
@@ -727,8 +758,6 @@ constexpr Weight operator""_kg(const unsigned long long v) {
 constexpr Weight operator""_g(const long double v) { return Weight(v / 1e3); }
 constexpr Weight operator""_g(const unsigned long long v) {
   return Weight(static_cast<float>(v / 1e3));
-
-  /* std::cout << "b = " << b << std::endl; */
 }
 constexpr Weight operator""_mg(const long double v) { return Weight(v / 1e6); }
 constexpr Weight operator""_mg(const unsigned long long v) {
@@ -767,10 +796,10 @@ constexpr Temperature operator""_K(const unsigned long long v) {
   return Temperature(static_cast<float>(v));
 }
 constexpr Temperature operator""_Celcius(const long double v) {
-  return Temperature(v - 273.15);
+  return Temperature(v + 273.15);
 }
 constexpr Temperature operator""_Celcius(const unsigned long long v) {
-  return Temperature(static_cast<float>(v) - 273.15);
+  return Temperature(static_cast<float>(v) + 273.15);
 }
 
 // Frequency literals
@@ -815,34 +844,11 @@ constexpr Force operator""_uN(const unsigned long long v) {
   return Force(static_cast<float>(v) / 1e6);
 }
 
-// Pressure literals
-constexpr Pressure operator""_kPa(const long double v) {
-  return Pressure(v * 1e3);
-}
-constexpr Pressure operator""_kPa(const unsigned long long v) {
-  return Pressure(static_cast<float>(v) * 1e3);
-}
-constexpr Pressure operator""_Pa(const long double v) { return Pressure(v); }
-constexpr Pressure operator""_Pa(const unsigned long long v) {
-  return Pressure(static_cast<float>(v));
-}
-constexpr Pressure operator""_mPa(const long double v) {
-  return Pressure(v / 1e3);
-}
-constexpr Pressure operator""_mPa(const unsigned long long v) {
-  return Pressure(static_cast<float>(v) / 1e3);
-}
-constexpr Pressure operator""_uPa(const long double v) {
-  return Pressure(v / 1e6);
-}
-constexpr Pressure operator""_uPa(const unsigned long long v) {
-  return Pressure(static_cast<float>(v) / 1e6);
-}
 constexpr Pressure operator""_bar(const long double v) {
-  return Pressure(v * 1e6);
+  return Pressure(v);
 }
 constexpr Pressure operator""_bar(const unsigned long long v) {
-  return Pressure(static_cast<float>(v) * 1e6);
+  return Pressure(static_cast<float>(v));
 }
 
 // Energy literals
