@@ -41,6 +41,8 @@ sdc_status sdc::status() {
     case global_state_IDLE:
     case global_state_DISARMING45:
     case global_state_SHUTDOWN:
+    case global_state_RESTARTING:
+    case global_state_CALIBRATING:
       return sdc_status_OPEN;
     case global_state_ARMING45:
     case global_state_PRECHARGE:

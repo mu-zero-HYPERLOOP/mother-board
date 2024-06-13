@@ -1,38 +1,158 @@
 [
 {
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/main.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/main.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/main.cpp",
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/main.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/main.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/main.cpp",
   "output": "CMakeFiles/motherboard.dir/src/main.cpp.o"
 },
 {
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/canzero/canzero.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/canzero/canzero.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/canzero/canzero.cpp",
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/canzero/canzero.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/canzero/canzero.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/canzero/canzero.cpp",
   "output": "CMakeFiles/motherboard.dir/src/canzero/canzero.cpp.o"
 },
 {
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/can/can.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/can/can.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/can/can.cpp",
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/can/can.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/can/can.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/can/can.cpp",
   "output": "CMakeFiles/motherboard.dir/src/can/can.cpp.o"
 },
 {
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/fsm.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/fsm.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/fsm.cpp",
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/control/velocity.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/control/velocity.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/control/velocity.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/control/velocity.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/acceleration.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/acceleration.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/acceleration.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/acceleration.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/arming45.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/arming45.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/arming45.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/arming45.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/calibrating.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/calibrating.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/calibrating.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/calibrating.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/controller.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/controller.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/controller.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/controller.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/cruising.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/cruising.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/cruising.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/cruising.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/deceleration.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/deceleration.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/deceleration.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/deceleration.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/disarming45.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/disarming45.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/disarming45.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/disarming45.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/guidance_stable.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/guidance_stable.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/guidance_stable.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/guidance_stable.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/idle.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/idle.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/idle.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/idle.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/init.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/init.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/init.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/init.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/levitation_stable.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/levitation_stable.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/levitation_stable.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/levitation_stable.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/precharge.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/precharge.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/precharge.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/precharge.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/ready.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/ready.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/ready.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/ready.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/restarting.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/restarting.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/restarting.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/restarting.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/shutdown.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/shutdown.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/shutdown.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/shutdown.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/start_guidance.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/start_guidance.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/start_guidance.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/start_guidance.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/start_levitation.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/start_levitation.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/start_levitation.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/start_levitation.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/stop_guidance.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/stop_guidance.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/stop_guidance.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/stop_guidance.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/states/stop_levitation.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/stop_levitation.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/states/stop_levitation.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/states/stop_levitation.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/error_handling.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/error_handling.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/error_handling.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/error_handling.cpp.o"
+},
+{
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/fsm.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/fsm.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/fsm.cpp",
   "output": "CMakeFiles/motherboard.dir/src/fsm/fsm.cpp.o"
 },
 {
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/init.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/init.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/init.cpp",
-  "output": "CMakeFiles/motherboard.dir/src/fsm/init.cpp.o"
-},
-{
-  "directory": "/Users/karlsassie/Documents/muzero/mother-board/build",
-  "command": "/Library/Developer/CommandLineTools/usr/bin/c++  -I/Users/karlsassie/Documents/muzero/mother-board/src -I/Users/karlsassie/Documents/muzero/mother-board/src/canzero -I/Users/karlsassie/Documents/muzero/mother-board/src/fsm -I/Users/karlsassie/Documents/muzero/mother-board/src/util -std=gnu++20 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -o CMakeFiles/motherboard.dir/src/fsm/systems.cpp.o -c /Users/karlsassie/Documents/muzero/mother-board/src/fsm/systems.cpp",
-  "file": "/Users/karlsassie/Documents/muzero/mother-board/src/fsm/systems.cpp",
-  "output": "CMakeFiles/motherboard.dir/src/fsm/systems.cpp.o"
+  "directory": "/home/kistenklaus/Documents/muzero/mother-board/build",
+  "command": "/usr/bin/c++  -I/home/kistenklaus/Documents/muzero/mother-board/src -I/home/kistenklaus/Documents/muzero/mother-board/src/canzero -I/home/kistenklaus/Documents/muzero/mother-board/src/fsm -I/home/kistenklaus/Documents/muzero/mother-board/src/util -std=gnu++20 -o CMakeFiles/motherboard.dir/src/fsm/sdc.cpp.o -c /home/kistenklaus/Documents/muzero/mother-board/src/fsm/sdc.cpp",
+  "file": "/home/kistenklaus/Documents/muzero/mother-board/src/fsm/sdc.cpp",
+  "output": "CMakeFiles/motherboard.dir/src/fsm/sdc.cpp.o"
 }
 ]

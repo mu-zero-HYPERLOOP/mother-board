@@ -5,9 +5,12 @@
 #include "sdc.h"
 #include "subsystems.h"
 #include <array>
+#include <iostream>
 
-constexpr std::array<levitation_state, 3> ALLOWED_LEVITATION_STATES = {
-    levitation_state_CONTROL, levitation_state_STOP, levitation_state_READY};
+// Note: start is allowed, because we can access this state from start directly skipping the "stable" states completely!
+// especially important for safe error handling!
+constexpr std::array<levitation_state, 4> ALLOWED_LEVITATION_STATES = {
+    levitation_state_CONTROL, levitation_state_STOP, levitation_state_READY, levitation_state_START};
 
 constexpr Duration STATE_TIMEOUT = 10_s;
 
@@ -57,6 +60,7 @@ global_state fsm::states::stop_levitation(global_command cmd,
        !contains(ALLOWED_LEVITATION_STATES, l2_state) ||
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
+
     return global_state_DISARMING45;
   }
 
@@ -69,6 +73,7 @@ global_state fsm::states::stop_levitation(global_command cmd,
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
     return global_state_DISARMING45;
   }
+
 
   // Invariant: pdus
   if ((pdu_state_RUNNING != pdu12_state || pdu_state_RUNNING != pdu24_state) &&

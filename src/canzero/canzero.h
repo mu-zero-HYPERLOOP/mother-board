@@ -169,9 +169,9 @@ typedef struct {
   uint8_t m_sec;
 } date_time;
 typedef struct {
-  double m_Kp;
-  double m_Ki;
-  double m_Kd;
+  float m_Kp;
+  float m_Ki;
+  float m_Kd;
 } pid_parameters;
 typedef struct {
   uint32_t id;
@@ -365,37 +365,37 @@ typedef struct {
   global_state m_state;
   global_command m_command;
 } canzero_message_mother_board_stream_state;
-static const uint32_t canzero_message_mother_board_stream_state_id = 0x92;
+static const uint32_t canzero_message_mother_board_stream_state_id = 0x91;
 typedef struct {
   float m_target_acceleration;
   motor_command m_motor_driver_command;
 } canzero_message_mother_board_stream_motor_command;
-static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0x43;
+static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0x42;
 typedef struct {
   input_board_command m_input_board_command;
   bool_t m_input_board_assert_45V_online;
 } canzero_message_mother_board_stream_input_board_command;
-static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0x45;
+static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0x44;
 typedef struct {
   guidance_command m_guidance_command;
 } canzero_message_mother_board_stream_guidance_command;
-static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0x72;
+static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0x71;
 typedef struct {
   levitation_command m_levitation_command;
 } canzero_message_mother_board_stream_levitation_command;
-static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0x44;
+static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0x43;
 typedef struct {
   uint8_t m_node_id;
   uint8_t m_unregister;
   uint8_t m_ticks_next;
 } canzero_message_heartbeat_can0;
-static const uint32_t canzero_message_heartbeat_can0_id = 0xE7;
+static const uint32_t canzero_message_heartbeat_can0_id = 0xE6;
 typedef struct {
   uint8_t m_node_id;
   uint8_t m_unregister;
   uint8_t m_ticks_next;
 } canzero_message_heartbeat_can1;
-static const uint32_t canzero_message_heartbeat_can1_id = 0xE6;
+static const uint32_t canzero_message_heartbeat_can1_id = 0xE5;
 typedef struct {
   get_req_header m_header;
 } canzero_message_get_req;
@@ -413,7 +413,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_motor_driver_stream_state;
-static const uint32_t canzero_message_motor_driver_stream_state_id = 0x69;
+static const uint32_t canzero_message_motor_driver_stream_state_id = 0x68;
 typedef struct {
   guidance_state m_state;
   sdc_status m_sdc_status;
@@ -422,7 +422,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_guidance_board_front_stream_state;
-static const uint32_t canzero_message_guidance_board_front_stream_state_id = 0x6B;
+static const uint32_t canzero_message_guidance_board_front_stream_state_id = 0x6A;
 typedef struct {
   guidance_state m_state;
   sdc_status m_sdc_status;
@@ -431,7 +431,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_guidance_board_back_stream_state;
-static const uint32_t canzero_message_guidance_board_back_stream_state_id = 0x4B;
+static const uint32_t canzero_message_guidance_board_back_stream_state_id = 0x4A;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -440,7 +440,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board1_stream_state;
-static const uint32_t canzero_message_levitation_board1_stream_state_id = 0x6A;
+static const uint32_t canzero_message_levitation_board1_stream_state_id = 0x69;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -449,7 +449,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board2_stream_state;
-static const uint32_t canzero_message_levitation_board2_stream_state_id = 0x8A;
+static const uint32_t canzero_message_levitation_board2_stream_state_id = 0x89;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -458,28 +458,28 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board3_stream_state;
-static const uint32_t canzero_message_levitation_board3_stream_state_id = 0x49;
+static const uint32_t canzero_message_levitation_board3_stream_state_id = 0x48;
 typedef struct {
   input_board_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_input_board_stream_state;
-static const uint32_t canzero_message_input_board_stream_state_id = 0x4A;
+static const uint32_t canzero_message_input_board_stream_state_id = 0x49;
 typedef struct {
   float m_position;
   float m_velocity;
   float m_acceleration;
 } canzero_message_input_board_stream_position_estimation;
-static const uint32_t canzero_message_input_board_stream_position_estimation_id = 0x8B;
+static const uint32_t canzero_message_input_board_stream_position_estimation_id = 0x8A;
 typedef struct {
   pdu_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_power_board12_stream_state;
-static const uint32_t canzero_message_power_board12_stream_state_id = 0x89;
+static const uint32_t canzero_message_power_board12_stream_state_id = 0x88;
 typedef struct {
   pdu_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_power_board24_stream_state;
-static const uint32_t canzero_message_power_board24_stream_state_id = 0x48;
+static const uint32_t canzero_message_power_board24_stream_state_id = 0x47;
 typedef struct {
   float m_lt2;
   float m_rt2;
