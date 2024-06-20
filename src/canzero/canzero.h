@@ -98,17 +98,9 @@ typedef enum {
   input_board_state_RUNNING = 2,
 } input_board_state;
 typedef enum {
-  pdu_12v_state_INIT = 0,
-  pdu_12v_state_CHANNELS_OFF = 1,
-  pdu_12v_state_CHANNELS_TELEMETRY = 2,
-  pdu_12v_state_CHANNELS_ON = 3,
-} pdu_12v_state;
-typedef enum {
-  pdu_24v_state_INIT = 0,
-  pdu_24v_state_CHANNELS_OFF = 1,
-  pdu_24v_state_CHANNELS_IDLE = 2,
-  pdu_24v_state_CHANNELS_ON = 3,
-} pdu_24v_state;
+  pdu_state_INIT = 0,
+  pdu_state_RUNNING = 1,
+} pdu_state;
 typedef struct {
   uint8_t m_sof;
   uint8_t m_eof;
@@ -168,18 +160,6 @@ typedef enum {
   input_board_command_NONE = 0,
   input_board_command_CALIBRATE = 1,
 } input_board_command;
-typedef enum {
-  pdu_12v_command_NONE = 0,
-  pdu_12v_command_START = 1,
-  pdu_12v_command_STOP = 2,
-  pdu_12v_command_TELEMETRY = 3,
-} pdu_12v_command;
-typedef enum {
-  pdu_24v_command_NONE = 0,
-  pdu_24v_command_START = 1,
-  pdu_24v_command_IDLE = 2,
-  pdu_24v_command_STOP = 3,
-} pdu_24v_command;
 typedef struct {
   uint16_t m_year;
   uint8_t m_month;
@@ -192,10 +172,8 @@ typedef struct {
   double m_Kp;
   double m_Ki;
   double m_Kd;
-  double m_Ki_min;
-  double m_Ki_max;
-  double m_ema_alpha;
 } pid_parameters;
+static const node_id CANZERO_NODE_ID = node_id_mother_board;
 typedef struct {
   uint32_t id;
   uint8_t dlc;
@@ -347,25 +325,17 @@ static inline sdc_status canzero_get_input_board_sdc_status() {
   extern sdc_status __oe_input_board_sdc_status;
   return __oe_input_board_sdc_status;
 }
-static inline pdu_12v_state canzero_get_power_board12_state() {
-  extern pdu_12v_state __oe_power_board12_state;
+static inline pdu_state canzero_get_power_board12_state() {
+  extern pdu_state __oe_power_board12_state;
   return __oe_power_board12_state;
-}
-static inline pdu_12v_command canzero_get_power_board12_command() {
-  extern pdu_12v_command __oe_power_board12_command;
-  return __oe_power_board12_command;
 }
 static inline sdc_status canzero_get_power_board12_sdc_status() {
   extern sdc_status __oe_power_board12_sdc_status;
   return __oe_power_board12_sdc_status;
 }
-static inline pdu_24v_state canzero_get_power_board24_state() {
-  extern pdu_24v_state __oe_power_board24_state;
+static inline pdu_state canzero_get_power_board24_state() {
+  extern pdu_state __oe_power_board24_state;
   return __oe_power_board24_state;
-}
-static inline pdu_24v_command canzero_get_power_board24_command() {
-  extern pdu_24v_command __oe_power_board24_command;
-  return __oe_power_board24_command;
 }
 static inline sdc_status canzero_get_power_board24_sdc_status() {
   extern sdc_status __oe_power_board24_sdc_status;
@@ -396,45 +366,37 @@ typedef struct {
   global_state m_state;
   global_command m_command;
 } canzero_message_mother_board_stream_state;
-static const uint32_t canzero_message_mother_board_stream_state_id = 0x91;
+static const uint32_t canzero_message_mother_board_stream_state_id = 0x90;
 typedef struct {
   float m_target_acceleration;
   motor_command m_motor_driver_command;
 } canzero_message_mother_board_stream_motor_command;
-static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0x42;
+static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0x41;
 typedef struct {
   input_board_command m_input_board_command;
   bool_t m_input_board_assert_45V_online;
 } canzero_message_mother_board_stream_input_board_command;
-static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0x44;
+static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0x43;
 typedef struct {
   guidance_command m_guidance_command;
 } canzero_message_mother_board_stream_guidance_command;
-static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0x71;
+static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0x70;
 typedef struct {
   levitation_command m_levitation_command;
 } canzero_message_mother_board_stream_levitation_command;
-static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0x43;
-typedef struct {
-  pdu_12v_command m_power_board12_command;
-} canzero_message_mother_board_stream_pdu_12v_command;
-static const uint32_t canzero_message_mother_board_stream_pdu_12v_command_id = 0x41;
-typedef struct {
-  pdu_24v_command m_power_board24_command;
-} canzero_message_mother_board_stream_pdu_24v_command;
-static const uint32_t canzero_message_mother_board_stream_pdu_24v_command_id = 0x40;
+static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0x42;
 typedef struct {
   uint8_t m_node_id;
   uint8_t m_unregister;
   uint8_t m_ticks_next;
 } canzero_message_heartbeat_can0;
-static const uint32_t canzero_message_heartbeat_can0_id = 0xE6;
+static const uint32_t canzero_message_heartbeat_can0_id = 0xE5;
 typedef struct {
   uint8_t m_node_id;
   uint8_t m_unregister;
   uint8_t m_ticks_next;
 } canzero_message_heartbeat_can1;
-static const uint32_t canzero_message_heartbeat_can1_id = 0xE5;
+static const uint32_t canzero_message_heartbeat_can1_id = 0xE4;
 typedef struct {
   get_req_header m_header;
 } canzero_message_get_req;
@@ -452,7 +414,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_motor_driver_stream_state;
-static const uint32_t canzero_message_motor_driver_stream_state_id = 0x68;
+static const uint32_t canzero_message_motor_driver_stream_state_id = 0x67;
 typedef struct {
   guidance_state m_state;
   sdc_status m_sdc_status;
@@ -461,7 +423,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_guidance_board_front_stream_state;
-static const uint32_t canzero_message_guidance_board_front_stream_state_id = 0x6A;
+static const uint32_t canzero_message_guidance_board_front_stream_state_id = 0x69;
 typedef struct {
   guidance_state m_state;
   sdc_status m_sdc_status;
@@ -470,7 +432,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_guidance_board_back_stream_state;
-static const uint32_t canzero_message_guidance_board_back_stream_state_id = 0x4A;
+static const uint32_t canzero_message_guidance_board_back_stream_state_id = 0x49;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -479,7 +441,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board1_stream_state;
-static const uint32_t canzero_message_levitation_board1_stream_state_id = 0x69;
+static const uint32_t canzero_message_levitation_board1_stream_state_id = 0x68;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -488,7 +450,7 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board2_stream_state;
-static const uint32_t canzero_message_levitation_board2_stream_state_id = 0x89;
+static const uint32_t canzero_message_levitation_board2_stream_state_id = 0x88;
 typedef struct {
   levitation_state m_state;
   sdc_status m_sdc_status;
@@ -497,28 +459,28 @@ typedef struct {
   sdc_status m_precharge_status;
   sdc_status m_feedthrough_status;
 } canzero_message_levitation_board3_stream_state;
-static const uint32_t canzero_message_levitation_board3_stream_state_id = 0x48;
+static const uint32_t canzero_message_levitation_board3_stream_state_id = 0x47;
 typedef struct {
   input_board_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_input_board_stream_state;
-static const uint32_t canzero_message_input_board_stream_state_id = 0x49;
+static const uint32_t canzero_message_input_board_stream_state_id = 0x48;
 typedef struct {
   float m_position;
   float m_velocity;
   float m_acceleration;
 } canzero_message_input_board_stream_position_estimation;
-static const uint32_t canzero_message_input_board_stream_position_estimation_id = 0x8A;
+static const uint32_t canzero_message_input_board_stream_position_estimation_id = 0x89;
 typedef struct {
-  pdu_12v_state m_state;
+  pdu_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_power_board12_stream_state;
-static const uint32_t canzero_message_power_board12_stream_state_id = 0x88;
+static const uint32_t canzero_message_power_board12_stream_state_id = 0x87;
 typedef struct {
-  pdu_24v_state m_state;
+  pdu_state m_state;
   sdc_status m_sdc_status;
 } canzero_message_power_board24_stream_state;
-static const uint32_t canzero_message_power_board24_stream_state_id = 0x47;
+static const uint32_t canzero_message_power_board24_stream_state_id = 0x46;
 typedef struct {
   float m_lt2;
   float m_rt2;
@@ -676,24 +638,20 @@ static inline void canzero_set_input_board_sdc_status(sdc_status value){
   __oe_input_board_sdc_status = value;
 }
 
-static inline void canzero_set_power_board12_state(pdu_12v_state value){
-  extern pdu_12v_state __oe_power_board12_state;
+static inline void canzero_set_power_board12_state(pdu_state value){
+  extern pdu_state __oe_power_board12_state;
   __oe_power_board12_state = value;
 }
-
-void canzero_set_power_board12_command(pdu_12v_command value);
 
 static inline void canzero_set_power_board12_sdc_status(sdc_status value){
   extern sdc_status __oe_power_board12_sdc_status;
   __oe_power_board12_sdc_status = value;
 }
 
-static inline void canzero_set_power_board24_state(pdu_24v_state value){
-  extern pdu_24v_state __oe_power_board24_state;
+static inline void canzero_set_power_board24_state(pdu_state value){
+  extern pdu_state __oe_power_board24_state;
   __oe_power_board24_state = value;
 }
-
-void canzero_set_power_board24_command(pdu_24v_command value);
 
 static inline void canzero_set_power_board24_sdc_status(sdc_status value){
   extern sdc_status __oe_power_board24_sdc_status;
@@ -781,13 +739,9 @@ void canzero_send_input_board_sdc_status();
 
 void canzero_send_power_board12_state();
 
-void canzero_send_power_board12_command();
-
 void canzero_send_power_board12_sdc_status();
 
 void canzero_send_power_board24_state();
-
-void canzero_send_power_board24_command();
 
 void canzero_send_power_board24_sdc_status();
 

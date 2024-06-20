@@ -10,7 +10,7 @@
 constexpr std::array<levitation_state, 3> ALLOWED_LEVITATION_STATES = {
     levitation_state_READY, levitation_state_START, levitation_state_CONTROL};
 
-constexpr Duration STATE_TIMEOUT = 20_s;
+constexpr Duration STATE_TIMEOUT = 60_s;
 
 // Invariants:
 // - guidance is ready
