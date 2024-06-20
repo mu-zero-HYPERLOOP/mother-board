@@ -196,6 +196,10 @@ typedef struct {
   double m_Ki_max;
   double m_ema_alpha;
 } pid_parameters;
+typedef enum {
+  error_flag_OK = 0,
+  error_flag_ERROR = 1,
+} error_flag;
 typedef struct {
   uint32_t id;
   uint8_t dlc;
@@ -382,6 +386,10 @@ static inline float canzero_get_gamepad_lt2() {
 static inline float canzero_get_gamepad_rt2() {
   extern float __oe_gamepad_rt2;
   return __oe_gamepad_rt2;
+}
+static inline error_flag canzero_get_error_heartbeat_miss() {
+  extern error_flag __oe_error_heartbeat_miss;
+  return __oe_error_heartbeat_miss;
 }
 typedef struct {
   get_resp_header m_header;
@@ -715,6 +723,11 @@ static inline void canzero_set_gamepad_rt2(float value){
   __oe_gamepad_rt2 = value;
 }
 
+static inline void canzero_set_error_heartbeat_miss(error_flag value){
+  extern error_flag __oe_error_heartbeat_miss;
+  __oe_error_heartbeat_miss = value;
+}
+
 void canzero_send_config_hash();
 
 void canzero_send_build_time();
@@ -796,5 +809,7 @@ void canzero_send_gamepad_max_acceleration();
 void canzero_send_gamepad_lt2();
 
 void canzero_send_gamepad_rt2();
+
+void canzero_send_error_heartbeat_miss();
 
 #endif

@@ -7,7 +7,6 @@
 #include "canzero/canzero.h"
 #include "control/velocity.h"
 #include "fsm/fsm.h"
-#include <cstdio>
 #include <unistd.h>
 
 constexpr float MAX_ACCEL = 9.81;
@@ -26,8 +25,6 @@ int main() {
   
     fsm::update();
     control::velocity::update();
-
-    printf("%d\n", canzero_get_state());
 
     canzero_update_continue(canzero_get_time());
 

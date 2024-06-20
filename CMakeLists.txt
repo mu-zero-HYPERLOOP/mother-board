@@ -37,6 +37,7 @@ add_executable(${PROJECT_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/error_handling.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/fsm.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm/sdc.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/handle_heartbeat.cpp
 
 )
 
