@@ -59,7 +59,7 @@ static void canzero_serialize_canzero_message_get_resp(canzero_message_get_resp*
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0xBD;
+  frame->id = 0x17D;
   frame->dlc = 8;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_header.m_sof & (0xFF >> (8 - 1)));
   ((uint32_t*)data)[0] |= (uint8_t)(msg->m_header.m_eof & (0xFF >> (8 - 1))) << 1;
@@ -74,7 +74,7 @@ static void canzero_serialize_canzero_message_set_resp(canzero_message_set_resp*
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0xDD;
+  frame->id = 0x1BD;
   frame->dlc = 4;
   ((uint32_t*)data)[0] = (uint16_t)(msg->m_header.m_od_index & (0xFFFF >> (16 - 13)));
   ((uint32_t*)data)[0] |= msg->m_header.m_client_id << 13;
@@ -86,7 +86,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_state(canzero_
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x91;
+  frame->id = 0x130;
   frame->dlc = 2;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_state & (0xFF >> (8 - 5)));
   ((uint32_t*)data)[0] |= (uint8_t)(msg->m_command & (0xFF >> (8 - 4))) << 5;
@@ -96,7 +96,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_motor_command(
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x42;
+  frame->id = 0xA1;
   frame->dlc = 5;
   uint32_t target_acceleration_0 = ((msg->m_target_acceleration - -50) / 0.000000023283064370807974) + 0.5f;
   if (target_acceleration_0 > 0xFFFFFFFF) {
@@ -110,7 +110,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_input_board_co
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x44;
+  frame->id = 0xA3;
   frame->dlc = 1;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_input_board_command & (0xFF >> (8 - 1)));
   ((uint32_t*)data)[0] |= (uint8_t)(msg->m_input_board_assert_45V_online & (0xFF >> (8 - 1))) << 1;
@@ -120,7 +120,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_guidance_comma
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x71;
+  frame->id = 0xF0;
   frame->dlc = 1;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_guidance_command & (0xFF >> (8 - 3)));
 }
@@ -129,7 +129,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_levitation_com
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x43;
+  frame->id = 0xA2;
   frame->dlc = 1;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_levitation_command & (0xFF >> (8 - 3)));
 }
@@ -138,7 +138,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_pdu_12v_comman
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x41;
+  frame->id = 0xA0;
   frame->dlc = 1;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_power_board12_command & (0xFF >> (8 - 2)));
 }
@@ -147,7 +147,7 @@ static void canzero_serialize_canzero_message_mother_board_stream_pdu_24v_comman
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0x40;
+  frame->id = 0x9F;
   frame->dlc = 1;
   ((uint32_t*)data)[0] = (uint8_t)(msg->m_power_board24_command & (0xFF >> (8 - 2)));
 }
@@ -156,7 +156,7 @@ static void canzero_serialize_canzero_message_heartbeat_can0(canzero_message_hea
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0xE6;
+  frame->id = 0x1E5;
   frame->dlc = 2;
   ((uint32_t*)data)[0] = msg->m_node_id;
   ((uint32_t*)data)[0] |= (uint8_t)(msg->m_unregister & (0xFF >> (8 - 1))) << 8;
@@ -167,7 +167,7 @@ static void canzero_serialize_canzero_message_heartbeat_can1(canzero_message_hea
   for(uint8_t i = 0; i < 8; ++i){
     data[i] = 0;
   }
-  frame->id = 0xE5;
+  frame->id = 0x1E4;
   frame->dlc = 2;
   ((uint32_t*)data)[0] = msg->m_node_id;
   ((uint32_t*)data)[0] |= (uint8_t)(msg->m_unregister & (0xFF >> (8 - 1))) << 8;
@@ -762,7 +762,7 @@ static uint32_t scheduler_next_job_timeout() {
 
 static uint32_t DMAMEM __oe_config_hash_rx_fragmentation_buffer[2];
 static uint32_t DMAMEM __oe_build_time_rx_fragmentation_buffer[2];
-static uint32_t DMAMEM __oe_velocity_pid_rx_fragmentation_buffer[12];
+static uint32_t DMAMEM __oe_velocity_pid_rx_fragmentation_buffer[6];
 static PROGMEM void canzero_handle_get_req(canzero_frame* frame) {
   canzero_message_get_req msg;
   canzero_deserialize_canzero_message_get_req(frame, &msg);
@@ -850,35 +850,23 @@ static PROGMEM void canzero_handle_get_req(canzero_frame* frame) {
   }
   case 9: {
     {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_Kp - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+      uint64_t masked = (min_u64((__oe_velocity_pid.m_Kp - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
       __oe_velocity_pid_rx_fragmentation_buffer[0] = ((uint32_t*)&masked)[0];
       __oe_velocity_pid_rx_fragmentation_buffer[1] = ((uint32_t*)&masked)[1];
     }    {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+      uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
       __oe_velocity_pid_rx_fragmentation_buffer[2] = ((uint32_t*)&masked)[0];
       __oe_velocity_pid_rx_fragmentation_buffer[3] = ((uint32_t*)&masked)[1];
     }    {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_Kd - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+      uint64_t masked = (min_u64((__oe_velocity_pid.m_Kd - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
       __oe_velocity_pid_rx_fragmentation_buffer[4] = ((uint32_t*)&masked)[0];
       __oe_velocity_pid_rx_fragmentation_buffer[5] = ((uint32_t*)&masked)[1];
-    }    {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki_min - ((double)-500)) / (double)0.00000000000000002710505431213761, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-      __oe_velocity_pid_rx_fragmentation_buffer[6] = ((uint32_t*)&masked)[0];
-      __oe_velocity_pid_rx_fragmentation_buffer[7] = ((uint32_t*)&masked)[1];
-    }    {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki_max - ((double)0)) / (double)0.00000000000000002710505431213761, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-      __oe_velocity_pid_rx_fragmentation_buffer[8] = ((uint32_t*)&masked)[0];
-      __oe_velocity_pid_rx_fragmentation_buffer[9] = ((uint32_t*)&masked)[1];
-    }    {
-      uint64_t masked = (min_u64((__oe_velocity_pid.m_ema_alpha - ((double)0)) / (double)0.00000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-      __oe_velocity_pid_rx_fragmentation_buffer[10] = ((uint32_t*)&masked)[0];
-      __oe_velocity_pid_rx_fragmentation_buffer[11] = ((uint32_t*)&masked)[1];
     }
     resp.m_data = __oe_velocity_pid_rx_fragmentation_buffer[0];
     resp.m_header.m_sof = 1;
     resp.m_header.m_eof = 0;
     resp.m_header.m_toggle = 0;
-    schedule_get_resp_fragmentation_job(__oe_velocity_pid_rx_fragmentation_buffer, 12, 9, msg.m_header.m_client_id);
+    schedule_get_resp_fragmentation_job(__oe_velocity_pid_rx_fragmentation_buffer, 6, 9, msg.m_header.m_client_id);
     break;
   }
   case 10: {
@@ -1117,7 +1105,7 @@ static uint32_t DMAMEM config_hash_tmp_tx_fragmentation_buffer[2];
 static uint32_t DMAMEM config_hash_tmp_tx_fragmentation_offset = 0;
 static uint32_t DMAMEM build_time_tmp_tx_fragmentation_buffer[2];
 static uint32_t DMAMEM build_time_tmp_tx_fragmentation_offset = 0;
-static uint32_t DMAMEM velocity_pid_tmp_tx_fragmentation_buffer[12];
+static uint32_t DMAMEM velocity_pid_tmp_tx_fragmentation_buffer[6];
 static uint32_t DMAMEM velocity_pid_tmp_tx_fragmentation_offset = 0;
 static PROGMEM void canzero_handle_set_req(canzero_frame* frame) {
   canzero_message_set_req msg;
@@ -1245,7 +1233,7 @@ static PROGMEM void canzero_handle_set_req(canzero_frame* frame) {
       velocity_pid_tmp_tx_fragmentation_offset = 0;
     }else {
       velocity_pid_tmp_tx_fragmentation_offset += 1;
-      if (velocity_pid_tmp_tx_fragmentation_offset >= 12) {
+      if (velocity_pid_tmp_tx_fragmentation_offset >= 6) {
         return;
       }
     }
@@ -1254,12 +1242,9 @@ static PROGMEM void canzero_handle_set_req(canzero_frame* frame) {
       return;
     }
     pid_parameters velocity_pid_tmp;
-    velocity_pid_tmp.m_Kp = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[0] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[1] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.000000000000000005421010862427522 + 0;
-    velocity_pid_tmp.m_Ki = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[2] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[3] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.000000000000000005421010862427522 + 0;
-    velocity_pid_tmp.m_Kd = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[4] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[5] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.000000000000000005421010862427522 + 0;
-    velocity_pid_tmp.m_Ki_min = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[6] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[7] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000002710505431213761 + -500;
-    velocity_pid_tmp.m_Ki_max = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[8] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[9] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000002710505431213761 + 0;
-    velocity_pid_tmp.m_ema_alpha = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[10] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[11] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000000005421010862427522 + 0;
+    velocity_pid_tmp.m_Kp = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[0] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[1] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000005421010862427522 + 0;
+    velocity_pid_tmp.m_Ki = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[2] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[3] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000005421010862427522 + 0;
+    velocity_pid_tmp.m_Kd = ((uint64_t)velocity_pid_tmp_tx_fragmentation_buffer[4] | (((uint64_t)(velocity_pid_tmp_tx_fragmentation_buffer[5] & (0xFFFFFFFF >> (32 - 32)))) << 32)) * 0.00000000000000005421010862427522 + 0;
     canzero_set_velocity_pid(velocity_pid_tmp);
     break;
   }
@@ -1680,25 +1665,31 @@ void canzero_can0_poll() {
   canzero_frame frame;
   while (canzero_can0_recv(&frame)) {
     switch (frame.id) {
-      case 0x6A:
+      case 0x1BE:
+        canzero_handle_set_req(&frame);
+        break;
+      case 0xE9:
         canzero_handle_guidance_board_front_stream_state(&frame);
         break;
-      case 0x69:
+      case 0xE8:
         canzero_handle_levitation_board1_stream_state(&frame);
         break;
-      case 0x48:
+      case 0xA7:
         canzero_handle_levitation_board3_stream_state(&frame);
         break;
-      case 0x49:
+      case 0xA8:
         canzero_handle_input_board_stream_state(&frame);
         break;
-      case 0x8A:
+      case 0x129:
         canzero_handle_input_board_stream_position_estimation(&frame);
         break;
-      case 0x47:
+      case 0xA6:
         canzero_handle_power_board24_stream_state(&frame);
         break;
-      case 0xE6:
+      case 0xBF:
+        canzero_handle_gamepad_stream_input(&frame);
+        break;
+      case 0x1E5:
         canzero_handle_heartbeat_can0(&frame);
         break;
     }
@@ -1708,28 +1699,22 @@ void canzero_can1_poll() {
   canzero_frame frame;
   while (canzero_can1_recv(&frame)) {
     switch (frame.id) {
-      case 0xBE:
+      case 0x17E:
         canzero_handle_get_req(&frame);
         break;
-      case 0xDE:
-        canzero_handle_set_req(&frame);
-        break;
-      case 0x68:
+      case 0xE7:
         canzero_handle_motor_driver_stream_state(&frame);
         break;
-      case 0x4A:
+      case 0xA9:
         canzero_handle_guidance_board_back_stream_state(&frame);
         break;
-      case 0x89:
+      case 0x128:
         canzero_handle_levitation_board2_stream_state(&frame);
         break;
-      case 0x88:
+      case 0x127:
         canzero_handle_power_board12_stream_state(&frame);
         break;
-      case 0x5F:
-        canzero_handle_gamepad_stream_input(&frame);
-        break;
-      case 0xE5:
+      case 0x1E4:
         canzero_handle_heartbeat_can1(&frame);
         break;
     }
@@ -1790,7 +1775,7 @@ uint32_t canzero_update_continue(uint32_t time){
 #define BUILD_MIN   ((BUILD_TIME_IS_BAD) ? 99 :  COMPUTE_BUILD_MIN)
 #define BUILD_SEC   ((BUILD_TIME_IS_BAD) ? 99 :  COMPUTE_BUILD_SEC)
 void canzero_init() {
-  __oe_config_hash = 1085151263664056392ull;
+  __oe_config_hash = 3759848438868196331ull;
   __oe_build_time = {
     .m_year = BUILD_YEAR,
     .m_month = BUILD_MONTH,
@@ -1917,7 +1902,7 @@ void canzero_set_power_board24_command(pdu_24v_command value) {
 }
 static uint32_t DMAMEM __oe_config_hash_send_fragmentation_buffer[2];
 static uint32_t DMAMEM __oe_build_time_send_fragmentation_buffer[2];
-static uint32_t DMAMEM __oe_velocity_pid_send_fragmentation_buffer[12];
+static uint32_t DMAMEM __oe_velocity_pid_send_fragmentation_buffer[6];
 void canzero_send_config_hash() {
   canzero_message_get_resp msg;
   {
@@ -2054,29 +2039,17 @@ void canzero_send_acceleration_target_velocity() {
 void canzero_send_velocity_pid() {
   canzero_message_get_resp msg;
   {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_Kp - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+    uint64_t masked = (min_u64((__oe_velocity_pid.m_Kp - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
     __oe_velocity_pid_send_fragmentation_buffer[0] = ((uint32_t*)&masked)[0];
     __oe_velocity_pid_send_fragmentation_buffer[1] = ((uint32_t*)&masked)[1];
   }  {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+    uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
     __oe_velocity_pid_send_fragmentation_buffer[2] = ((uint32_t*)&masked)[0];
     __oe_velocity_pid_send_fragmentation_buffer[3] = ((uint32_t*)&masked)[1];
   }  {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_Kd - ((double)0)) / (double)0.000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
+    uint64_t masked = (min_u64((__oe_velocity_pid.m_Kd - ((double)0)) / (double)0.00000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
     __oe_velocity_pid_send_fragmentation_buffer[4] = ((uint32_t*)&masked)[0];
     __oe_velocity_pid_send_fragmentation_buffer[5] = ((uint32_t*)&masked)[1];
-  }  {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki_min - ((double)-500)) / (double)0.00000000000000002710505431213761, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-    __oe_velocity_pid_send_fragmentation_buffer[6] = ((uint32_t*)&masked)[0];
-    __oe_velocity_pid_send_fragmentation_buffer[7] = ((uint32_t*)&masked)[1];
-  }  {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_Ki_max - ((double)0)) / (double)0.00000000000000002710505431213761, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-    __oe_velocity_pid_send_fragmentation_buffer[8] = ((uint32_t*)&masked)[0];
-    __oe_velocity_pid_send_fragmentation_buffer[9] = ((uint32_t*)&masked)[1];
-  }  {
-    uint64_t masked = (min_u64((__oe_velocity_pid.m_ema_alpha - ((double)0)) / (double)0.00000000000000000005421010862427522, 0xFFFFFFFFFFFFFFFFull) & (0xFFFFFFFFFFFFFFFF >> (64 - 64)));
-    __oe_velocity_pid_send_fragmentation_buffer[10] = ((uint32_t*)&masked)[0];
-    __oe_velocity_pid_send_fragmentation_buffer[11] = ((uint32_t*)&masked)[1];
   }
   msg.m_data = __oe_velocity_pid_send_fragmentation_buffer[0];
   msg.m_header.m_eof = 0;
@@ -2088,7 +2061,7 @@ void canzero_send_velocity_pid() {
   canzero_frame sender_frame;
   canzero_serialize_canzero_message_get_resp(&msg, &sender_frame);
   canzero_can1_send(&sender_frame);
-  schedule_get_resp_fragmentation_job(__oe_velocity_pid_send_fragmentation_buffer, 12, 9, 255);
+  schedule_get_resp_fragmentation_job(__oe_velocity_pid_send_fragmentation_buffer, 6, 9, 255);
 
 }
 void canzero_send_position() {
