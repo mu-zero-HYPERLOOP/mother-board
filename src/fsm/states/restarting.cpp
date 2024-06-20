@@ -2,17 +2,18 @@
 #include "fsm/states.h"
 #include "timestamp.h"
 
-constexpr Duration POWER_OF_TIME = 3_s;
+constexpr Duration POWER_OFF_TIME = 3_s;
 
 global_state fsm::states::restarting(global_command cmd,
                                 Duration time_since_last_transition) {
 
-  if (time_since_last_transition > POWER_OF_TIME){
+  if (time_since_last_transition > POWER_OFF_TIME){
     return global_state_INIT;
   }
   // =============== OUTPUT ================
 
-  // TODO disable all power channels excluding the pi and the anthena!
+  canzero_set_power_board12_command(pdu_12v_command_TELEMETRY);
+  canzero_set_power_board24_command(pdu_24v_command_IDLE);
 
   return global_state_RESTARTING;
 }

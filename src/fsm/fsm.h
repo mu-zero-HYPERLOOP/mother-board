@@ -1,9 +1,10 @@
 #pragma once
 
 
-namespace fsm{
+namespace fsm {
 
 void begin();
 
 void update();
+
 }

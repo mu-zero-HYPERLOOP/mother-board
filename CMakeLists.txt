@@ -40,10 +40,9 @@ add_executable(${PROJECT_NAME}
 
 )
 
-
 target_include_directories(${PROJECT_NAME} 
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src
-  PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/canzero
+  PRIVATE src/canzero
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/fsm
   PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/util
 )

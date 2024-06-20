@@ -1,4 +1,4 @@
-#include "fsm/fsm.h"
+#include "fsm.h"
 #include "canzero/canzero.h"
 #include "fsm/error_handling.h"
 #include "fsm/states.h"
@@ -36,9 +36,9 @@ void fsm::begin() {
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_input_board_state(input_board_state_INIT);
   canzero_set_input_board_sdc_status(sdc_status_OPEN);
-  canzero_set_power_board12_state(pdu_state_INIT);
+  canzero_set_power_board12_state(pdu_12v_state_CHANNELS_TELEMETRY);
   canzero_set_power_board12_sdc_status(sdc_status_OPEN);
-  canzero_set_power_board24_state(pdu_state_INIT);
+  canzero_set_power_board24_state(pdu_24v_state_INIT);
   canzero_set_power_board24_sdc_status(sdc_status_OPEN);
 
   canzero_set_acceleration_target_velocity(1);

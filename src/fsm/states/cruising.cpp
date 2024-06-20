@@ -26,8 +26,8 @@ global_state fsm::states::cruising(global_command cmd,
   using namespace fsm::invariant;
 
   const input_board_state input_state = canzero_get_input_board_state();
-  const pdu_state pdu24_state = canzero_get_power_board24_state();
-  const pdu_state pdu12_state = canzero_get_power_board12_state();
+  const pdu_24v_state pdu24_state = canzero_get_power_board24_state();
+  const pdu_12v_state pdu12_state = canzero_get_power_board12_state();
 
   const guidance_state g1_state = canzero_get_guidance_board_front_state();
   const guidance_state g2_state = canzero_get_guidance_board_back_state();
@@ -74,7 +74,7 @@ global_state fsm::states::cruising(global_command cmd,
   }
 
   // Invariant: pdus
-  if ((pdu_state_RUNNING != pdu12_state || pdu_state_RUNNING != pdu24_state) &&
+  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     return global_state_DISARMING45;
   }
@@ -105,6 +105,8 @@ global_state fsm::states::cruising(global_command cmd,
   canzero_set_levitation_command(levitation_command_NONE);
   canzero_set_motor_driver_command(motor_command_STOP);
   canzero_set_input_board_command(input_board_command_NONE);
+  canzero_set_power_board12_command(pdu_12v_command_NONE);
+  canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_TRUE);
   control::velocity::disable();
 
