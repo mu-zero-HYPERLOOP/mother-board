@@ -14,6 +14,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   if (max_error_flag == error_flag_ERROR) {
     return global_command_SHUTDOWN;
   }
-
+  
   return cmd;
 }

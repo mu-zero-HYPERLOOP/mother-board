@@ -118,7 +118,8 @@ global_state fsm::states::precharge(global_command cmd,
 
       (motor_state_READY == motor_state || DISABLE_MOTOR_SUBSYSTEM) &&
 
-      sdc::status() == sdc_status_CLOSED) {
+      sdc::status() == sdc_status_CLOSED 
+      && time_since_last_transition > 1_s) {
     return global_state_READY;
   }
 

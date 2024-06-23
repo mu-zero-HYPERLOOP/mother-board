@@ -27,6 +27,8 @@ global_state fsm::states::init(global_command cmd,
   const levitation_state l2_state = canzero_get_levitation_board2_state();
   const levitation_state l3_state = canzero_get_levitation_board3_state();
 
+  const motor_state motor_state = canzero_get_motor_driver_state();
+
   if (global_command_SHUTDOWN == cmd){
     return global_state_SHUTDOWN;
   }
@@ -44,7 +46,8 @@ global_state fsm::states::init(global_command cmd,
       ((l1_state == levitation_state_IDLE &&
         l2_state == levitation_state_IDLE &&
         l3_state == levitation_state_IDLE) ||
-       DISABLE_LEVITATION_SUBSYSTEM)) {
+       DISABLE_LEVITATION_SUBSYSTEM)
+      && (motor_state == motor_state_IDLE || DISABLE_MOTOR_SUBSYSTEM)) {
 
     return global_state_IDLE;
   }

@@ -95,7 +95,7 @@ global_state fsm::states::acceleration(global_command cmd,
   }
 
   if (global_command_STOP_LEVITATION == cmd) {
-    return global_state_DISARMING45; // invalid command!!!
+    return global_state_DECELERATION; // invalid command!!!
   }
 
   // Ensures that after MIN_MOTOR_TRANSITION_TIME

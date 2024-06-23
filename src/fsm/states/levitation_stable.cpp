@@ -53,8 +53,6 @@ global_state fsm::states::levitation_stable(global_command cmd, Duration time_si
     return global_state_DISARMING45;
   }
 
-  std::cout << "GUIDANCE_OK" << std::endl;
-
   // Invariant: levitation
   if ((levitation_state_CONTROL != l1_state
       || levitation_state_CONTROL != l2_state
@@ -62,21 +60,15 @@ global_state fsm::states::levitation_stable(global_command cmd, Duration time_si
     return global_state_DISARMING45;
   }
 
-  std::cout << "LEVITATION_OK" << std::endl;
-
   // Invariant: motor
   if (motor_state_READY != motor_state && !DISABLE_MOTOR_SUBSYSTEM){
     return global_state_DISARMING45;
   }
 
-  std::cout << "MOTOR_OK" << std::endl;
-
   // Invariant: input board 
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM){
     return global_state_DISARMING45;
   }
-
-  std::cout << "INPUT_OK" << std::endl;
 
   // Invariant: pdus 
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state
@@ -84,14 +76,10 @@ global_state fsm::states::levitation_stable(global_command cmd, Duration time_si
     return global_state_DISARMING45;
   }
 
-  std::cout << "PDU_OK" << std::endl;
-
   // Invariant: SDC
   if (sdc::status() == sdc_status_OPEN){
     return global_state_DISARMING45;
   }
-
-  std::cout << "SDC_OK" << std::endl;
 
 
   if (global_command_STOP_45 == cmd){

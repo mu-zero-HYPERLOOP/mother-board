@@ -3,6 +3,7 @@
 #include "fsm/invariants.h"
 #include "fsm/states.h"
 #include "sdc.h"
+#include <iostream>
 #include "subsystems.h"
 #include <array>
 
@@ -51,7 +52,7 @@ global_state fsm::states::start_guidance(global_command cmd,
 
   // Invariant: guidance
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
-       contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
+       !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
     return global_state_DISARMING45;
   }

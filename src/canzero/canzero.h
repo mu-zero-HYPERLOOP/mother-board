@@ -2,6 +2,7 @@
 #define CANZERO_H
 #include <cinttypes>
 #include <cstddef>
+#define MAX_DYN_HEARTBEATS 10
 typedef enum {
   node_id_gamepad = 0,
   node_id_mother_board = 1,
@@ -180,6 +181,10 @@ typedef enum {
   pdu_24v_command_IDLE = 2,
   pdu_24v_command_STOP = 3,
 } pdu_24v_command;
+typedef enum {
+  error_flag_OK = 0,
+  error_flag_ERROR = 1,
+} error_flag;
 typedef struct {
   uint16_t m_year;
   uint8_t m_month;
@@ -193,10 +198,7 @@ typedef struct {
   double m_Ki;
   double m_Kd;
 } pid_parameters;
-typedef enum {
-  error_flag_OK = 0,
-  error_flag_ERROR = 1,
-} error_flag;
+static const node_id CANZERO_NODE_ID = node_id_mother_board;
 typedef struct {
   uint32_t id;
   uint8_t dlc;
@@ -406,28 +408,32 @@ typedef struct {
   float m_target_acceleration;
   motor_command m_motor_driver_command;
 } canzero_message_mother_board_stream_motor_command;
-static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0xA1;
+static const uint32_t canzero_message_mother_board_stream_motor_command_id = 0xA0;
 typedef struct {
   input_board_command m_input_board_command;
   bool_t m_input_board_assert_45V_online;
 } canzero_message_mother_board_stream_input_board_command;
-static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0xA3;
+static const uint32_t canzero_message_mother_board_stream_input_board_command_id = 0xA2;
 typedef struct {
   guidance_command m_guidance_command;
 } canzero_message_mother_board_stream_guidance_command;
-static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0xF0;
+static const uint32_t canzero_message_mother_board_stream_guidance_command_id = 0xA3;
 typedef struct {
   levitation_command m_levitation_command;
 } canzero_message_mother_board_stream_levitation_command;
-static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0xA2;
+static const uint32_t canzero_message_mother_board_stream_levitation_command_id = 0xA1;
 typedef struct {
   pdu_12v_command m_power_board12_command;
 } canzero_message_mother_board_stream_pdu_12v_command;
-static const uint32_t canzero_message_mother_board_stream_pdu_12v_command_id = 0xA0;
+static const uint32_t canzero_message_mother_board_stream_pdu_12v_command_id = 0x9F;
 typedef struct {
   pdu_24v_command m_power_board24_command;
 } canzero_message_mother_board_stream_pdu_24v_command;
-static const uint32_t canzero_message_mother_board_stream_pdu_24v_command_id = 0x9F;
+static const uint32_t canzero_message_mother_board_stream_pdu_24v_command_id = 0x9E;
+typedef struct {
+  error_flag m_error_heartbeat_miss;
+} canzero_message_mother_board_stream_errors;
+static const uint32_t canzero_message_mother_board_stream_errors_id = 0xF0;
 typedef struct {
   uint8_t m_node_id;
   uint8_t m_unregister;
@@ -720,10 +726,7 @@ static inline void canzero_set_gamepad_rt2(float value){
   __oe_gamepad_rt2 = value;
 }
 
-static inline void canzero_set_error_heartbeat_miss(error_flag value){
-  extern error_flag __oe_error_heartbeat_miss;
-  __oe_error_heartbeat_miss = value;
-}
+void canzero_set_error_heartbeat_miss(error_flag value);
 
 void canzero_send_config_hash();
 

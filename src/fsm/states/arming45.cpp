@@ -6,6 +6,7 @@
 #include "subsystems.h"
 #include <any>
 #include <array>
+#include <cstdio>
 
 constexpr std::array<guidance_state, 2> ALLOWED_GUIDANCE_STATES = {
     guidance_state_IDLE, guidance_state_ARMING45};
@@ -119,7 +120,9 @@ global_state fsm::states::arming45(global_command cmd,
 
       (motor_state_ARMING45 == motor_state || DISABLE_MOTOR_SUBSYSTEM) &&
 
-      sdc::status() == sdc_status_CLOSED) {
+      sdc::status() == sdc_status_CLOSED
+
+      && time_since_last_transition > 1_s) {
     return global_state_PRECHARGE;
   }
 

@@ -1,6 +1,7 @@
 #include "canzero.h"
 #include "control/velocity.h"
 #include "fsm/states.h"
+#include <iostream>
 #include "sdc.h"
 #include "subsystems.h"
 
@@ -43,6 +44,7 @@ global_state fsm::states::ready(global_command cmd,
       !DISABLE_GUIDANCE_SUBSYSTEM) {
     return global_state_DISARMING45;
   }
+
 
   // Invariant: levitation
   if ((levitation_state_READY != l1_state ||
