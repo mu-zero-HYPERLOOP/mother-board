@@ -31,34 +31,34 @@ global_state fsm::states::idle(global_command cmd,
   // Invariant: guidance
   if ((guidance_state_IDLE != g1_state || guidance_state_IDLE != g2_state) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
 
   // Invariant: levitation
   if ((levitation_state_IDLE != l1_state || levitation_state_IDLE != l2_state ||
        levitation_state_IDLE != l3_state) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
   // Invariant: motor
   if (motor_state_IDLE != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_IDLE != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
 
   // Invariant: SDC
   if (sdc::status() != sdc_status_OPEN) {
-    return global_state_SHUTDOWN;
+    return global_state_RESTARTING;
   }
 
   // ================ TRANSITIONS ==================
