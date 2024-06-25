@@ -1,10 +1,12 @@
 #include "canzero.h"
 #include "control/velocity.h"
 #include "fsm/states.h"
+#include "sdc.h"
 #include "subsystems.h"
 
 // Invariants:
 // - All system in idle!
+// - SDC open
 global_state fsm::states::idle(global_command cmd,
                                Duration time_since_last_transition) {
 
@@ -48,8 +50,14 @@ global_state fsm::states::idle(global_command cmd,
     return global_state_SHUTDOWN;
   }
 
+  // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_IDLE != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
+    return global_state_SHUTDOWN;
+  }
+
+  // Invariant: SDC
+  if (sdc::status() != sdc_status_OPEN) {
     return global_state_SHUTDOWN;
   }
 
@@ -64,7 +72,7 @@ global_state fsm::states::idle(global_command cmd,
   canzero_set_motor_driver_command(motor_command_NONE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);
-  canzero_set_power_board24_command(pdu_24v_command_IDLE);
+  canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_FALSE);
   control::velocity::disable();
 

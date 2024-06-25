@@ -12,8 +12,46 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto max_error_flag_it = std::max_element(error_flags.begin(), error_flags.end());
   const error_flag max_error_flag = *max_error_flag_it;
   if (max_error_flag == error_flag_ERROR) {
+    return global_command_EMERGENCY;
+  }
+
+  const auto mcu_overtemps = std::array<error_level, 9> {
+    canzero_get_power_board12_error_level_mcu_temperature(),
+    canzero_get_power_board24_error_level_mcu_temperature(),
+    canzero_get_guidance_board_front_error_level_mcu_temperature(),
+    canzero_get_guidance_board_back_error_level_mcu_temperature(),
+    canzero_get_input_board_error_level_mcu_temperature(),
+    canzero_get_levitation_board1_error_level_mcu_temperature(),
+    canzero_get_levitation_board2_error_level_mcu_temperature(),
+    canzero_get_levitation_board3_error_level_mcu_temperature(),
+    canzero_get_motor_driver_error_level_mcu_temperature(),
+  };
+  const auto mcu_temp_error_level_it = std::max_element(mcu_overtemps.begin(), mcu_overtemps.end());
+  const error_level max_mcu_overtemp = *mcu_temp_error_level_it;
+  switch (max_mcu_overtemp) {
+  case error_level_OK:
+  case error_level_INFO:
+    return cmd;
+  case error_level_WARNING:
+    return global_command_ABORT;
+  case error_level_ERROR:
     return global_command_SHUTDOWN;
   }
-  
+
+  const auto heartbeat_misses = std::array<error_flag, 9> {
+    canzero_get_power_board12_error_heartbeat_miss(),
+    canzero_get_power_board24_error_heartbeat_miss(),
+    canzero_get_guidance_board_front_error_heartbeat_miss(),
+    canzero_get_guidance_board_back_error_heartbeat_miss(),
+    canzero_get_input_board_error_heartbeat_miss(),
+    canzero_get_levitation_board1_error_heartbeat_miss(),
+    canzero_get_levitation_board2_error_heartbeat_miss(),
+    canzero_get_levitation_board3_error_heartbeat_miss(),
+    canzero_get_motor_driver_error_heartbeat_miss(),
+  };
+  const auto heartbeat_miss_it = std::max_element(heartbeat_misses.begin(), heartbeat_misses.end());
+  const error_flag heartbeat_miss = *heartbeat_miss_it;
+  if (heartbeat_miss == error_flag_ERROR) return global_command_EMERGENCY;
+
   return cmd;
 }

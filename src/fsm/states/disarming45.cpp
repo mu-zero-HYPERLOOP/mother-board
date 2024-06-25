@@ -11,6 +11,7 @@ constexpr Duration SHUTDOWN_PROMOPTION_TIMEOUT = 5_s;
 // - none
 // Exit condition:
 // - all systems in idle.
+// - SDC is open
 global_state fsm::states::disarming45(global_command cmd,
                                       Duration time_since_last_transition) {
 

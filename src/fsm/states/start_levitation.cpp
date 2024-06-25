@@ -74,8 +74,7 @@ fsm::states::start_levitation(global_command cmd,
     return global_state_DISARMING45;
   }
 
-
-  // Invariant: pdus
+  // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     return global_state_DISARMING45;

@@ -27,9 +27,11 @@ constexpr Duration STATE_TIMEOUT = 5_s;
 // - levitation is [idle, arming45]
 // - motor is [idle, arming45]
 // - input board is running
-// - pdus are running
+// - all PDU 12V channels are on
+// - PDU 24V is in [idle, channels_on]
 // Exit condition:
 // - The SDC is closed.
+// - PDU 24V is in state channels_on
 global_state fsm::states::arming45(global_command cmd,
                                    Duration time_since_last_transition) {
 
@@ -48,14 +50,6 @@ global_state fsm::states::arming45(global_command cmd,
 
   const motor_state motor_state = canzero_get_motor_driver_state();
 
-  // ============== TRANSITIONS ==============
-  if (global_command_SHUTDOWN == cmd){
-    return global_state_SHUTDOWN;
-  }
-
-  if (global_command_EMERGENCY == cmd){
-    return global_state_DISARMING45;
-  }
 
   // Invariant: guidance state
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
@@ -83,9 +77,18 @@ global_state fsm::states::arming45(global_command cmd,
     return global_state_DISARMING45;
   }
 
-  // Invariant: pdus
-  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || !contains(ALLOWED_PDU_24V_STATES, pdu24_state)) &&
-      !DISABLE_POWER_SUBSYSTEM) {
+  // Invariant: PDUs
+  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || !contains(ALLOWED_PDU_24V_STATES, pdu24_state)) 
+      && !DISABLE_POWER_SUBSYSTEM) {
+    return global_state_DISARMING45;
+  }
+
+  // ============== TRANSITIONS ==============
+  if (global_command_SHUTDOWN == cmd){
+    return global_state_SHUTDOWN;
+  }
+
+  if (global_command_EMERGENCY == cmd){
     return global_state_DISARMING45;
   }
 
@@ -99,7 +102,7 @@ global_state fsm::states::arming45(global_command cmd,
 
   // Transition into precharge iff.
   // - input board is running
-  // - pdus are running
+  // - all pdu channels are on
   // - guidance is in arming45
   // - levitation is in arming45
   // - motor is in arming45
