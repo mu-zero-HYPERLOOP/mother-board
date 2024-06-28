@@ -14,6 +14,7 @@ global_state fsm::states::restarting(global_command cmd,
 
   canzero_set_power_board12_command(pdu_12v_command_TELEMETRY);
   canzero_set_power_board24_command(pdu_24v_command_IDLE);
+  canzero_set_pod_grounded(bool_t_TRUE);
 
   return global_state_RESTARTING;
 }

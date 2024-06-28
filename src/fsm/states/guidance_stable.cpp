@@ -96,6 +96,7 @@ global_state fsm::states::guidance_stable(global_command cmd, Duration time_sinc
   canzero_set_guidance_command(guidance_command_NONE);
   canzero_set_levitation_command(levitation_command_NONE);
   canzero_set_motor_driver_command(motor_command_NONE);
+  canzero_set_pod_grounded(bool_t_FALSE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);
   canzero_set_power_board24_command(pdu_24v_command_NONE);

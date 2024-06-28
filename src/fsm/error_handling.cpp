@@ -2,6 +2,7 @@
 #include "canzero/canzero.h"
 #include <algorithm>
 #include <array>
+#include <iostream>
 
 global_command fsm::error_handling::approve(global_command cmd) {
 
@@ -12,6 +13,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto max_error_flag_it = std::max_element(error_flags.begin(), error_flags.end());
   const error_flag max_error_flag = *max_error_flag_it;
   if (max_error_flag == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
     return global_command_EMERGENCY;
   }
 
@@ -33,8 +35,10 @@ global_command fsm::error_handling::approve(global_command cmd) {
   case error_level_INFO:
     return cmd;
   case error_level_WARNING:
+    std::cout << "ERROR_CMD: ABORT" << std::endl;
     return global_command_ABORT;
   case error_level_ERROR:
+    std::cout << "ERROR_CMD: SHUTDOWN" << std::endl;
     return global_command_SHUTDOWN;
   }
 
@@ -51,7 +55,10 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto heartbeat_miss_it = std::max_element(heartbeat_misses.begin(), heartbeat_misses.end());
   const error_flag heartbeat_miss = *heartbeat_miss_it;
-  if (heartbeat_miss == error_flag_ERROR) return global_command_EMERGENCY;
+  if (heartbeat_miss == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    return global_command_EMERGENCY;
+  }
 
   return cmd;
 }

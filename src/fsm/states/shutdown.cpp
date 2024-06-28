@@ -26,6 +26,7 @@ global_state fsm::states::shutdown(global_command cmd, Duration time_since_last_
 
   // commit suicide...
   canzero_set_power_board12_command(pdu_12v_command_STOP);
+  canzero_set_pod_grounded(bool_t_TRUE);
 
   return global_state_SHUTDOWN;
 }

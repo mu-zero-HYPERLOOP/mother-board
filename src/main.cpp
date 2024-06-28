@@ -6,6 +6,7 @@
 
 #include "canzero/canzero.h"
 #include "control/velocity.h"
+#include "sdc.h"
 #include "fsm/fsm.h"
 #include <unistd.h>
 
@@ -25,6 +26,7 @@ int main() {
   
     fsm::update();
     control::velocity::update();
+    sdc::update_sdc_status();
 
     canzero_update_continue(canzero_get_time());
 

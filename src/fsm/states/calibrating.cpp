@@ -25,5 +25,7 @@ global_state fsm::states::calibrating(global_command cmd,
 
   canzero_set_input_board_assert_45V_online(bool_t_FALSE);
 
+  canzero_set_pod_grounded(bool_t_TRUE);
+
   return global_state_CALIBRATING;
 }

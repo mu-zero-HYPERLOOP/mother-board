@@ -15,6 +15,7 @@ void fsm::begin() {
   canzero_set_brake_margin(3);
   canzero_set_emergency_brake_margin(2);
   canzero_set_target_acceleration(0);
+  canzero_set_pod_grounded(bool_t_TRUE);
   canzero_set_position(0);
   canzero_set_velocity(0);
   canzero_set_acceleration(0);

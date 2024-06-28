@@ -6,7 +6,7 @@
 #include "subsystems.h"
 #include <any>
 #include <array>
-#include <cstdio>
+#include <iostream>
 
 constexpr std::array<guidance_state, 2> ALLOWED_GUIDANCE_STATES = {
     guidance_state_IDLE, guidance_state_ARMING45};
@@ -55,6 +55,7 @@ global_state fsm::states::arming45(global_command cmd,
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
        !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
+    std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
@@ -63,23 +64,27 @@ global_state fsm::states::arming45(global_command cmd,
        !contains(ALLOWED_LEVITATION_STATES, l2_state) ||
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
+    std::cout << "LEVI INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: motor state
   if (!contains(ALLOWED_MOTOR_STATES, motor_state) &&
       !DISABLE_MOTOR_SUBSYSTEM) {
+    std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
+    std::cout << "INPUT_BOARD INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || !contains(ALLOWED_PDU_24V_STATES, pdu24_state)) 
       && !DISABLE_POWER_SUBSYSTEM) {
+    std::cout << "PDU INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
@@ -93,12 +98,16 @@ global_state fsm::states::arming45(global_command cmd,
   }
 
   if (global_command_STOP_45 == cmd || global_command_ABORT == cmd) {
+    std::cout << "ARMING_ABORTED" << std::endl;
     return global_state_DISARMING45;
   }
 
   if (time_since_last_transition > STATE_TIMEOUT){
+    std::cout << "ARMING TIMEOUT" << std::endl;
     return global_state_DISARMING45;
   }
+
+  std::cout << sdc::status() << std::endl;
 
   // Transition into precharge iff.
   // - input board is running
@@ -125,7 +134,7 @@ global_state fsm::states::arming45(global_command cmd,
 
       sdc::status() == sdc_status_CLOSED
 
-      && time_since_last_transition > 1_s) {
+      && time_since_last_transition > 500_ms) {
     return global_state_PRECHARGE;
   }
 
@@ -133,6 +142,7 @@ global_state fsm::states::arming45(global_command cmd,
   canzero_set_guidance_command(guidance_command_ARM45);
   canzero_set_levitation_command(levitation_command_ARM45);
   canzero_set_motor_driver_command(motor_command_ARM45);
+  canzero_set_pod_grounded(bool_t_TRUE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);
   canzero_set_power_board24_command(pdu_24v_command_START);
