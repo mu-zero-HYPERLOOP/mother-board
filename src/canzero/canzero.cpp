@@ -422,9 +422,9 @@ static void canzero_deserialize_canzero_message_input_board_stream_errors(canzer
   msg->m_error_level_bat24_over_voltage = (error_level)((((uint32_t*)data)[0] >> 10) & (0xFFFFFFFF >> (32 - 2)));
   msg->m_error_bat24_current_invalid = (error_flag)((((uint32_t*)data)[0] >> 12) & (0xFFFFFFFF >> (32 - 1)));
   msg->m_error_level_bat24_over_current = (error_level)((((uint32_t*)data)[0] >> 13) & (0xFFFFFFFF >> (32 - 2)));
-  msg->m_error_link24_voltage_invalid = (error_flag)((((uint32_t*)data)[0] >> 15) & (0xFFFFFFFF >> (32 - 1)));
-  msg->m_error_level_link24_under_voltage = (error_level)((((uint32_t*)data)[0] >> 16) & (0xFFFFFFFF >> (32 - 2)));
-  msg->m_error_level_link24_over_voltage = (error_level)((((uint32_t*)data)[0] >> 18) & (0xFFFFFFFF >> (32 - 2)));
+  msg->m_error_supercap_voltage_invalid = (error_flag)((((uint32_t*)data)[0] >> 15) & (0xFFFFFFFF >> (32 - 1)));
+  msg->m_error_level_supercap_under_voltage = (error_level)((((uint32_t*)data)[0] >> 16) & (0xFFFFFFFF >> (32 - 2)));
+  msg->m_error_level_supercap_over_voltage = (error_level)((((uint32_t*)data)[0] >> 18) & (0xFFFFFFFF >> (32 - 2)));
   msg->m_error_link24_current_invalid = (error_flag)((((uint32_t*)data)[0] >> 20) & (0xFFFFFFFF >> (32 - 1)));
   msg->m_error_level_link24_over_current = (error_level)((((uint32_t*)data)[0] >> 21) & (0xFFFFFFFF >> (32 - 2)));
   msg->m_error_link45_voltage_invalid = (error_flag)((((uint32_t*)data)[0] >> 23) & (0xFFFFFFFF >> (32 - 1)));
@@ -2567,7 +2567,7 @@ uint32_t canzero_update_continue(uint32_t time){
 #define BUILD_MIN   ((BUILD_TIME_IS_BAD) ? 99 :  COMPUTE_BUILD_MIN)
 #define BUILD_SEC   ((BUILD_TIME_IS_BAD) ? 99 :  COMPUTE_BUILD_SEC)
 void canzero_init() {
-  __oe_config_hash = 8914717385223589350ull;
+  __oe_config_hash = 9975054449182555232ull;
   __oe_build_time = {
     .m_year = BUILD_YEAR,
     .m_month = BUILD_MONTH,

@@ -7,8 +7,8 @@
 
 static Timestamp fsm_last_transition = Timestamp::now();
 
-void fsm::begin() {
-  fsm_last_transition = Timestamp::now();
+void fsm::reset() {
+
   canzero_set_state(global_state_INIT);
   canzero_set_command(global_command_NONE);
   canzero_set_track_length(10);
@@ -45,6 +45,11 @@ void fsm::begin() {
   canzero_set_acceleration_target_velocity(1);
 
   canzero_update_continue(canzero_get_time());
+}
+
+void fsm::begin() {
+  fsm_last_transition = Timestamp::now();
+  fsm::reset();
 }
 
 void fsm::update() {

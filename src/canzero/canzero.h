@@ -757,9 +757,9 @@ typedef struct {
   error_level m_error_level_bat24_over_voltage;
   error_flag m_error_bat24_current_invalid;
   error_level m_error_level_bat24_over_current;
-  error_flag m_error_link24_voltage_invalid;
-  error_level m_error_level_link24_under_voltage;
-  error_level m_error_level_link24_over_voltage;
+  error_flag m_error_supercap_voltage_invalid;
+  error_level m_error_level_supercap_under_voltage;
+  error_level m_error_level_supercap_over_voltage;
   error_flag m_error_link24_current_invalid;
   error_level m_error_level_link24_over_current;
   error_flag m_error_link45_voltage_invalid;

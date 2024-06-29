@@ -1,5 +1,6 @@
 #include "canzero.h"
 #include "fsm/states.h"
+#include "fsm/fsm.h"
 #include "timestamp.h"
 
 constexpr Duration POWER_OFF_TIME = 3_s;
@@ -8,6 +9,7 @@ global_state fsm::states::restarting(global_command cmd,
                                 Duration time_since_last_transition) {
 
   if (time_since_last_transition > POWER_OFF_TIME){
+    fsm::reset(); // resets all object entries!
     return global_state_INIT;
   }
   // =============== OUTPUT ================
