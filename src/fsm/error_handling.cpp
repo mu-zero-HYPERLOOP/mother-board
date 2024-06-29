@@ -6,6 +6,12 @@
 
 global_command fsm::error_handling::approve(global_command cmd) {
 
+  if (canzero_get_error_heartbeat_miss() == error_flag_ERROR){
+    std::cout << "ERROR_CMD: RESTART" << std::endl;
+    return global_command_RESTART;
+  }
+
+
   const auto error_flags = std::array<error_flag, 1> {
     canzero_get_error_heartbeat_miss(),
   };

@@ -8,6 +8,10 @@ constexpr Duration START_CALIBRATION = 1_s;
 global_state fsm::states::calibrating(global_command cmd,
                                    Duration time_since_last_transition) {
 
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
+
   if (DISABLE_INPUT_SUBSYSTEM){
     return global_state_IDLE;
   }

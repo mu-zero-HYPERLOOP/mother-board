@@ -45,6 +45,10 @@ global_state fsm::states::precharge(global_command cmd,
 
   const motor_state motor_state = canzero_get_motor_driver_state();
 
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
+
   // Invariant: guidance
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
        !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&

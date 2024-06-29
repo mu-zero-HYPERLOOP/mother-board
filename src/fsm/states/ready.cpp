@@ -34,6 +34,10 @@ global_state fsm::states::ready(global_command cmd,
   if (global_command_SHUTDOWN == cmd){
     return global_state_SHUTDOWN;
   }
+  
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
 
   if (global_command_EMERGENCY == cmd){
     return global_state_DISARMING45;

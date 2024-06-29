@@ -8,6 +8,10 @@ constexpr Duration SHUTDOWN_TIME = 5_s;
 global_state fsm::states::shutdown(global_command cmd, Duration time_since_last_transition) {
 
 
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
+
   // shutdown 12V and 24V systems except for cooling and telemetry
   // and wait a bit
   if (SHUTDOWN_TIME > time_since_last_transition) {

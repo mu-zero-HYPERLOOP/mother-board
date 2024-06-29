@@ -28,6 +28,10 @@ global_state fsm::states::disarming45(global_command cmd,
 
   const motor_state motor_state = canzero_get_motor_driver_state();
 
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
+
   // =================== TRANSITIONS ==================
   if (global_command_SHUTDOWN == cmd){
     return global_state_SHUTDOWN;

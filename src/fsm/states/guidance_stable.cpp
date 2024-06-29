@@ -27,6 +27,10 @@ global_state fsm::states::guidance_stable(global_command cmd, Duration time_sinc
   const levitation_state l3_state = canzero_get_levitation_board3_state();
 
   const motor_state motor_state = canzero_get_motor_driver_state();
+
+  if (global_command_RESTART == cmd){
+    return global_state_RESTARTING;
+  }
   
   // ================= TRANSITIONS ====================
   if (global_command_SHUTDOWN == cmd){
