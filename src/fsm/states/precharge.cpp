@@ -4,6 +4,7 @@
 #include "fsm/states.h"
 #include "sdc.h"
 #include "subsystems.h"
+#include <iostream>
 #include <array>
 
 constexpr std::array<guidance_state, 3> ALLOWED_GUIDANCE_STATES = {
@@ -53,6 +54,7 @@ global_state fsm::states::precharge(global_command cmd,
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
        !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
+    std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
@@ -61,28 +63,41 @@ global_state fsm::states::precharge(global_command cmd,
        !contains(ALLOWED_LEVITATION_STATES, l2_state) ||
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
+    std::cout << "LEVITATION INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: motor
   if (!contains(ALLOWED_MOTOR_STATES, motor_state) &&
       !DISABLE_MOTOR_SUBSYSTEM) {
+    std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
+    std::cout << "INPUT INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
+    std::cout << "PDU INVARIANT BROKEN" << std::endl;
+    return global_state_DISARMING45;
     return global_state_DISARMING45;
   }
 
   // Invariant: sdc
   if (sdc::status() == sdc_status_OPEN) {
+    std::cout << "SDC INVARIANT BROKEN" << std::endl;
+    std::cout << canzero_get_levitation_board1_sdc_status() << std::endl;
+    std::cout << canzero_get_levitation_board2_sdc_status() << std::endl;
+    std::cout << canzero_get_levitation_board3_sdc_status() << std::endl;
+    std::cout << canzero_get_guidance_board_back_sdc_status() << std::endl;
+    std::cout << canzero_get_guidance_board_front_sdc_status() << std::endl;
+    std::cout << canzero_get_input_board_sdc_status() << std::endl;
+    std::cout << canzero_get_motor_driver_sdc_status() << std::endl;
     return global_state_DISARMING45;
   }
 
@@ -97,6 +112,7 @@ global_state fsm::states::precharge(global_command cmd,
   }
 
   if (time_since_last_transition > STATE_TIMEOUT){
+    std::cout << "TIMEOUT" << std::endl;
     return global_state_DISARMING45;
   }
 
