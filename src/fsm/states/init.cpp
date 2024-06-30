@@ -29,10 +29,6 @@ global_state fsm::states::init(global_command cmd,
 
   const motor_state motor_state = canzero_get_motor_driver_state();
 
-  if (global_command_RESTART == cmd){
-    return global_state_RESTARTING;
-  }
-
   if (global_command_SHUTDOWN == cmd){
     return global_state_SHUTDOWN;
   }
@@ -51,7 +47,8 @@ global_state fsm::states::init(global_command cmd,
         l2_state == levitation_state_IDLE &&
         l3_state == levitation_state_IDLE) ||
        DISABLE_LEVITATION_SUBSYSTEM)
-      && (motor_state == motor_state_IDLE || DISABLE_MOTOR_SUBSYSTEM)) {
+      && (motor_state == motor_state_IDLE || DISABLE_MOTOR_SUBSYSTEM) 
+      && time_since_last_transition > 3_s) {
 
     return global_state_IDLE;
   }

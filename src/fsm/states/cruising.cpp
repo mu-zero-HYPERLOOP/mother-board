@@ -88,6 +88,10 @@ global_state fsm::states::cruising(global_command cmd,
     return global_state_DISARMING45;
   }
 
+  if (canzero_get_position() > 7.0f) {
+    return global_state_DECELERATION;
+  }
+
   if (time_since_last_transition > STATE_TIMEOUT){
     return global_state_DECELERATION;
   }
@@ -107,7 +111,7 @@ global_state fsm::states::cruising(global_command cmd,
   // =============== OUTPUTS =================
   canzero_set_guidance_command(guidance_command_NONE);
   canzero_set_levitation_command(levitation_command_NONE);
-  canzero_set_motor_driver_command(motor_command_STOP);
+  canzero_set_motor_driver_command(motor_command_START);
   canzero_set_pod_grounded(bool_t_FALSE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);

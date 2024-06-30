@@ -46,6 +46,7 @@ global_state fsm::states::ready(global_command cmd,
   // Invariant: guidance
   if ((guidance_state_READY != g1_state || guidance_state_READY != g2_state) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
+    std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
@@ -55,27 +56,32 @@ global_state fsm::states::ready(global_command cmd,
        levitation_state_READY != l2_state ||
        levitation_state_READY != l3_state) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
+    std::cout << "LEVITATION INVARIANT BROKEN: " << l1_state << "," << l2_state << "," << l3_state << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: motor
   if (motor_state_READY != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
+    std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
+    std::cout << "INPUT_BOARD INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: pdus
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
+    std::cout << "PDU INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 
   // Invariant: SDC
   if (sdc::status() != sdc_status_CLOSED) {
+    std::cout << "SDC INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
   }
 

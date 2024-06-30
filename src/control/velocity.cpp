@@ -20,7 +20,7 @@ void control::velocity::begin() {
 
   canzero_set_velocity_pid(pid_parameters{
       .m_Kp = 1.0f,
-      .m_Ki = 0.0f,
+      .m_Ki = 0.1f,
       .m_Kd = 0.0f,
   });
 }

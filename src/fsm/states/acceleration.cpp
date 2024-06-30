@@ -10,7 +10,7 @@ constexpr std::array<motor_state, 2> ALLOWED_MOTOR_STATES = {
     motor_state_READY, motor_state_CONTROL};
 
 constexpr Duration MAX_MOTOR_TRANSITION_TIME = 1_s;
-constexpr Duration MAX_STATE_TIME = 10_s;
+constexpr Duration MAX_STATE_TIME = 60_s;
 
 // Invariants:
 // - levitation stable
@@ -106,6 +106,10 @@ global_state fsm::states::acceleration(global_command cmd,
   }
 
   if (global_command_STOP_PROPULSION == cmd || global_command_ABORT == cmd) {
+    return global_state_DECELERATION;
+  }
+
+  if (canzero_get_position() > 7.0f) {
     return global_state_DECELERATION;
   }
 
