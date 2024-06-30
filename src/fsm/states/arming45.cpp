@@ -17,9 +17,6 @@ constexpr std::array<levitation_state, 2> ALLOWED_LEVITATION_STATES = {
 constexpr std::array<motor_state, 2> ALLOWED_MOTOR_STATES = {
     motor_state_IDLE, motor_state_ARMING45};
 
-constexpr std::array<pdu_24v_state, 2> ALLOWED_PDU_24V_STATES = {
-    pdu_24v_state_CHANNELS_ON, pdu_24v_state_CHANNELS_IDLE};
-
 constexpr Duration STATE_TIMEOUT = 5_s;
 
 // Invariant:
@@ -85,7 +82,7 @@ global_state fsm::states::arming45(global_command cmd,
   }
 
   // Invariant: PDUs
-  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || !contains(ALLOWED_PDU_24V_STATES, pdu24_state)) 
+  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state)
       && !DISABLE_POWER_SUBSYSTEM) {
     std::cout << "PDU INVARIANT BROKEN" << std::endl;
     return global_state_DISARMING45;
@@ -148,7 +145,7 @@ global_state fsm::states::arming45(global_command cmd,
   canzero_set_pod_grounded(bool_t_TRUE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);
-  canzero_set_power_board24_command(pdu_24v_command_START);
+  canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_FALSE);
   control::velocity::disable();
 

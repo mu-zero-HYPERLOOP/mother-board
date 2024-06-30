@@ -43,7 +43,7 @@ global_state fsm::states::disarming45(global_command cmd,
 
   if ((input_board_state_RUNNING == input_state || DISABLE_INPUT_SUBSYSTEM) &&
 
-      ((pdu_12v_state_CHANNELS_ON == pdu12_state && pdu_24v_state_CHANNELS_IDLE == pdu24_state) ||
+      ((pdu_12v_state_CHANNELS_ON == pdu12_state && pdu_24v_state_CHANNELS_ON == pdu24_state) ||
        DISABLE_POWER_SUBSYSTEM) &&
 
       ((guidance_state_IDLE == g1_state && guidance_state_IDLE == g2_state) ||
@@ -67,7 +67,7 @@ global_state fsm::states::disarming45(global_command cmd,
   canzero_set_pod_grounded(bool_t_TRUE);
   canzero_set_input_board_command(input_board_command_NONE);
   canzero_set_power_board12_command(pdu_12v_command_NONE);
-  canzero_set_power_board24_command(pdu_24v_command_IDLE);
+  canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_FALSE);
   control::velocity::disable();
 

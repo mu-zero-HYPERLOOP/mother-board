@@ -59,7 +59,7 @@ global_state fsm::states::idle(global_command cmd,
   }
 
   // Invariant: PDUs
-  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_IDLE != pdu24_state) &&
+  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     return global_state_RESTARTING;
   }
