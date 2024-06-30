@@ -42,7 +42,7 @@ void fsm::reset() {
   canzero_set_power_board24_state(pdu_24v_state_INIT);
   canzero_set_power_board24_sdc_status(sdc_status_OPEN);
 
-  canzero_set_acceleration_target_velocity(1);
+  canzero_set_acceleration_target_velocity(3);
 
   canzero_update_continue(canzero_get_time());
 }

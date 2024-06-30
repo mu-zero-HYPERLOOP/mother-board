@@ -110,8 +110,6 @@ global_state fsm::states::arming45(global_command cmd,
     return global_state_DISARMING45;
   }
 
-  std::cout << sdc::status() << std::endl;
-
   // Transition into precharge iff.
   // - input board is running
   // - all pdu channels are on

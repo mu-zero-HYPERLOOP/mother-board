@@ -244,7 +244,7 @@ private:
       // intentionally ignore dropped frames
       bool suc = m_sync_buffers[frame.bus_id].enqueue(frame.can_frame);
       if (!suc) {
-        std::cout << "Dropped CanFrame" << std::endl;
+        /* std::cout << "Dropped CanFrame" << std::endl; */
       }
     }
   }

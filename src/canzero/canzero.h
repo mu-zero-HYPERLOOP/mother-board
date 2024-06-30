@@ -519,7 +519,7 @@ typedef struct {
   global_command m_command;
   sdc_status m_system_sdc_status;
 } canzero_message_mother_board_stream_state;
-static const uint32_t canzero_message_mother_board_stream_state_id = 0x95;
+static const uint32_t canzero_message_mother_board_stream_state_id = 0xB5;
 typedef struct {
   float m_target_acceleration;
   motor_command m_motor_driver_command;
@@ -550,7 +550,7 @@ static const uint32_t canzero_message_mother_board_stream_pdu_24v_command_id = 0
 typedef struct {
   error_flag m_error_heartbeat_miss;
 } canzero_message_mother_board_stream_errors;
-static const uint32_t canzero_message_mother_board_stream_errors_id = 0x75;
+static const uint32_t canzero_message_mother_board_stream_errors_id = 0x95;
 typedef struct {
   bool_t m_ignore_45v;
 } canzero_message_mother_board_stream_debug_settings;
@@ -628,7 +628,7 @@ typedef struct {
 static const uint32_t canzero_message_guidance_board_front_stream_state_id = 0xB1;
 typedef struct {
   error_flag m_error_heartbeat_miss;
-  error_level m_errro_level_mcu_temperature;
+  error_level m_error_level_mcu_temperature;
   error_flag m_assertion_fault;
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
@@ -638,7 +638,6 @@ typedef struct {
   error_level m_error_level_input_current;
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
-  error_level m_error_level_mcu_temperature;
 } canzero_message_guidance_board_front_stream_errors;
 static const uint32_t canzero_message_guidance_board_front_stream_errors_id = 0x91;
 typedef struct {
@@ -652,7 +651,7 @@ typedef struct {
 static const uint32_t canzero_message_guidance_board_back_stream_state_id = 0x71;
 typedef struct {
   error_flag m_error_heartbeat_miss;
-  error_level m_errro_level_mcu_temperature;
+  error_level m_error_level_mcu_temperature;
   error_flag m_assertion_fault;
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
@@ -662,7 +661,6 @@ typedef struct {
   error_level m_error_level_input_current;
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
-  error_level m_error_level_mcu_temperature;
 } canzero_message_guidance_board_back_stream_errors;
 static const uint32_t canzero_message_guidance_board_back_stream_errors_id = 0x51;
 typedef struct {

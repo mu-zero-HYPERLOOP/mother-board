@@ -2,6 +2,7 @@
 #include "control/velocity.h"
 #include "fsm/states.h"
 #include "sdc.h"
+#include <iostream>
 #include "subsystems.h"
 
 // Invariants:
@@ -31,14 +32,11 @@ global_state fsm::states::idle(global_command cmd,
   if (global_command_SHUTDOWN == cmd){
     return global_state_SHUTDOWN;
   }
-  
-  if (global_command_RESTART == cmd){
-    return global_state_RESTARTING;
-  }
 
   // Invariant: guidance
   if ((guidance_state_IDLE != g1_state || guidance_state_IDLE != g2_state) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
+    std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
     return global_state_RESTARTING;
   }
 
@@ -46,26 +44,31 @@ global_state fsm::states::idle(global_command cmd,
   if ((levitation_state_IDLE != l1_state || levitation_state_IDLE != l2_state ||
        levitation_state_IDLE != l3_state) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
+    std::cout << "LEVITATION INVARIANT BROKEN: " << l1_state << "," << l2_state << "," << l3_state << std::endl;
     return global_state_RESTARTING;
   }
   // Invariant: motor
   if (motor_state_IDLE != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
+    std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
     return global_state_RESTARTING;
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
+    std::cout << "INPUT_BOARD INVARIANT BROKEN" << std::endl;
     return global_state_RESTARTING;
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_IDLE != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
+    std::cout << "PDU INVARIANT BROKEN" << std::endl;
     return global_state_RESTARTING;
   }
 
   // Invariant: SDC
   if (sdc::status() != sdc_status_OPEN) {
+    std::cout << "SDC INVARIANT BROKEN" << std::endl;
     return global_state_RESTARTING;
   }
 

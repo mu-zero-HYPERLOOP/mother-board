@@ -44,8 +44,8 @@ global_command fsm::error_handling::approve(global_command cmd) {
     std::cout << "ERROR_CMD: ABORT" << std::endl;
     return global_command_ABORT;
   case error_level_ERROR:
-    std::cout << "ERROR_CMD: SHUTDOWN" << std::endl;
-    return global_command_SHUTDOWN;
+    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    return global_command_EMERGENCY;
   }
 
   const auto heartbeat_misses = std::array<error_flag, 9> {
