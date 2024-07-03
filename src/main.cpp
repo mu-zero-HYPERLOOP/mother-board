@@ -9,12 +9,14 @@
 #include "sdc.h"
 #include "fsm/fsm.h"
 #include <unistd.h>
+#include "defaults.h"
 
 constexpr float MAX_ACCEL = 9.81;
 
 int main() {
 
   canzero_init();
+  can_defaults();
 
   fsm::begin();
   control::velocity::begin();

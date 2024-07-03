@@ -2,9 +2,28 @@
 #include "canzero/canzero.h"
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <iostream>
 
 global_command fsm::error_handling::approve(global_command cmd) {
+  // check config hashes of nodes
+  const auto config_hashes = std::array<uint64_t, 10> {
+    canzero_get_motor_driver_config_hash(),
+    canzero_get_guidance_board_front_config_hash(),
+    canzero_get_guidance_board_back_config_hash(),
+    canzero_get_levitation_board1_config_hash(),
+    canzero_get_levitation_board2_config_hash(),
+    canzero_get_levitation_board3_config_hash(),
+    canzero_get_input_board_config_hash(),
+    canzero_get_power_board12_config_hash(),
+    canzero_get_power_board24_config_hash(),
+    canzero_get_led_board_config_hash(),
+  };
+  const uint64_t mother_hash = canzero_get_config_hash();
+  const bool inconsistent = std::any_of(config_hashes.begin(), config_hashes.end(), [mother_hash](auto x) {
+      return x != mother_hash && x != 0;
+  });
+  canzero_set_error_level_config_consistency(inconsistent ? error_level_INFO : error_level_OK);
 
   if (canzero_get_error_heartbeat_miss() == error_flag_ERROR){
     std::cout << "ERROR_CMD: RESTART" << std::endl;
