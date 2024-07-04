@@ -46,9 +46,11 @@ global_command fsm::error_handling::approve(global_command cmd) {
     return cmd;
   case error_level_WARNING:
     std::cout << "ERROR_CMD: ABORT" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_ABORT;
   case error_level_ERROR:
     std::cout << "ERROR_CMD: SHUTDOWN" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_SHUTDOWN;
   }
 
@@ -80,9 +82,11 @@ global_command fsm::error_handling::approve(global_command cmd) {
     return cmd;
   case error_level_WARNING:
     std::cout << "ERROR_CMD: ABORT" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_ABORT;
   case error_level_ERROR:
     std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
 
@@ -104,6 +108,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const error_flag heartbeat_miss = *heartbeat_miss_it;
   if (heartbeat_miss == error_flag_ERROR) {
     std::cout << "ERROR_CMD: RESTART" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_RESTART;
   }
 
@@ -175,6 +180,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const error_flag max_error_flag = *max_error_flag_it;
   if (max_error_flag == error_flag_ERROR) {
     std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
 
@@ -231,12 +237,24 @@ global_command fsm::error_handling::approve(global_command cmd) {
     return cmd;
   case error_level_WARNING:
     std::cout << "ERROR_CMD: ABORT" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_ABORT;
   case error_level_ERROR:
     std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
 
 
   return cmd;
+}
+
+global_state fsm::error_handling::invariant_broken() {
+  canzero_set_command(global_command_NONE);
+  return global_state_DISARMING45;
+}
+
+global_state fsm::error_handling::invariant_broken_idle() {
+  canzero_set_command(global_command_NONE);
+  return global_state_RESTARTING;
 }

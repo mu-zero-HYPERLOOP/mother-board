@@ -1,5 +1,6 @@
 #include "canzero.h"
 #include "control/velocity.h"
+#include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
 #include "sdc.h"
@@ -56,7 +57,7 @@ global_state fsm::states::arming45(global_command cmd,
        !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
     std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: levitation state
@@ -65,27 +66,27 @@ global_state fsm::states::arming45(global_command cmd,
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
     std::cout << "LEVI INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: motor state
   if (!contains(ALLOWED_MOTOR_STATES, motor_state) &&
       !DISABLE_MOTOR_SUBSYSTEM) {
     std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
     std::cout << "INPUT_BOARD INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state)
       && !DISABLE_POWER_SUBSYSTEM) {
     std::cout << "PDU INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // ============== TRANSITIONS ==============
@@ -104,7 +105,7 @@ global_state fsm::states::arming45(global_command cmd,
 
   if (time_since_last_transition > STATE_TIMEOUT){
     std::cout << "ARMING TIMEOUT" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Transition into precharge iff.

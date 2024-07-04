@@ -38,6 +38,7 @@ global_state fsm::states::disarming45(global_command cmd,
   }
 
   if (time_since_last_transition > SHUTDOWN_PROMOPTION_TIMEOUT){
+    canzero_set_command(global_command_NONE);
     return global_state_SHUTDOWN;
   }
 

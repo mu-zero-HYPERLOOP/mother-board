@@ -1,6 +1,7 @@
 #include "canzero.h"
 #include "control/velocity.h"
 #include <iostream>
+#include "error_handling.h"
 #include "fsm/states.h"
 #include "sdc.h"
 #include "subsystems.h"
@@ -53,7 +54,7 @@ global_state fsm::states::deceleration(global_command cmd,
        guidance_state_CONTROL != g2_state) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
     std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: levitation
@@ -62,37 +63,37 @@ global_state fsm::states::deceleration(global_command cmd,
        levitation_state_CONTROL != l3_state) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
     std::cout << "LEVITATION INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: motor
   if (motor_state_CONTROL != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
     std::cout << "MOTOR INVARIANT BROKEN : " << motor_state << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: input_board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
     std::cout << "INPUT BOARD INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: pdus
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     std::cout << "PDU INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: SDC
   if (sdc::status() == sdc_status_OPEN) {
     std::cout << "SDC INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   if (time_since_last_transition > STATE_TIMEOUT){
     std::cout << "STATE TIMEOUT" << std::endl;
-    return global_state_DISARMING45;
+    canzero_set_command(global_command_NONE);
     return global_state_DISARMING45;
   }
 
@@ -105,7 +106,7 @@ global_state fsm::states::deceleration(global_command cmd,
   /*   return global_state_DISARMING45; */
   /* } */
 
-  // Transition back into ready, when the velocity is below a threshold.
+  // Transition back into levitation stable, when the velocity is below a threshold.
   if (canzero_get_velocity() < static_cast<float>(VEL_CONSIDERED_STOPPED)) {
     return global_state_GUIDANCE_STABLE;
   }

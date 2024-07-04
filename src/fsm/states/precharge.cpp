@@ -1,5 +1,6 @@
 #include "canzero.h"
 #include "control/velocity.h"
+#include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
 #include "sdc.h"
@@ -55,7 +56,7 @@ global_state fsm::states::precharge(global_command cmd,
        !contains(ALLOWED_GUIDANCE_STATES, g2_state)) &&
       !DISABLE_GUIDANCE_SUBSYSTEM) {
     std::cout << "GUIDANCE INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: levitation
@@ -64,28 +65,27 @@ global_state fsm::states::precharge(global_command cmd,
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
     std::cout << "LEVITATION INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: motor
   if (!contains(ALLOWED_MOTOR_STATES, motor_state) &&
       !DISABLE_MOTOR_SUBSYSTEM) {
     std::cout << "MOTOR INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_INPUT_SUBSYSTEM) {
     std::cout << "INPUT INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     std::cout << "PDU INVARIANT BROKEN" << std::endl;
-    return global_state_DISARMING45;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Invariant: sdc
@@ -98,7 +98,7 @@ global_state fsm::states::precharge(global_command cmd,
     std::cout << canzero_get_guidance_board_front_sdc_status() << std::endl;
     std::cout << canzero_get_input_board_sdc_status() << std::endl;
     std::cout << canzero_get_motor_driver_sdc_status() << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
 
@@ -113,7 +113,7 @@ global_state fsm::states::precharge(global_command cmd,
 
   if (time_since_last_transition > STATE_TIMEOUT){
     std::cout << "TIMEOUT" << std::endl;
-    return global_state_DISARMING45;
+    return fsm::error_handling::invariant_broken();
   }
 
   // Transition into disarming45 if.

@@ -1,5 +1,6 @@
 #include "canzero.h"
 #include "control/velocity.h"
+#include "error_handling.h"
 #include "fsm/states.h"
 #include "fsm/invariants.h"
 #include "sdc.h"
@@ -55,35 +56,35 @@ global_state fsm::states::stop_guidance(global_command cmd, Duration time_since_
   // Invariant: guidance
   if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state)
       || !contains(ALLOWED_GUIDANCE_STATES, g2_state)) && !DISABLE_GUIDANCE_SUBSYSTEM){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: levitation 
   if ((levitation_state_CONTROL != l1_state
       || levitation_state_CONTROL != l2_state
       || levitation_state_CONTROL != l3_state) && !DISABLE_LEVITATION_SUBSYSTEM){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: motor
   if (motor_state_READY != motor_state && !DISABLE_MOTOR_SUBSYSTEM){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: input board
   if (input_board_state_RUNNING != input_state && !DISABLE_MOTOR_SUBSYSTEM){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: pdus
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state
       || pdu_24v_state_CHANNELS_ON != pdu24_state) && !DISABLE_POWER_SUBSYSTEM){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Invariant: sdc
   if (sdc::status() == sdc_status_OPEN){
-    return global_state_DISARMING45;
+    return error_handling::invariant_broken();
   }
 
   // Pod commands
@@ -92,6 +93,7 @@ global_state fsm::states::stop_guidance(global_command cmd, Duration time_since_
   }
 
   if (time_since_last_transition > STATE_TIMEOUT){
+    canzero_set_command(global_command_NONE);
     return global_state_DISARMING45;
   }
 
