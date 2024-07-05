@@ -1003,6 +1003,10 @@ static inline error_flag canzero_get_error_heartbeat_miss() {
   extern error_flag __oe_error_heartbeat_miss;
   return __oe_error_heartbeat_miss;
 }
+static inline uint8_t canzero_get_last_node_missed() {
+  extern uint8_t __oe_last_node_missed;
+  return __oe_last_node_missed;
+}
 static inline float canzero_get_target_airgap() {
   extern float __oe_target_airgap;
   return __oe_target_airgap;
@@ -1072,6 +1076,7 @@ typedef struct {
   error_flag m_error_heartbeat_miss;
   error_flag m_error_any;
   error_level m_error_level_over_temperature_system;
+  uint8_t m_last_node_missed;
 } canzero_message_mother_board_stream_errors;
 static const uint32_t canzero_message_mother_board_stream_errors_id = 0x50;
 typedef struct {
@@ -1148,6 +1153,7 @@ typedef struct {
   error_level m_error_level_board_temperature;
   error_level m_error_level_mcu_temperature;
   error_level m_error_level_lim_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_motor_driver_stream_errors;
 static const uint32_t canzero_message_motor_driver_stream_errors_id = 0x95;
 typedef struct {
@@ -1175,6 +1181,7 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_guidance_board_front_stream_errors;
 static const uint32_t canzero_message_guidance_board_front_stream_errors_id = 0xD7;
 typedef struct {
@@ -1202,6 +1209,7 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_guidance_board_back_stream_errors;
 static const uint32_t canzero_message_guidance_board_back_stream_errors_id = 0x77;
 typedef struct {
@@ -1229,6 +1237,7 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_levitation_board1_stream_errors;
 static const uint32_t canzero_message_levitation_board1_stream_errors_id = 0xB6;
 typedef struct {
@@ -1256,6 +1265,7 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_levitation_board2_stream_errors;
 static const uint32_t canzero_message_levitation_board2_stream_errors_id = 0x116;
 typedef struct {
@@ -1283,6 +1293,7 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_levitation_board3_stream_errors;
 static const uint32_t canzero_message_levitation_board3_stream_errors_id = 0x176;
 typedef struct {
@@ -1338,6 +1349,7 @@ typedef struct {
   error_level m_error_level_buck_temperature;
   error_level m_error_level_ebox_temperature;
   error_level m_error_level_ambient_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_input_board_stream_errors;
 static const uint32_t canzero_message_input_board_stream_errors_id = 0x52;
 typedef struct {
@@ -1354,6 +1366,7 @@ typedef struct {
   error_flag m_error_any_short;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_power_board12_stream_errors;
 static const uint32_t canzero_message_power_board12_stream_errors_id = 0xF5;
 typedef struct {
@@ -1370,6 +1383,7 @@ typedef struct {
   error_flag m_error_any_short;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_power_board24_stream_errors;
 static const uint32_t canzero_message_power_board24_stream_errors_id = 0x155;
 typedef struct {
@@ -1385,6 +1399,7 @@ typedef struct {
   error_flag m_assertion_fault;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_mcu_temperature;
+  uint8_t m_last_node_missed;
 } canzero_message_led_board_stream_errors;
 static const uint32_t canzero_message_led_board_stream_errors_id = 0x56;
 typedef struct {
@@ -2302,6 +2317,8 @@ static inline void canzero_set_gamepad_rt2(float value){
 
 void canzero_set_error_heartbeat_miss(error_flag value);
 
+void canzero_set_last_node_missed(uint8_t value);
+
 void canzero_set_target_airgap(float value);
 
 void canzero_set_airgap_transition_duration(float value);
@@ -2687,6 +2704,8 @@ void canzero_send_gamepad_lt2();
 void canzero_send_gamepad_rt2();
 
 void canzero_send_error_heartbeat_miss();
+
+void canzero_send_last_node_missed();
 
 void canzero_send_target_airgap();
 
