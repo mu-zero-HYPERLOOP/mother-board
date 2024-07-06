@@ -1,6 +1,5 @@
 #include "canzero.h"
 #include "control/velocity.h"
-#include <iostream>
 #include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
@@ -42,16 +41,16 @@ fsm::states::start_levitation(global_command cmd,
 
   const motor_state motor_state = canzero_get_motor_driver_state();
 
-  if (global_command_RESTART == cmd){
+  if (global_command_RESTART == cmd) {
     return global_state_RESTARTING;
   }
 
   // ====================== TRANSITIONS ======================
-  if (global_command_SHUTDOWN == cmd){
+  if (global_command_SHUTDOWN == cmd) {
     return global_state_SHUTDOWN;
   }
 
-  if (global_command_EMERGENCY == cmd){
+  if (global_command_EMERGENCY == cmd) {
     return global_state_DISARMING45;
   }
 
@@ -62,13 +61,13 @@ fsm::states::start_levitation(global_command cmd,
     return error_handling::invariant_broken();
   }
 
-
   // Invariant: levitation
   if ((!contains(ALLOWED_LEVITATION_STATES, l1_state) ||
        !contains(ALLOWED_LEVITATION_STATES, l2_state) ||
        !contains(ALLOWED_LEVITATION_STATES, l3_state)) &&
       !DISABLE_LEVITATION_SUBSYSTEM) {
-    std::cout << "LEVITATION INVARIANT BROKEN : " << l1_state << "," << l2_state << "," << l3_state << std::endl;
+    std::cout << "LEVITATION INVARIANT BROKEN : " << l1_state << "," << l2_state
+              << "," << l3_state << std::endl;
     return error_handling::invariant_broken();
   }
 
@@ -85,7 +84,8 @@ fsm::states::start_levitation(global_command cmd,
   }
 
   // Invariant: PDUs
-  if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
+  if ((pdu_12v_state_CHANNELS_ON != pdu12_state ||
+       pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
     std::cout << "PDU INVARIANT BROKEN" << std::endl;
     return error_handling::invariant_broken();
@@ -93,8 +93,20 @@ fsm::states::start_levitation(global_command cmd,
 
   // Invariant: SDC
   if (sdc::status() == sdc_status_OPEN) {
+<<<<<<< HEAD
     std::cout << "SDC INVARIANT BROKEN" << std::endl;
     return error_handling::invariant_broken();
+=======
+    std::cout << "SDC INVARIANT BROKEN"
+              << canzero_get_levitation_board1_sdc_status() << ","
+              << canzero_get_levitation_board2_sdc_status() << ","
+              << canzero_get_levitation_board3_sdc_status() 
+              << "," << canzero_get_input_board_sdc_status() <<
+              "," << canzero_get_power_board12_sdc_status() 
+              << "," << canzero_get_power_board24_sdc_status() 
+              << "," << canzero_get_motor_driver_sdc_status()<< std::endl;
+    return global_state_DISARMING45;
+>>>>>>> ca58145 (set airgap oes)
   }
 
   if (global_command_STOP_45 == cmd) {
@@ -102,7 +114,7 @@ fsm::states::start_levitation(global_command cmd,
     return global_state_DISARMING45;
   }
 
-  if (time_since_last_transition > STATE_TIMEOUT){
+  if (time_since_last_transition > STATE_TIMEOUT) {
     std::cout << "STATE TIMEOUT" << std::endl;
     canzero_set_command(global_command_NONE);
     return global_state_STOP_LEVITATION;

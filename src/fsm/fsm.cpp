@@ -42,6 +42,10 @@ void fsm::reset() {
   canzero_set_power_board24_state(pdu_24v_state_INIT);
   canzero_set_power_board24_sdc_status(sdc_status_OPEN);
 
+  canzero_set_target_airgap(10);
+  canzero_set_airgap_transition_mode(airgap_transition_mode_LINEAR);
+  canzero_set_airgap_transition_duration(6);
+
   canzero_set_acceleration_target_velocity(3);
 
   canzero_update_continue(canzero_get_time());
