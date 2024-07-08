@@ -93,10 +93,6 @@ fsm::states::start_levitation(global_command cmd,
 
   // Invariant: SDC
   if (sdc::status() == sdc_status_OPEN) {
-<<<<<<< HEAD
-    std::cout << "SDC INVARIANT BROKEN" << std::endl;
-    return error_handling::invariant_broken();
-=======
     std::cout << "SDC INVARIANT BROKEN"
               << canzero_get_levitation_board1_sdc_status() << ","
               << canzero_get_levitation_board2_sdc_status() << ","
@@ -105,8 +101,7 @@ fsm::states::start_levitation(global_command cmd,
               "," << canzero_get_power_board12_sdc_status() 
               << "," << canzero_get_power_board24_sdc_status() 
               << "," << canzero_get_motor_driver_sdc_status()<< std::endl;
-    return global_state_DISARMING45;
->>>>>>> ca58145 (set airgap oes)
+    return error_handling::invariant_broken();
   }
 
   if (global_command_STOP_45 == cmd) {
