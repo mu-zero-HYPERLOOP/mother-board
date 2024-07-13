@@ -799,9 +799,13 @@ static inline error_flag canzero_get_input_board_error_cooling_cycle_temperature
   extern error_flag __oe_input_board_error_cooling_cycle_temperature_invalid;
   return __oe_input_board_error_cooling_cycle_temperature_invalid;
 }
-static inline error_flag canzero_get_input_board_error_bat24_temperature_invalid() {
-  extern error_flag __oe_input_board_error_bat24_temperature_invalid;
-  return __oe_input_board_error_bat24_temperature_invalid;
+static inline error_flag canzero_get_input_board_error_bat24_cell_temperature_1_invalid() {
+  extern error_flag __oe_input_board_error_bat24_cell_temperature_1_invalid;
+  return __oe_input_board_error_bat24_cell_temperature_1_invalid;
+}
+static inline error_flag canzero_get_input_board_error_bat24_cell_temperature_2_invalid() {
+  extern error_flag __oe_input_board_error_bat24_cell_temperature_2_invalid;
+  return __oe_input_board_error_bat24_cell_temperature_2_invalid;
 }
 static inline error_flag canzero_get_input_board_error_supercap_temperature_invalid() {
   extern error_flag __oe_input_board_error_supercap_temperature_invalid;
@@ -811,13 +815,25 @@ static inline error_flag canzero_get_input_board_error_buck_temperature_invalid(
   extern error_flag __oe_input_board_error_buck_temperature_invalid;
   return __oe_input_board_error_buck_temperature_invalid;
 }
-static inline error_flag canzero_get_input_board_error_ebox_temperature_invalid() {
-  extern error_flag __oe_input_board_error_ebox_temperature_invalid;
-  return __oe_input_board_error_ebox_temperature_invalid;
+static inline error_flag canzero_get_input_board_error_sac_ebox_temperature_invalid() {
+  extern error_flag __oe_input_board_error_sac_ebox_temperature_invalid;
+  return __oe_input_board_error_sac_ebox_temperature_invalid;
 }
-static inline error_flag canzero_get_input_board_error_ambient_temperature_invalid() {
-  extern error_flag __oe_input_board_error_ambient_temperature_invalid;
-  return __oe_input_board_error_ambient_temperature_invalid;
+static inline error_flag canzero_get_input_board_error_power_ebox_temperature_invalid() {
+  extern error_flag __oe_input_board_error_power_ebox_temperature_invalid;
+  return __oe_input_board_error_power_ebox_temperature_invalid;
+}
+static inline error_flag canzero_get_input_board_error_ambient_temperature_1_invalid() {
+  extern error_flag __oe_input_board_error_ambient_temperature_1_invalid;
+  return __oe_input_board_error_ambient_temperature_1_invalid;
+}
+static inline error_flag canzero_get_input_board_error_ambient_temperature_2_invalid() {
+  extern error_flag __oe_input_board_error_ambient_temperature_2_invalid;
+  return __oe_input_board_error_ambient_temperature_2_invalid;
+}
+static inline error_flag canzero_get_input_board_error_ambient_temperature_3_invalid() {
+  extern error_flag __oe_input_board_error_ambient_temperature_3_invalid;
+  return __oe_input_board_error_ambient_temperature_3_invalid;
 }
 static inline error_flag canzero_get_input_board_error_heartbeat_miss() {
   extern error_flag __oe_input_board_error_heartbeat_miss;
@@ -883,9 +899,13 @@ static inline error_level canzero_get_input_board_error_level_buck_temperature()
   extern error_level __oe_input_board_error_level_buck_temperature;
   return __oe_input_board_error_level_buck_temperature;
 }
-static inline error_level canzero_get_input_board_error_level_ebox_temperature() {
-  extern error_level __oe_input_board_error_level_ebox_temperature;
-  return __oe_input_board_error_level_ebox_temperature;
+static inline error_level canzero_get_input_board_error_level_sac_ebox_temperature() {
+  extern error_level __oe_input_board_error_level_sac_ebox_temperature;
+  return __oe_input_board_error_level_sac_ebox_temperature;
+}
+static inline error_level canzero_get_input_board_error_level_power_ebox_temperature() {
+  extern error_level __oe_input_board_error_level_power_ebox_temperature;
+  return __oe_input_board_error_level_power_ebox_temperature;
 }
 static inline error_level canzero_get_input_board_error_level_ambient_temperature() {
   extern error_level __oe_input_board_error_level_ambient_temperature;
@@ -1062,7 +1082,7 @@ typedef struct {
   float m_airgap_transition_duration;
   airgap_transition_mode m_airgap_transition_mode;
 } canzero_message_mother_board_stream_levitation_conifg;
-static const uint32_t canzero_message_mother_board_stream_levitation_conifg_id = 0x59;
+static const uint32_t canzero_message_mother_board_stream_levitation_conifg_id = 0x79;
 typedef struct {
   pdu_12v_command m_power_board12_command;
 } canzero_message_mother_board_stream_pdu_12v_command;
@@ -1153,6 +1173,7 @@ typedef struct {
   error_level m_error_level_board_temperature;
   error_level m_error_level_mcu_temperature;
   error_level m_error_level_lim_temperature;
+  error_flag m_error_vdc_voltage_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_motor_driver_stream_errors;
 static const uint32_t canzero_message_motor_driver_stream_errors_id = 0x95;
@@ -1181,6 +1202,14 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_outer_airgap_left_invalid;
+  error_flag m_error_inner_airgap_left_invalid;
+  error_flag m_error_outer_airgap_right_invalid;
+  error_flag m_error_inner_airgap_right_invalid;
+  error_flag m_error_input_current_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_guidance_board_front_stream_errors;
 static const uint32_t canzero_message_guidance_board_front_stream_errors_id = 0xD7;
@@ -1209,6 +1238,14 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_outer_airgap_left_invalid;
+  error_flag m_error_inner_airgap_left_invalid;
+  error_flag m_error_outer_airgap_right_invalid;
+  error_flag m_error_inner_airgap_right_invalid;
+  error_flag m_error_input_current_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_guidance_board_back_stream_errors;
 static const uint32_t canzero_message_guidance_board_back_stream_errors_id = 0x77;
@@ -1237,6 +1274,14 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board1_stream_errors;
 static const uint32_t canzero_message_levitation_board1_stream_errors_id = 0xB6;
@@ -1265,6 +1310,14 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board2_stream_errors;
 static const uint32_t canzero_message_levitation_board2_stream_errors_id = 0x116;
@@ -1293,6 +1346,14 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board3_stream_errors;
 static const uint32_t canzero_message_levitation_board3_stream_errors_id = 0x176;
@@ -1312,7 +1373,7 @@ typedef struct {
 } canzero_message_input_board_stream_config_hash;
 static const uint32_t canzero_message_input_board_stream_config_hash_id = 0x117;
 typedef struct {
-  error_flag m_error_assertion_fault;
+  error_flag m_assertion_fault;
   error_flag m_error_acceleration_out_of_range;
   error_flag m_error_lateral_acceleration_out_of_range;
   error_flag m_error_vertical_acceleration_out_of_range;
@@ -1323,14 +1384,15 @@ typedef struct {
   error_flag m_error_link24_current_invalid;
   error_flag m_error_link45_voltage_invalid;
   error_flag m_error_link45_current_invalid;
-  error_flag m_error_cooling_cycle_pressure_invalid;
   error_flag m_error_mcu_temperature_invalid;
-  error_flag m_error_cooling_cycle_temperature_invalid;
-  error_flag m_error_bat24_temperature_invalid;
+  error_flag m_error_sac_ebox_temperature_invalid;
+  error_flag m_error_power_ebox_temperature_invalid;
+  error_flag m_error_bat24_cell_temperature_1_invalid;
+  error_flag m_error_bat24_cell_temperature_2_invalid;
   error_flag m_error_supercap_temperature_invalid;
-  error_flag m_error_buck_temperature_invalid;
-  error_flag m_error_ebox_temperature_invalid;
-  error_flag m_error_ambient_temperature_invalid;
+  error_flag m_error_ambient_temperature_1_invalid;
+  error_flag m_error_ambient_temperature_2_invalid;
+  error_flag m_error_ambient_temperature_3_invalid;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_bat24_under_voltage;
   error_level m_error_level_bat24_over_voltage;
@@ -1341,13 +1403,11 @@ typedef struct {
   error_level m_error_level_link45_under_voltage;
   error_level m_error_level_link45_over_voltage;
   error_level m_error_level_link45_over_current;
-  error_level m_error_level_cooling_cycle_over_pressure;
   error_level m_error_level_mcu_temperature;
-  error_level m_error_level_cooling_cycle_temperature;
   error_level m_error_level_bat24_temperature;
   error_level m_error_level_supercap_temperature;
-  error_level m_error_level_buck_temperature;
-  error_level m_error_level_ebox_temperature;
+  error_level m_error_level_sac_ebox_temperature;
+  error_level m_error_level_power_ebox_temperature;
   error_level m_error_level_ambient_temperature;
   uint8_t m_last_node_missed;
 } canzero_message_input_board_stream_errors;
@@ -1366,6 +1426,7 @@ typedef struct {
   error_flag m_error_any_short;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_power_board12_stream_errors;
 static const uint32_t canzero_message_power_board12_stream_errors_id = 0xF5;
@@ -1383,6 +1444,7 @@ typedef struct {
   error_flag m_error_any_short;
   error_flag m_error_heartbeat_miss;
   error_level m_error_level_mcu_temperature;
+  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_power_board24_stream_errors;
 static const uint32_t canzero_message_power_board24_stream_errors_id = 0x155;
@@ -2077,9 +2139,14 @@ static inline void canzero_set_input_board_error_cooling_cycle_temperature_inval
   __oe_input_board_error_cooling_cycle_temperature_invalid = value;
 }
 
-static inline void canzero_set_input_board_error_bat24_temperature_invalid(error_flag value){
-  extern error_flag __oe_input_board_error_bat24_temperature_invalid;
-  __oe_input_board_error_bat24_temperature_invalid = value;
+static inline void canzero_set_input_board_error_bat24_cell_temperature_1_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_bat24_cell_temperature_1_invalid;
+  __oe_input_board_error_bat24_cell_temperature_1_invalid = value;
+}
+
+static inline void canzero_set_input_board_error_bat24_cell_temperature_2_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_bat24_cell_temperature_2_invalid;
+  __oe_input_board_error_bat24_cell_temperature_2_invalid = value;
 }
 
 static inline void canzero_set_input_board_error_supercap_temperature_invalid(error_flag value){
@@ -2092,14 +2159,29 @@ static inline void canzero_set_input_board_error_buck_temperature_invalid(error_
   __oe_input_board_error_buck_temperature_invalid = value;
 }
 
-static inline void canzero_set_input_board_error_ebox_temperature_invalid(error_flag value){
-  extern error_flag __oe_input_board_error_ebox_temperature_invalid;
-  __oe_input_board_error_ebox_temperature_invalid = value;
+static inline void canzero_set_input_board_error_sac_ebox_temperature_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_sac_ebox_temperature_invalid;
+  __oe_input_board_error_sac_ebox_temperature_invalid = value;
 }
 
-static inline void canzero_set_input_board_error_ambient_temperature_invalid(error_flag value){
-  extern error_flag __oe_input_board_error_ambient_temperature_invalid;
-  __oe_input_board_error_ambient_temperature_invalid = value;
+static inline void canzero_set_input_board_error_power_ebox_temperature_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_power_ebox_temperature_invalid;
+  __oe_input_board_error_power_ebox_temperature_invalid = value;
+}
+
+static inline void canzero_set_input_board_error_ambient_temperature_1_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_ambient_temperature_1_invalid;
+  __oe_input_board_error_ambient_temperature_1_invalid = value;
+}
+
+static inline void canzero_set_input_board_error_ambient_temperature_2_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_ambient_temperature_2_invalid;
+  __oe_input_board_error_ambient_temperature_2_invalid = value;
+}
+
+static inline void canzero_set_input_board_error_ambient_temperature_3_invalid(error_flag value){
+  extern error_flag __oe_input_board_error_ambient_temperature_3_invalid;
+  __oe_input_board_error_ambient_temperature_3_invalid = value;
 }
 
 static inline void canzero_set_input_board_error_heartbeat_miss(error_flag value){
@@ -2182,9 +2264,14 @@ static inline void canzero_set_input_board_error_level_buck_temperature(error_le
   __oe_input_board_error_level_buck_temperature = value;
 }
 
-static inline void canzero_set_input_board_error_level_ebox_temperature(error_level value){
-  extern error_level __oe_input_board_error_level_ebox_temperature;
-  __oe_input_board_error_level_ebox_temperature = value;
+static inline void canzero_set_input_board_error_level_sac_ebox_temperature(error_level value){
+  extern error_level __oe_input_board_error_level_sac_ebox_temperature;
+  __oe_input_board_error_level_sac_ebox_temperature = value;
+}
+
+static inline void canzero_set_input_board_error_level_power_ebox_temperature(error_level value){
+  extern error_level __oe_input_board_error_level_power_ebox_temperature;
+  __oe_input_board_error_level_power_ebox_temperature = value;
 }
 
 static inline void canzero_set_input_board_error_level_ambient_temperature(error_level value){
@@ -2603,15 +2690,23 @@ void canzero_send_input_board_error_mcu_temperature_invalid();
 
 void canzero_send_input_board_error_cooling_cycle_temperature_invalid();
 
-void canzero_send_input_board_error_bat24_temperature_invalid();
+void canzero_send_input_board_error_bat24_cell_temperature_1_invalid();
+
+void canzero_send_input_board_error_bat24_cell_temperature_2_invalid();
 
 void canzero_send_input_board_error_supercap_temperature_invalid();
 
 void canzero_send_input_board_error_buck_temperature_invalid();
 
-void canzero_send_input_board_error_ebox_temperature_invalid();
+void canzero_send_input_board_error_sac_ebox_temperature_invalid();
 
-void canzero_send_input_board_error_ambient_temperature_invalid();
+void canzero_send_input_board_error_power_ebox_temperature_invalid();
+
+void canzero_send_input_board_error_ambient_temperature_1_invalid();
+
+void canzero_send_input_board_error_ambient_temperature_2_invalid();
+
+void canzero_send_input_board_error_ambient_temperature_3_invalid();
 
 void canzero_send_input_board_error_heartbeat_miss();
 
@@ -2645,7 +2740,9 @@ void canzero_send_input_board_error_level_supercap_temperature();
 
 void canzero_send_input_board_error_level_buck_temperature();
 
-void canzero_send_input_board_error_level_ebox_temperature();
+void canzero_send_input_board_error_level_sac_ebox_temperature();
+
+void canzero_send_input_board_error_level_power_ebox_temperature();
 
 void canzero_send_input_board_error_level_ambient_temperature();
 

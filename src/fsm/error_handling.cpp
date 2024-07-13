@@ -68,8 +68,8 @@ global_command fsm::error_handling::approve(global_command cmd) {
     canzero_get_guidance_board_back_error_level_magnet_temperature_right(),
     canzero_get_motor_driver_error_level_lim_temperature(),
     canzero_get_motor_driver_error_level_board_temperature(),
-    canzero_get_input_board_error_level_buck_temperature(),
-    canzero_get_input_board_error_level_ebox_temperature(),
+    canzero_get_input_board_error_level_sac_ebox_temperature(),
+    canzero_get_input_board_error_level_power_ebox_temperature(),
     canzero_get_input_board_error_level_ambient_temperature(),
     canzero_get_input_board_error_level_supercap_temperature(),
   };
@@ -113,7 +113,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   }
 
   // === Remaining Error Flags ===
-  const auto error_flags = std::array<error_flag, 52> {
+  const auto error_flags = std::array<error_flag, 56> {
     canzero_get_motor_driver_assertion_fault(),
     canzero_get_motor_driver_error_arming_failed(),
     canzero_get_motor_driver_error_precharge_failed(),
@@ -157,10 +157,14 @@ global_command fsm::error_handling::approve(global_command cmd) {
     canzero_get_input_board_error_supercap_voltage_invalid(),
     canzero_get_input_board_error_buck_temperature_invalid(),
     canzero_get_input_board_error_mcu_temperature_invalid(),
-    canzero_get_input_board_error_ebox_temperature_invalid(),
+    canzero_get_input_board_error_sac_ebox_temperature_invalid(),
+    canzero_get_input_board_error_power_ebox_temperature_invalid(),
     canzero_get_input_board_error_acceleration_out_of_range(),
-    canzero_get_input_board_error_bat24_temperature_invalid(),
-    canzero_get_input_board_error_ambient_temperature_invalid(),
+    canzero_get_input_board_error_bat24_cell_temperature_1_invalid(),
+    canzero_get_input_board_error_bat24_cell_temperature_2_invalid(),
+    canzero_get_input_board_error_ambient_temperature_1_invalid(),
+    canzero_get_input_board_error_ambient_temperature_2_invalid(),
+    canzero_get_input_board_error_ambient_temperature_3_invalid(),
     canzero_get_input_board_error_supercap_temperature_invalid(),
     canzero_get_input_board_error_cooling_cycle_pressure_invalid(),
     canzero_get_input_board_error_acceleration_calibration_failed(),
