@@ -6,6 +6,7 @@
 #include <iostream>
 
 global_command fsm::error_handling::approve(global_command cmd) {
+  
   // === Config Consistency ===
   const auto config_hashes = std::array<uint64_t, 10> {
     canzero_get_motor_driver_config_hash(),
@@ -40,19 +41,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto mcu_temp_error_level_it = std::max_element(mcu_overtemps.begin(), 
       mcu_overtemps.end());
   const error_level max_mcu_overtemp = *mcu_temp_error_level_it;
-  switch (max_mcu_overtemp) {
-  case error_level_OK:
-  case error_level_INFO:
-    return cmd;
-  case error_level_WARNING:
-    std::cout << "ERROR_CMD: ABORT" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_ABORT;
-  case error_level_ERROR:
-    std::cout << "ERROR_CMD: SHUTDOWN" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_SHUTDOWN;
-  }
 
   // === External Temperatures ===
   const auto ext_temps = std::array<error_level, 16> {
@@ -76,19 +64,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto ext_temp_error_level_it = std::max_element(ext_temps.begin(), ext_temps.end());
   const error_level max_ext_temp = *ext_temp_error_level_it;
   canzero_set_error_level_over_temperature_system(std::max(max_ext_temp, max_mcu_overtemp));
-  switch (max_ext_temp) {
-  case error_level_OK:
-  case error_level_INFO:
-    return cmd;
-  case error_level_WARNING:
-    std::cout << "ERROR_CMD: ABORT" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_ABORT;
-  case error_level_ERROR:
-    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_EMERGENCY;
-  }
 
   // === Heartbeats ===
   const auto heartbeat_misses = std::array<error_flag, 10> {
@@ -106,11 +81,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto heartbeat_miss_it = std::max_element(heartbeat_misses.begin(), 
       heartbeat_misses.end());
   const error_flag heartbeat_miss = *heartbeat_miss_it;
-  if (heartbeat_miss == error_flag_ERROR) {
-    std::cout << "ERROR_CMD: RESTART" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_RESTART;
-  }
 
   // === Remaining Error Flags ===
   const auto error_flags = std::array<error_flag, 56> {
@@ -182,11 +152,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto max_error_flag_it = std::max_element(error_flags.begin(), error_flags.end());
   const error_flag max_error_flag = *max_error_flag_it;
-  if (max_error_flag == error_flag_ERROR) {
-    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_EMERGENCY;
-  }
 
   // === Remaining Error Levels ===
   const auto error_levels = std::array<error_level, 36> {
@@ -235,16 +200,64 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto error_level_it = std::max_element(error_levels.begin(), error_levels.end());
   const error_level max_error_level = *error_level_it;
+
+  bool force_abort = false;
+
+  switch (max_mcu_overtemp) {
+  case error_level_OK:
+  case error_level_INFO:
+    break;
+  case error_level_WARNING:
+    std::cout << "ERROR_CMD: ABORT (MCU_OVERTEMP)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    force_abort = true;
+    break;
+  case error_level_ERROR:
+    std::cout << "ERROR_CMD: SHUTDOWN (MCU_OVERTEMP)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    return global_command_SHUTDOWN;
+  }
+
+  switch (max_ext_temp) {
+  case error_level_OK:
+  case error_level_INFO:
+    break;
+  case error_level_WARNING:
+    std::cout << "ERROR_CMD: ABORT (EXT_TEMP)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    force_abort = true;
+    break;
+  case error_level_ERROR:
+    std::cout << "ERROR_CMD: EMERGENCY (EXT_TEMP)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    return global_command_EMERGENCY;
+  }
+
+  if (heartbeat_miss == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: RESTART (HEARTBEAT_MISS)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    return global_command_RESTART;
+  }
+
+  if (max_error_flag == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: EMERGENCY (FLAG)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    return global_command_EMERGENCY;
+  }
+
   switch (max_error_level) {
   case error_level_OK:
   case error_level_INFO:
+    if (force_abort){
+      return global_command_ABORT;
+    }
     return cmd;
   case error_level_WARNING:
-    std::cout << "ERROR_CMD: ABORT" << std::endl;
+    std::cout << "ERROR_CMD: ABORT (LEVEL)" << std::endl;
     canzero_set_command(global_command_NONE);
     return global_command_ABORT;
   case error_level_ERROR:
-    std::cout << "ERROR_CMD: EMERGENCY" << std::endl;
+    std::cout << "ERROR_CMD: EMERGENCY (LEVEL)" << std::endl;
     canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
