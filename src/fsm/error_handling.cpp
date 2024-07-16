@@ -215,7 +215,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   case error_level_ERROR:
     std::cout << "ERROR_CMD: SHUTDOWN (MCU_OVERTEMP)" << std::endl;
     canzero_set_command(global_command_NONE);
-    return global_command_SHUTDOWN;
+    return global_command_EMERGENCY;
   }
 
   switch (max_ext_temp) {
@@ -234,13 +234,13 @@ global_command fsm::error_handling::approve(global_command cmd) {
   }
 
   if (heartbeat_miss == error_flag_ERROR) {
-    std::cout << "ERROR_CMD: RESTART (HEARTBEAT_MISS)" << std::endl;
+    /* std::cout << "ERROR_CMD: RESTART (HEARTBEAT_MISS)" << std::endl; */
     canzero_set_command(global_command_NONE);
-    return global_command_RESTART;
+    return global_command_EMERGENCY;
   }
 
   if (max_error_flag == error_flag_ERROR) {
-    std::cout << "ERROR_CMD: EMERGENCY (FLAG)" << std::endl;
+    /* std::cout << "ERROR_CMD: EMERGENCY (FLAG)" << std::endl; */
     canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
@@ -273,5 +273,5 @@ global_state fsm::error_handling::invariant_broken() {
 
 global_state fsm::error_handling::invariant_broken_idle() {
   canzero_set_command(global_command_NONE);
-  return global_state_RESTARTING;
+  return global_state_INIT;
 }

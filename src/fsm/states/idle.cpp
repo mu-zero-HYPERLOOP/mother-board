@@ -63,7 +63,7 @@ global_state fsm::states::idle(global_command cmd,
   // Invariant: PDUs
   if ((pdu_12v_state_CHANNELS_ON != pdu12_state || pdu_24v_state_CHANNELS_ON != pdu24_state) &&
       !DISABLE_POWER_SUBSYSTEM) {
-    std::cout << "PDU INVARIANT BROKEN" << std::endl;
+    std::cout << "PDU INVARIANT BROKEN :" << pdu12_state << "," << pdu24_state << std::endl;
     return fsm::error_handling::invariant_broken_idle();
   }
 

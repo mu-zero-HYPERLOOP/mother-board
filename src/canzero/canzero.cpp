@@ -1283,13 +1283,13 @@ static void schedule_jobs(uint32_t time) {
         canzero_message_heartbeat_can0 heartbeat_can0;
         heartbeat_can0.m_node_id = node_id_mother_board;
         heartbeat_can0.m_unregister = 0;
-        heartbeat_can0.m_ticks_next = 20;
+        heartbeat_can0.m_ticks_next = 60;
         canzero_serialize_canzero_message_heartbeat_can0(&heartbeat_can0, &heartbeat_frame);
         canzero_can0_send(&heartbeat_frame);
         canzero_message_heartbeat_can1 heartbeat_can1;
         heartbeat_can1.m_node_id = node_id_mother_board;
         heartbeat_can1.m_unregister = 0;
-        heartbeat_can1.m_ticks_next = 20;
+        heartbeat_can1.m_ticks_next = 60;
         canzero_serialize_canzero_message_heartbeat_can1(&heartbeat_can1, &heartbeat_frame);
         canzero_can1_send(&heartbeat_frame);
         break;
