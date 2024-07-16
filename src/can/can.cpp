@@ -24,13 +24,14 @@ void canzero_can0_send(canzero_frame *frame) {
 }
 
 int canzero_can0_recv(canzero_frame *frame) {
-  std::optional<CanFrame> rx = s_tcpcan->recv<0>();
-  if (!rx.has_value()) {
+  CanFrame rx;
+  int s = s_tcpcan->recv<0>(&rx);
+  if (!s) {
     return 0;
   }
-  frame->dlc = rx->dlc;
-  frame->id = rx->can_id;
-  *reinterpret_cast<uint64_t*>(frame->data) = rx->data;
+  frame->dlc = rx.dlc;
+  frame->id = rx.can_id;
+  *reinterpret_cast<uint64_t*>(frame->data) = rx.data;
   return 1;
 }
 
@@ -45,13 +46,14 @@ void canzero_can1_send(canzero_frame *frame) {
   s_tcpcan->send<1>(can_frame);
 }
 int canzero_can1_recv(canzero_frame *frame) {
-  std::optional<CanFrame> rx = s_tcpcan->recv<1>();
-  if (!rx.has_value()) {
+  CanFrame rx;
+  int s = s_tcpcan->recv<1>(&rx);
+  if (!s) {
     return 0;
   }
-  frame->dlc = rx->dlc;
-  frame->id = rx->can_id;
-  *reinterpret_cast<uint64_t*>(frame->data) = rx->data;
+  frame->dlc = rx.dlc;
+  frame->id = rx.can_id;
+  *reinterpret_cast<uint64_t*>(frame->data) = rx.data;
   return 1;
 }
 

@@ -19,6 +19,7 @@ struct CanFrame {
   uint8_t dlc;
   explicit CanFrame(uint32_t can_id, uint64_t data, uint8_t dlc)
       : data(data), can_id(can_id), dlc(dlc) {}
+  CanFrame() = default;
 };
 
 template <uint8_t BUS_COUNT> class TcpCan {
@@ -174,8 +175,8 @@ public:
     sock_send(NetworkFrame(frame, BUS_ID));
   }
 
-  template <uint8_t BUS_ID> std::optional<CanFrame> recv() {
-    return m_sync_buffers[BUS_ID].dequeue();
+  template <uint8_t BUS_ID> int recv(CanFrame* frame) {
+    return m_sync_buffers[BUS_ID].dequeue(frame);
   }
 
 private:
@@ -276,25 +277,25 @@ private:
       return true;
     }
 
-    std::optional<CanFrame> dequeue() {
+    int dequeue(CanFrame* frame) {
       size_t r = m_read.load(std::memory_order_relaxed);
       const size_t w = m_write.load(std::memory_order_acquire);
       if (r == w) {
-        return std::nullopt;
+        return 0;
       }
-      assert(m_buffer[r].has_value());
-      CanFrame ret = m_buffer[r].value();
+      CanFrame ret = m_buffer[r];
       r++;
       if (r == BUF_SIZE) {
         r = 0U;
       }
       m_read.store(r, std::memory_order_release);
-      return ret;
+      *frame = ret;
+      return 1;
     }
 
   private:
     static constexpr size_t BUF_SIZE = 128;
-    std::optional<CanFrame> m_buffer[BUF_SIZE];
+    CanFrame m_buffer[BUF_SIZE];
     std::atomic_size_t m_read;
     std::atomic_size_t m_write;
   };
