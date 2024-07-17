@@ -467,6 +467,50 @@ static inline error_flag canzero_get_guidance_board_front_error_heartbeat_miss()
   extern error_flag __oe_guidance_board_front_error_heartbeat_miss;
   return __oe_guidance_board_front_error_heartbeat_miss;
 }
+static inline error_flag canzero_get_guidance_board_front_error_outer_airgap_left_invalid() {
+  extern error_flag __oe_guidance_board_front_error_outer_airgap_left_invalid;
+  return __oe_guidance_board_front_error_outer_airgap_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_inner_airgap_left_invalid() {
+  extern error_flag __oe_guidance_board_front_error_inner_airgap_left_invalid;
+  return __oe_guidance_board_front_error_inner_airgap_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_outer_airgap_right_invalid() {
+  extern error_flag __oe_guidance_board_front_error_outer_airgap_right_invalid;
+  return __oe_guidance_board_front_error_outer_airgap_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_inner_airgap_right_invalid() {
+  extern error_flag __oe_guidance_board_front_error_inner_airgap_right_invalid;
+  return __oe_guidance_board_front_error_inner_airgap_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_vdc_voltage_invalid() {
+  extern error_flag __oe_guidance_board_front_error_vdc_voltage_invalid;
+  return __oe_guidance_board_front_error_vdc_voltage_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_current_left_invalid() {
+  extern error_flag __oe_guidance_board_front_error_magnet_current_left_invalid;
+  return __oe_guidance_board_front_error_magnet_current_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_current_right_invalid() {
+  extern error_flag __oe_guidance_board_front_error_magnet_current_right_invalid;
+  return __oe_guidance_board_front_error_magnet_current_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_input_current_invalid() {
+  extern error_flag __oe_guidance_board_front_error_input_current_invalid;
+  return __oe_guidance_board_front_error_input_current_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_temperature_left_invalid() {
+  extern error_flag __oe_guidance_board_front_error_magnet_temperature_left_invalid;
+  return __oe_guidance_board_front_error_magnet_temperature_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_temperature_right_invalid() {
+  extern error_flag __oe_guidance_board_front_error_magnet_temperature_right_invalid;
+  return __oe_guidance_board_front_error_magnet_temperature_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_front_error_mcu_temperature_invalid() {
+  extern error_flag __oe_guidance_board_front_error_mcu_temperature_invalid;
+  return __oe_guidance_board_front_error_mcu_temperature_invalid;
+}
 static inline error_level canzero_get_guidance_board_front_error_level_vdc_voltage() {
   extern error_level __oe_guidance_board_front_error_level_vdc_voltage;
   return __oe_guidance_board_front_error_level_vdc_voltage;
@@ -522,6 +566,50 @@ static inline error_flag canzero_get_guidance_board_back_error_precharge_failed(
 static inline error_flag canzero_get_guidance_board_back_error_heartbeat_miss() {
   extern error_flag __oe_guidance_board_back_error_heartbeat_miss;
   return __oe_guidance_board_back_error_heartbeat_miss;
+}
+static inline error_flag canzero_get_guidance_board_back_error_outer_airgap_left_invalid() {
+  extern error_flag __oe_guidance_board_back_error_outer_airgap_left_invalid;
+  return __oe_guidance_board_back_error_outer_airgap_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_inner_airgap_left_invalid() {
+  extern error_flag __oe_guidance_board_back_error_inner_airgap_left_invalid;
+  return __oe_guidance_board_back_error_inner_airgap_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_outer_airgap_right_invalid() {
+  extern error_flag __oe_guidance_board_back_error_outer_airgap_right_invalid;
+  return __oe_guidance_board_back_error_outer_airgap_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_inner_airgap_right_invalid() {
+  extern error_flag __oe_guidance_board_back_error_inner_airgap_right_invalid;
+  return __oe_guidance_board_back_error_inner_airgap_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_vdc_voltage_invalid() {
+  extern error_flag __oe_guidance_board_back_error_vdc_voltage_invalid;
+  return __oe_guidance_board_back_error_vdc_voltage_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_current_left_invalid() {
+  extern error_flag __oe_guidance_board_back_error_magnet_current_left_invalid;
+  return __oe_guidance_board_back_error_magnet_current_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_current_right_invalid() {
+  extern error_flag __oe_guidance_board_back_error_magnet_current_right_invalid;
+  return __oe_guidance_board_back_error_magnet_current_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_input_current_invalid() {
+  extern error_flag __oe_guidance_board_back_error_input_current_invalid;
+  return __oe_guidance_board_back_error_input_current_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_temperature_left_invalid() {
+  extern error_flag __oe_guidance_board_back_error_magnet_temperature_left_invalid;
+  return __oe_guidance_board_back_error_magnet_temperature_left_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_temperature_right_invalid() {
+  extern error_flag __oe_guidance_board_back_error_magnet_temperature_right_invalid;
+  return __oe_guidance_board_back_error_magnet_temperature_right_invalid;
+}
+static inline error_flag canzero_get_guidance_board_back_error_mcu_temperature_invalid() {
+  extern error_flag __oe_guidance_board_back_error_mcu_temperature_invalid;
+  return __oe_guidance_board_back_error_mcu_temperature_invalid;
 }
 static inline error_level canzero_get_guidance_board_back_error_level_vdc_voltage() {
   extern error_level __oe_guidance_board_back_error_level_vdc_voltage;
@@ -1195,6 +1283,17 @@ typedef struct {
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_outer_airgap_left_invalid;
+  error_flag m_error_inner_airgap_left_invalid;
+  error_flag m_error_outer_airgap_right_invalid;
+  error_flag m_error_inner_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_input_current_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1202,14 +1301,6 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
-  error_flag m_error_outer_airgap_left_invalid;
-  error_flag m_error_inner_airgap_left_invalid;
-  error_flag m_error_outer_airgap_right_invalid;
-  error_flag m_error_inner_airgap_right_invalid;
-  error_flag m_error_input_current_invalid;
-  error_flag m_error_magnet_temperature_left_invalid;
-  error_flag m_error_magnet_temperature_right_invalid;
-  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_guidance_board_front_stream_errors;
 static const uint32_t canzero_message_guidance_board_front_stream_errors_id = 0xD7;
@@ -1231,6 +1322,17 @@ typedef struct {
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_outer_airgap_left_invalid;
+  error_flag m_error_inner_airgap_left_invalid;
+  error_flag m_error_outer_airgap_right_invalid;
+  error_flag m_error_inner_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_input_current_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1238,14 +1340,6 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
-  error_flag m_error_outer_airgap_left_invalid;
-  error_flag m_error_inner_airgap_left_invalid;
-  error_flag m_error_outer_airgap_right_invalid;
-  error_flag m_error_inner_airgap_right_invalid;
-  error_flag m_error_input_current_invalid;
-  error_flag m_error_magnet_temperature_left_invalid;
-  error_flag m_error_magnet_temperature_right_invalid;
-  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_guidance_board_back_stream_errors;
 static const uint32_t canzero_message_guidance_board_back_stream_errors_id = 0x77;
@@ -1736,6 +1830,61 @@ static inline void canzero_set_guidance_board_front_error_heartbeat_miss(error_f
   __oe_guidance_board_front_error_heartbeat_miss = value;
 }
 
+static inline void canzero_set_guidance_board_front_error_outer_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_outer_airgap_left_invalid;
+  __oe_guidance_board_front_error_outer_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_inner_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_inner_airgap_left_invalid;
+  __oe_guidance_board_front_error_inner_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_outer_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_outer_airgap_right_invalid;
+  __oe_guidance_board_front_error_outer_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_inner_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_inner_airgap_right_invalid;
+  __oe_guidance_board_front_error_inner_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_vdc_voltage_invalid;
+  __oe_guidance_board_front_error_vdc_voltage_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_current_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_current_left_invalid;
+  __oe_guidance_board_front_error_magnet_current_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_current_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_current_right_invalid;
+  __oe_guidance_board_front_error_magnet_current_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_input_current_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_input_current_invalid;
+  __oe_guidance_board_front_error_input_current_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_temperature_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_temperature_left_invalid;
+  __oe_guidance_board_front_error_magnet_temperature_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_temperature_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_temperature_right_invalid;
+  __oe_guidance_board_front_error_magnet_temperature_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_mcu_temperature_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_mcu_temperature_invalid;
+  __oe_guidance_board_front_error_mcu_temperature_invalid = value;
+}
+
 static inline void canzero_set_guidance_board_front_error_level_vdc_voltage(error_level value){
   extern error_level __oe_guidance_board_front_error_level_vdc_voltage;
   __oe_guidance_board_front_error_level_vdc_voltage = value;
@@ -1804,6 +1953,61 @@ static inline void canzero_set_guidance_board_back_error_precharge_failed(error_
 static inline void canzero_set_guidance_board_back_error_heartbeat_miss(error_flag value){
   extern error_flag __oe_guidance_board_back_error_heartbeat_miss;
   __oe_guidance_board_back_error_heartbeat_miss = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_outer_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_outer_airgap_left_invalid;
+  __oe_guidance_board_back_error_outer_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_inner_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_inner_airgap_left_invalid;
+  __oe_guidance_board_back_error_inner_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_outer_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_outer_airgap_right_invalid;
+  __oe_guidance_board_back_error_outer_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_inner_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_inner_airgap_right_invalid;
+  __oe_guidance_board_back_error_inner_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_vdc_voltage_invalid;
+  __oe_guidance_board_back_error_vdc_voltage_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_current_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_current_left_invalid;
+  __oe_guidance_board_back_error_magnet_current_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_current_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_current_right_invalid;
+  __oe_guidance_board_back_error_magnet_current_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_input_current_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_input_current_invalid;
+  __oe_guidance_board_back_error_input_current_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_temperature_left_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_temperature_left_invalid;
+  __oe_guidance_board_back_error_magnet_temperature_left_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_temperature_right_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_temperature_right_invalid;
+  __oe_guidance_board_back_error_magnet_temperature_right_invalid = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_mcu_temperature_invalid(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_mcu_temperature_invalid;
+  __oe_guidance_board_back_error_mcu_temperature_invalid = value;
 }
 
 static inline void canzero_set_guidance_board_back_error_level_vdc_voltage(error_level value){
@@ -2527,6 +2731,28 @@ void canzero_send_guidance_board_front_error_precharge_failed();
 
 void canzero_send_guidance_board_front_error_heartbeat_miss();
 
+void canzero_send_guidance_board_front_error_outer_airgap_left_invalid();
+
+void canzero_send_guidance_board_front_error_inner_airgap_left_invalid();
+
+void canzero_send_guidance_board_front_error_outer_airgap_right_invalid();
+
+void canzero_send_guidance_board_front_error_inner_airgap_right_invalid();
+
+void canzero_send_guidance_board_front_error_vdc_voltage_invalid();
+
+void canzero_send_guidance_board_front_error_magnet_current_left_invalid();
+
+void canzero_send_guidance_board_front_error_magnet_current_right_invalid();
+
+void canzero_send_guidance_board_front_error_input_current_invalid();
+
+void canzero_send_guidance_board_front_error_magnet_temperature_left_invalid();
+
+void canzero_send_guidance_board_front_error_magnet_temperature_right_invalid();
+
+void canzero_send_guidance_board_front_error_mcu_temperature_invalid();
+
 void canzero_send_guidance_board_front_error_level_vdc_voltage();
 
 void canzero_send_guidance_board_front_error_level_magnet_current_left();
@@ -2554,6 +2780,28 @@ void canzero_send_guidance_board_back_error_arming_failed();
 void canzero_send_guidance_board_back_error_precharge_failed();
 
 void canzero_send_guidance_board_back_error_heartbeat_miss();
+
+void canzero_send_guidance_board_back_error_outer_airgap_left_invalid();
+
+void canzero_send_guidance_board_back_error_inner_airgap_left_invalid();
+
+void canzero_send_guidance_board_back_error_outer_airgap_right_invalid();
+
+void canzero_send_guidance_board_back_error_inner_airgap_right_invalid();
+
+void canzero_send_guidance_board_back_error_vdc_voltage_invalid();
+
+void canzero_send_guidance_board_back_error_magnet_current_left_invalid();
+
+void canzero_send_guidance_board_back_error_magnet_current_right_invalid();
+
+void canzero_send_guidance_board_back_error_input_current_invalid();
+
+void canzero_send_guidance_board_back_error_magnet_temperature_left_invalid();
+
+void canzero_send_guidance_board_back_error_magnet_temperature_right_invalid();
+
+void canzero_send_guidance_board_back_error_mcu_temperature_invalid();
 
 void canzero_send_guidance_board_back_error_level_vdc_voltage();
 

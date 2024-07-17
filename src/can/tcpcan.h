@@ -12,6 +12,9 @@
 #include <sys/socket.h>
 #include <thread>
 #include <unistd.h>
+#include <atomic>
+#include <memory>
+#include <array>
 
 struct CanFrame {
   uint64_t data;
