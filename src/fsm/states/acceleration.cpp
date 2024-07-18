@@ -97,22 +97,22 @@ global_state fsm::states::acceleration(global_command cmd,
   }
 
   if (global_command_STOP_LEVITATION == cmd) {
-    return global_state_DECELERATION; // invalid command!!!
+    return global_state_DISARMING45; // invalid command!!!
   }
 
   // Ensures that after MIN_MOTOR_TRANSITION_TIME
   // the motor has transitioned into the control state.
   if (time_since_last_transition > MAX_MOTOR_TRANSITION_TIME &&
       motor_state_CONTROL != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
-    return global_state_DECELERATION;
+    return global_state_DISARMING45;
   }
 
   if (global_command_STOP_PROPULSION == cmd || global_command_ABORT == cmd) {
-    return global_state_DECELERATION;
+    return global_state_DISARMING45;
   }
 
   if (canzero_get_position() > 7.0f) {
-    return global_state_DECELERATION;
+    return global_state_DISARMING45;
   }
 
   if (canzero_get_velocity() >= canzero_get_acceleration_target_velocity()) {
