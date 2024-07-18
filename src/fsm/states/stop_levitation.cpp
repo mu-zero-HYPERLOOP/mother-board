@@ -16,6 +16,9 @@ constexpr std::array<levitation_state, 4> ALLOWED_LEVITATION_STATES = {
 constexpr std::array<motor_state, 4> ALLOWED_MOTOR_STATES = {
     motor_state_READY, motor_state_CONTROL};
 
+constexpr std::array<guidance_state, 4> ALLOWED_GUIDANCE_STATES = {
+    guidance_state_CONTROL, guidance_state_READY};
+
 constexpr Duration STATE_TIMEOUT = 10_s;
 
 // Invariants:
@@ -58,8 +61,8 @@ global_state fsm::states::stop_levitation(global_command cmd,
   }
 
   // Invariant: guidance
-  if ((guidance_state_READY != g1_state || guidance_state_READY != g2_state) &&
-      !DISABLE_GUIDANCE_SUBSYSTEM) {
+  if ((!contains(ALLOWED_GUIDANCE_STATES, g1_state) ||
+      !contains(ALLOWED_GUIDANCE_STATES, g2_state)) && !DISABLE_GUIDANCE_SUBSYSTEM) {
     return error_handling::invariant_broken();
   }
 

@@ -94,6 +94,7 @@ global_state fsm::states::cruising(global_command cmd,
   }
   if (canzero_get_position() > 8.0f) {
     return global_state_DISARMING45;
+  }
   
 
   if (time_since_last_transition > STATE_TIMEOUT){
