@@ -215,6 +215,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto max_error_flag_it = std::max_element(error_flags.begin(), error_flags.end());
   const error_flag max_error_flag = *max_error_flag_it;
+  canzero_set_error_any(max_error_flag);
 
   // === Remaining Error Levels ===
   const auto error_levels = std::array<error_level, 36> {
