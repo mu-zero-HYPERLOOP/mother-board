@@ -24,7 +24,8 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const bool inconsistent = std::any_of(config_hashes.begin(), config_hashes.end(), [mother_hash](auto x) {
       return x != mother_hash && x != 0;
   });
-  canzero_set_error_level_config_consistency(inconsistent ? error_level_INFO : error_level_OK);
+  error_level config_consistency_error_level = inconsistent ? error_level_INFO : error_level_OK;
+  canzero_set_error_level_config_consistency(config_consistency_error_level);
 
   // === MCU Over-Temperatures ===
   const auto mcu_overtemps = std::array<error_level, 9> {
@@ -215,7 +216,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto max_error_flag_it = std::max_element(error_flags.begin(), error_flags.end());
   const error_flag max_error_flag = *max_error_flag_it;
-  canzero_set_error_any(max_error_flag);
 
   // === Remaining Error Levels ===
   const auto error_levels = std::array<error_level, 36> {
@@ -265,6 +265,30 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const auto error_level_it = std::max_element(error_levels.begin(), error_levels.end());
   const error_level max_error_level = *error_level_it;
 
+  const auto error_levels_any = std::array<error_level, 4> {
+    config_consistency_error_level,
+    max_mcu_overtemp,
+    max_ext_temp,
+    max_error_level,
+  };
+  const auto max_error_level_any_it = std::max_element(error_levels_any.begin(), error_levels_any.end());
+  error_level max_error_level_any = *max_error_level_any_it;
+  const auto error_flags_any = std::array<error_flag, 3> {
+    temp_invalid,
+    heartbeat_miss,
+    max_error_flag,
+  };
+  const auto max_error_flags_any_it = std::max_element(error_flags_any.begin(), error_flags_any.end());
+  error_flag max_error_flag_any = *max_error_flags_any_it;
+  switch (max_error_flag_any) {
+  case error_flag_OK:
+    canzero_set_error_any(max_error_level_any);
+    break;
+  case error_flag_ERROR:
+    canzero_set_error_any(error_level_ERROR);
+    break;
+  }
+
   bool force_abort = false;
 
   switch (max_mcu_overtemp) {
@@ -297,12 +321,6 @@ global_command fsm::error_handling::approve(global_command cmd) {
     return global_command_EMERGENCY;
   }
 
-  if (temp_invalid == error_flag_ERROR) {
-    std::cout << "ERROR_CMD: ABORT (TEMP_INVALID)" << std::endl;
-    canzero_set_command(global_command_NONE);
-    return global_command_ABORT;
-  }
-
   if (heartbeat_miss == error_flag_ERROR) {
     /* std::cout << "ERROR_CMD: EMERGENCY (HEARTBEAT_MISS)" << std::endl; */
     canzero_set_command(global_command_NONE);
@@ -313,6 +331,12 @@ global_command fsm::error_handling::approve(global_command cmd) {
     /* std::cout << "ERROR_CMD: EMERGENCY (FLAG)" << std::endl; */
     canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
+  }
+
+  if (temp_invalid == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: ABORT (TEMP_INVALID)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    force_abort = true;
   }
 
   switch (max_error_level) {
@@ -331,6 +355,7 @@ global_command fsm::error_handling::approve(global_command cmd) {
     canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }
+
 
 
   return cmd;

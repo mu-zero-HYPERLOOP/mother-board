@@ -311,8 +311,8 @@ static inline error_level canzero_get_error_level_config_consistency() {
   extern error_level __oe_error_level_config_consistency;
   return __oe_error_level_config_consistency;
 }
-static inline error_flag canzero_get_error_any() {
-  extern error_flag __oe_error_any;
+static inline error_level canzero_get_error_any() {
+  extern error_level __oe_error_any;
   return __oe_error_any;
 }
 static inline error_level canzero_get_error_level_over_temperature_system() {
@@ -931,10 +931,6 @@ static inline uint64_t canzero_get_input_board_config_hash() {
   extern uint64_t __oe_input_board_config_hash;
   return __oe_input_board_config_hash;
 }
-static inline int16_t canzero_get_linear_encoder_count() {
-  extern int16_t __oe_linear_encoder_count;
-  return __oe_linear_encoder_count;
-}
 static inline bool_t canzero_get_absolute_position_known() {
   extern bool_t __oe_absolute_position_known;
   return __oe_absolute_position_known;
@@ -1294,7 +1290,7 @@ typedef struct {
 static const uint32_t canzero_message_mother_board_stream_pdu_24v_command_id = 0x4B;
 typedef struct {
   error_flag m_error_heartbeat_miss;
-  error_flag m_error_any;
+  error_level m_error_any;
   error_level m_error_level_over_temperature_system;
   error_level m_error_level_config_consistency;
   uint8_t m_last_node_missed;
@@ -1576,9 +1572,9 @@ typedef struct {
 } canzero_message_input_board_stream_position_estimation;
 static const uint32_t canzero_message_input_board_stream_position_estimation_id = 0x178;
 typedef struct {
-  int16_t m_linear_encoder_count;
   bool_t m_absolute_position_known;
   float m_absolute_position_offset;
+  int16_t m_linear_encoder_count;
 } canzero_message_input_board_stream_linear_encoder;
 static const uint32_t canzero_message_input_board_stream_linear_encoder_id = 0x158;
 typedef struct {
@@ -1763,7 +1759,7 @@ static inline void canzero_set_acceleration(float value){
 
 void canzero_set_error_level_config_consistency(error_level value);
 
-void canzero_set_error_any(error_flag value);
+void canzero_set_error_any(error_level value);
 
 void canzero_set_error_level_over_temperature_system(error_level value);
 
@@ -2517,11 +2513,6 @@ static inline void canzero_set_input_board_config_hash(uint64_t value){
   __oe_input_board_config_hash = value;
 }
 
-static inline void canzero_set_linear_encoder_count(int16_t value){
-  extern int16_t __oe_linear_encoder_count;
-  __oe_linear_encoder_count = value;
-}
-
 static inline void canzero_set_absolute_position_known(bool_t value){
   extern bool_t __oe_absolute_position_known;
   __oe_absolute_position_known = value;
@@ -3218,8 +3209,6 @@ void canzero_send_input_board_assert_45V_online();
 void canzero_send_input_board_sdc_status();
 
 void canzero_send_input_board_config_hash();
-
-void canzero_send_linear_encoder_count();
 
 void canzero_send_absolute_position_known();
 
