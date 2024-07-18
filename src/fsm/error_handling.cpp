@@ -63,7 +63,56 @@ global_command fsm::error_handling::approve(global_command cmd) {
   };
   const auto ext_temp_error_level_it = std::max_element(ext_temps.begin(), ext_temps.end());
   const error_level max_ext_temp = *ext_temp_error_level_it;
-  canzero_set_error_level_over_temperature_system(std::max(max_ext_temp, max_mcu_overtemp));
+
+  const auto temps_invalid = std::array<error_flag, 34> {
+    canzero_get_motor_driver_error_board_temperature1_invalid(),
+    canzero_get_motor_driver_error_board_temperature2_invalid(),
+    canzero_get_motor_driver_error_board_temperature3_invalid(),
+    canzero_get_motor_driver_error_mcu_temperature_invalid(),
+    canzero_get_motor_driver_error_lim_temperature1_invalid(),
+    canzero_get_motor_driver_error_lim_temperature2_invalid(),
+    canzero_get_motor_driver_error_lim_temperature3_invalid(),
+    canzero_get_motor_driver_error_lim_temperature4_invalid(),
+
+    canzero_get_guidance_board_front_error_magnet_temperature_left_invalid(),
+    canzero_get_guidance_board_front_error_magnet_temperature_right_invalid(),
+    canzero_get_guidance_board_front_error_mcu_temperature_invalid(),
+
+    canzero_get_guidance_board_back_error_magnet_temperature_left_invalid(),
+    canzero_get_guidance_board_back_error_magnet_temperature_right_invalid(),
+    canzero_get_guidance_board_back_error_mcu_temperature_invalid(),
+
+    canzero_get_levitation_board1_error_magnet_temperature_left_invalid(),
+    canzero_get_levitation_board1_error_magnet_temperature_right_invalid(),
+    canzero_get_levitation_board1_error_mcu_temperature_invalid(),
+
+    canzero_get_levitation_board2_error_magnet_temperature_left_invalid(),
+    canzero_get_levitation_board2_error_magnet_temperature_right_invalid(),
+    canzero_get_levitation_board2_error_mcu_temperature_invalid(),
+
+    canzero_get_levitation_board3_error_magnet_temperature_left_invalid(),
+    canzero_get_levitation_board3_error_magnet_temperature_right_invalid(),
+    canzero_get_levitation_board3_error_mcu_temperature_invalid(),
+
+    canzero_get_input_board_error_buck_temperature_invalid(),
+    canzero_get_input_board_error_mcu_temperature_invalid(),
+    canzero_get_input_board_error_sac_ebox_temperature_invalid(),
+    canzero_get_input_board_error_power_ebox_temperature_invalid(),
+    canzero_get_input_board_error_bat24_cell_temperature_1_invalid(),
+    canzero_get_input_board_error_bat24_cell_temperature_2_invalid(),
+    canzero_get_input_board_error_ambient_temperature_1_invalid(),
+    canzero_get_input_board_error_ambient_temperature_2_invalid(),
+    canzero_get_input_board_error_ambient_temperature_3_invalid(),
+    canzero_get_input_board_error_supercap_temperature_invalid(),
+    canzero_get_input_board_error_cooling_cycle_temperature_invalid(),
+  };
+  const auto temps_invalid_it = std::max_element(temps_invalid.begin(), temps_invalid.end());
+  const error_flag temp_invalid = *temps_invalid_it;
+  if (temp_invalid == error_flag_ERROR) {
+    canzero_set_error_level_over_temperature_system(error_level_ERROR);
+  } else {
+    canzero_set_error_level_over_temperature_system(std::max(max_ext_temp, max_mcu_overtemp));
+  }
 
   // === Heartbeats ===
   const auto heartbeat_misses = std::array<error_flag, 10> {
@@ -83,38 +132,63 @@ global_command fsm::error_handling::approve(global_command cmd) {
   const error_flag heartbeat_miss = *heartbeat_miss_it;
 
   // === Remaining Error Flags ===
-  const auto error_flags = std::array<error_flag, 56> {
+  const auto error_flags = std::array<error_flag, 70> {
     canzero_get_motor_driver_assertion_fault(),
     canzero_get_motor_driver_error_arming_failed(),
     canzero_get_motor_driver_error_precharge_failed(),
-    canzero_get_motor_driver_error_lim_temperature1_invalid(),
-    canzero_get_motor_driver_error_lim_temperature2_invalid(),
-    canzero_get_motor_driver_error_lim_temperature3_invalid(),
-    canzero_get_motor_driver_error_lim_temperature4_invalid(),
     canzero_get_motor_driver_error_acceleration_out_of_range(),
-    canzero_get_motor_driver_error_board_temperature1_invalid(),
-    canzero_get_motor_driver_error_board_temperature2_invalid(),
-    canzero_get_motor_driver_error_board_temperature3_invalid(),
-    canzero_get_motor_driver_error_invalid_target_acceleration(),
     canzero_get_motor_driver_error_acceleration_calibration_failed(),
+    canzero_get_motor_driver_error_invalid_target_acceleration(),
+    canzero_get_motor_driver_error_vdc_voltage_invalid(),
 
     canzero_get_guidance_board_front_assertion_fault(),
     canzero_get_guidance_board_front_error_arming_failed(),
     canzero_get_guidance_board_front_error_precharge_failed(),
+    canzero_get_guidance_board_front_error_outer_airgap_left_invalid(),
+    canzero_get_guidance_board_front_error_outer_airgap_right_invalid(),
+    canzero_get_guidance_board_front_error_inner_airgap_left_invalid(),
+    canzero_get_guidance_board_front_error_inner_airgap_right_invalid(),
+    canzero_get_guidance_board_front_error_vdc_voltage_invalid(),
+    canzero_get_guidance_board_front_error_magnet_current_left_invalid(),
+    canzero_get_guidance_board_front_error_magnet_current_right_invalid(),
+    canzero_get_guidance_board_front_error_input_current_invalid(),
 
     canzero_get_guidance_board_back_assertion_fault(),
     canzero_get_guidance_board_back_error_arming_failed(),
     canzero_get_guidance_board_back_error_precharge_failed(),
+    canzero_get_guidance_board_back_error_outer_airgap_left_invalid(),
+    canzero_get_guidance_board_back_error_outer_airgap_right_invalid(),
+    canzero_get_guidance_board_back_error_inner_airgap_left_invalid(),
+    canzero_get_guidance_board_back_error_inner_airgap_right_invalid(),
+    canzero_get_guidance_board_back_error_vdc_voltage_invalid(),
+    canzero_get_guidance_board_back_error_magnet_current_left_invalid(),
+    canzero_get_guidance_board_back_error_magnet_current_right_invalid(),
+    canzero_get_guidance_board_back_error_input_current_invalid(),
 
     canzero_get_levitation_board1_assertion_fault(),
+    canzero_get_levitation_board1_error_airgap_left_invalid(),
+    canzero_get_levitation_board1_error_airgap_right_invalid(),
+    canzero_get_levitation_board1_error_vdc_voltage_invalid(),
+    canzero_get_levitation_board1_error_magnet_current_left_invalid(),
+    canzero_get_levitation_board1_error_magnet_current_right_invalid(),
     canzero_get_levitation_board1_error_arming_failed(),
     canzero_get_levitation_board1_error_precharge_failed(),
 
     canzero_get_levitation_board2_assertion_fault(),
+    canzero_get_levitation_board2_error_airgap_left_invalid(),
+    canzero_get_levitation_board2_error_airgap_right_invalid(),
+    canzero_get_levitation_board2_error_vdc_voltage_invalid(),
+    canzero_get_levitation_board2_error_magnet_current_left_invalid(),
+    canzero_get_levitation_board2_error_magnet_current_right_invalid(),
     canzero_get_levitation_board2_error_arming_failed(),
     canzero_get_levitation_board2_error_precharge_failed(),
 
     canzero_get_levitation_board3_assertion_fault(),
+    canzero_get_levitation_board3_error_airgap_left_invalid(),
+    canzero_get_levitation_board3_error_airgap_right_invalid(),
+    canzero_get_levitation_board3_error_vdc_voltage_invalid(),
+    canzero_get_levitation_board3_error_magnet_current_left_invalid(),
+    canzero_get_levitation_board3_error_magnet_current_right_invalid(),
     canzero_get_levitation_board3_error_arming_failed(),
     canzero_get_levitation_board3_error_precharge_failed(),
 
@@ -125,21 +199,10 @@ global_command fsm::error_handling::approve(global_command cmd) {
     canzero_get_input_board_error_link45_current_invalid(),
     canzero_get_input_board_error_link45_voltage_invalid(),
     canzero_get_input_board_error_supercap_voltage_invalid(),
-    canzero_get_input_board_error_buck_temperature_invalid(),
-    canzero_get_input_board_error_mcu_temperature_invalid(),
-    canzero_get_input_board_error_sac_ebox_temperature_invalid(),
-    canzero_get_input_board_error_power_ebox_temperature_invalid(),
     canzero_get_input_board_error_acceleration_out_of_range(),
-    canzero_get_input_board_error_bat24_cell_temperature_1_invalid(),
-    canzero_get_input_board_error_bat24_cell_temperature_2_invalid(),
-    canzero_get_input_board_error_ambient_temperature_1_invalid(),
-    canzero_get_input_board_error_ambient_temperature_2_invalid(),
-    canzero_get_input_board_error_ambient_temperature_3_invalid(),
-    canzero_get_input_board_error_supercap_temperature_invalid(),
     canzero_get_input_board_error_cooling_cycle_pressure_invalid(),
     canzero_get_input_board_error_acceleration_calibration_failed(),
     canzero_get_input_board_error_lateral_acceleration_out_of_range(),
-    canzero_get_input_board_error_cooling_cycle_temperature_invalid(),
     canzero_get_input_board_error_vertical_acceleration_out_of_range(),
 
     canzero_get_power_board12_assertion_fault(),
@@ -233,8 +296,14 @@ global_command fsm::error_handling::approve(global_command cmd) {
     return global_command_EMERGENCY;
   }
 
+  if (temp_invalid == error_flag_ERROR) {
+    std::cout << "ERROR_CMD: ABORT (TEMP_INVALID)" << std::endl;
+    canzero_set_command(global_command_NONE);
+    return global_command_ABORT;
+  }
+
   if (heartbeat_miss == error_flag_ERROR) {
-    /* std::cout << "ERROR_CMD: RESTART (HEARTBEAT_MISS)" << std::endl; */
+    /* std::cout << "ERROR_CMD: EMERGENCY (HEARTBEAT_MISS)" << std::endl; */
     canzero_set_command(global_command_NONE);
     return global_command_EMERGENCY;
   }

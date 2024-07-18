@@ -359,6 +359,10 @@ static inline error_flag canzero_get_motor_driver_error_invalid_target_accelerat
   extern error_flag __oe_motor_driver_error_invalid_target_acceleration;
   return __oe_motor_driver_error_invalid_target_acceleration;
 }
+static inline error_flag canzero_get_motor_driver_error_vdc_voltage_invalid() {
+  extern error_flag __oe_motor_driver_error_vdc_voltage_invalid;
+  return __oe_motor_driver_error_vdc_voltage_invalid;
+}
 static inline error_flag canzero_get_motor_driver_error_board_temperature1_invalid() {
   extern error_flag __oe_motor_driver_error_board_temperature1_invalid;
   return __oe_motor_driver_error_board_temperature1_invalid;
@@ -659,6 +663,38 @@ static inline error_flag canzero_get_levitation_board1_assertion_fault() {
   extern error_flag __oe_levitation_board1_assertion_fault;
   return __oe_levitation_board1_assertion_fault;
 }
+static inline error_flag canzero_get_levitation_board1_error_airgap_left_invalid() {
+  extern error_flag __oe_levitation_board1_error_airgap_left_invalid;
+  return __oe_levitation_board1_error_airgap_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_airgap_right_invalid() {
+  extern error_flag __oe_levitation_board1_error_airgap_right_invalid;
+  return __oe_levitation_board1_error_airgap_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_vdc_voltage_invalid() {
+  extern error_flag __oe_levitation_board1_error_vdc_voltage_invalid;
+  return __oe_levitation_board1_error_vdc_voltage_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_current_left_invalid() {
+  extern error_flag __oe_levitation_board1_error_magnet_current_left_invalid;
+  return __oe_levitation_board1_error_magnet_current_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_current_right_invalid() {
+  extern error_flag __oe_levitation_board1_error_magnet_current_right_invalid;
+  return __oe_levitation_board1_error_magnet_current_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_temperature_left_invalid() {
+  extern error_flag __oe_levitation_board1_error_magnet_temperature_left_invalid;
+  return __oe_levitation_board1_error_magnet_temperature_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_temperature_right_invalid() {
+  extern error_flag __oe_levitation_board1_error_magnet_temperature_right_invalid;
+  return __oe_levitation_board1_error_magnet_temperature_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board1_error_mcu_temperature_invalid() {
+  extern error_flag __oe_levitation_board1_error_mcu_temperature_invalid;
+  return __oe_levitation_board1_error_mcu_temperature_invalid;
+}
 static inline error_flag canzero_get_levitation_board1_error_arming_failed() {
   extern error_flag __oe_levitation_board1_error_arming_failed;
   return __oe_levitation_board1_error_arming_failed;
@@ -715,6 +751,38 @@ static inline error_flag canzero_get_levitation_board2_assertion_fault() {
   extern error_flag __oe_levitation_board2_assertion_fault;
   return __oe_levitation_board2_assertion_fault;
 }
+static inline error_flag canzero_get_levitation_board2_error_airgap_left_invalid() {
+  extern error_flag __oe_levitation_board2_error_airgap_left_invalid;
+  return __oe_levitation_board2_error_airgap_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_airgap_right_invalid() {
+  extern error_flag __oe_levitation_board2_error_airgap_right_invalid;
+  return __oe_levitation_board2_error_airgap_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_vdc_voltage_invalid() {
+  extern error_flag __oe_levitation_board2_error_vdc_voltage_invalid;
+  return __oe_levitation_board2_error_vdc_voltage_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_current_left_invalid() {
+  extern error_flag __oe_levitation_board2_error_magnet_current_left_invalid;
+  return __oe_levitation_board2_error_magnet_current_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_current_right_invalid() {
+  extern error_flag __oe_levitation_board2_error_magnet_current_right_invalid;
+  return __oe_levitation_board2_error_magnet_current_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_temperature_left_invalid() {
+  extern error_flag __oe_levitation_board2_error_magnet_temperature_left_invalid;
+  return __oe_levitation_board2_error_magnet_temperature_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_temperature_right_invalid() {
+  extern error_flag __oe_levitation_board2_error_magnet_temperature_right_invalid;
+  return __oe_levitation_board2_error_magnet_temperature_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board2_error_mcu_temperature_invalid() {
+  extern error_flag __oe_levitation_board2_error_mcu_temperature_invalid;
+  return __oe_levitation_board2_error_mcu_temperature_invalid;
+}
 static inline error_flag canzero_get_levitation_board2_error_arming_failed() {
   extern error_flag __oe_levitation_board2_error_arming_failed;
   return __oe_levitation_board2_error_arming_failed;
@@ -770,6 +838,38 @@ static inline uint64_t canzero_get_levitation_board3_config_hash() {
 static inline error_flag canzero_get_levitation_board3_assertion_fault() {
   extern error_flag __oe_levitation_board3_assertion_fault;
   return __oe_levitation_board3_assertion_fault;
+}
+static inline error_flag canzero_get_levitation_board3_error_airgap_left_invalid() {
+  extern error_flag __oe_levitation_board3_error_airgap_left_invalid;
+  return __oe_levitation_board3_error_airgap_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_airgap_right_invalid() {
+  extern error_flag __oe_levitation_board3_error_airgap_right_invalid;
+  return __oe_levitation_board3_error_airgap_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_vdc_voltage_invalid() {
+  extern error_flag __oe_levitation_board3_error_vdc_voltage_invalid;
+  return __oe_levitation_board3_error_vdc_voltage_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_current_left_invalid() {
+  extern error_flag __oe_levitation_board3_error_magnet_current_left_invalid;
+  return __oe_levitation_board3_error_magnet_current_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_current_right_invalid() {
+  extern error_flag __oe_levitation_board3_error_magnet_current_right_invalid;
+  return __oe_levitation_board3_error_magnet_current_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_temperature_left_invalid() {
+  extern error_flag __oe_levitation_board3_error_magnet_temperature_left_invalid;
+  return __oe_levitation_board3_error_magnet_temperature_left_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_temperature_right_invalid() {
+  extern error_flag __oe_levitation_board3_error_magnet_temperature_right_invalid;
+  return __oe_levitation_board3_error_magnet_temperature_right_invalid;
+}
+static inline error_flag canzero_get_levitation_board3_error_mcu_temperature_invalid() {
+  extern error_flag __oe_levitation_board3_error_mcu_temperature_invalid;
+  return __oe_levitation_board3_error_mcu_temperature_invalid;
 }
 static inline error_flag canzero_get_levitation_board3_error_arming_failed() {
   extern error_flag __oe_levitation_board3_error_arming_failed;
@@ -1242,6 +1342,7 @@ typedef struct {
   error_flag m_error_acceleration_out_of_range;
   error_flag m_error_acceleration_calibration_failed;
   error_flag m_error_invalid_target_acceleration;
+  error_flag m_error_vdc_voltage_invalid;
   error_flag m_error_board_temperature1_invalid;
   error_flag m_error_board_temperature2_invalid;
   error_flag m_error_board_temperature3_invalid;
@@ -1261,7 +1362,6 @@ typedef struct {
   error_level m_error_level_board_temperature;
   error_level m_error_level_mcu_temperature;
   error_level m_error_level_lim_temperature;
-  error_flag m_error_vdc_voltage_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_motor_driver_stream_errors;
 static const uint32_t canzero_message_motor_driver_stream_errors_id = 0x75;
@@ -1358,6 +1458,14 @@ typedef struct {
 static const uint32_t canzero_message_levitation_board1_stream_config_hash_id = 0x96;
 typedef struct {
   error_flag m_assertion_fault;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
@@ -1368,14 +1476,6 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
-  error_flag m_error_airgap_left_invalid;
-  error_flag m_error_airgap_right_invalid;
-  error_flag m_error_vdc_voltage_invalid;
-  error_flag m_error_magnet_current_left_invalid;
-  error_flag m_error_magnet_current_right_invalid;
-  error_flag m_error_magnet_temperature_left_invalid;
-  error_flag m_error_magnet_temperature_right_invalid;
-  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board1_stream_errors;
 static const uint32_t canzero_message_levitation_board1_stream_errors_id = 0xB6;
@@ -1394,6 +1494,14 @@ typedef struct {
 static const uint32_t canzero_message_levitation_board2_stream_config_hash_id = 0xF6;
 typedef struct {
   error_flag m_assertion_fault;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
@@ -1404,14 +1512,6 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
-  error_flag m_error_airgap_left_invalid;
-  error_flag m_error_airgap_right_invalid;
-  error_flag m_error_vdc_voltage_invalid;
-  error_flag m_error_magnet_current_left_invalid;
-  error_flag m_error_magnet_current_right_invalid;
-  error_flag m_error_magnet_temperature_left_invalid;
-  error_flag m_error_magnet_temperature_right_invalid;
-  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board2_stream_errors;
 static const uint32_t canzero_message_levitation_board2_stream_errors_id = 0x116;
@@ -1430,6 +1530,14 @@ typedef struct {
 static const uint32_t canzero_message_levitation_board3_stream_config_hash_id = 0x156;
 typedef struct {
   error_flag m_assertion_fault;
+  error_flag m_error_airgap_left_invalid;
+  error_flag m_error_airgap_right_invalid;
+  error_flag m_error_vdc_voltage_invalid;
+  error_flag m_error_magnet_current_left_invalid;
+  error_flag m_error_magnet_current_right_invalid;
+  error_flag m_error_magnet_temperature_left_invalid;
+  error_flag m_error_magnet_temperature_right_invalid;
+  error_flag m_error_mcu_temperature_invalid;
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
@@ -1440,14 +1548,6 @@ typedef struct {
   error_level m_error_level_magnet_temperature_left;
   error_level m_error_level_magnet_temperature_right;
   error_level m_error_level_mcu_temperature;
-  error_flag m_error_airgap_left_invalid;
-  error_flag m_error_airgap_right_invalid;
-  error_flag m_error_vdc_voltage_invalid;
-  error_flag m_error_magnet_current_left_invalid;
-  error_flag m_error_magnet_current_right_invalid;
-  error_flag m_error_magnet_temperature_left_invalid;
-  error_flag m_error_magnet_temperature_right_invalid;
-  error_flag m_error_mcu_temperature_invalid;
   uint8_t m_last_node_missed;
 } canzero_message_levitation_board3_stream_errors;
 static const uint32_t canzero_message_levitation_board3_stream_errors_id = 0x176;
@@ -1696,6 +1796,11 @@ static inline void canzero_set_motor_driver_error_acceleration_calibration_faile
 static inline void canzero_set_motor_driver_error_invalid_target_acceleration(error_flag value){
   extern error_flag __oe_motor_driver_error_invalid_target_acceleration;
   __oe_motor_driver_error_invalid_target_acceleration = value;
+}
+
+static inline void canzero_set_motor_driver_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_motor_driver_error_vdc_voltage_invalid;
+  __oe_motor_driver_error_vdc_voltage_invalid = value;
 }
 
 static inline void canzero_set_motor_driver_error_board_temperature1_invalid(error_flag value){
@@ -2067,6 +2172,46 @@ static inline void canzero_set_levitation_board1_assertion_fault(error_flag valu
   __oe_levitation_board1_assertion_fault = value;
 }
 
+static inline void canzero_set_levitation_board1_error_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_airgap_left_invalid;
+  __oe_levitation_board1_error_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_airgap_right_invalid;
+  __oe_levitation_board1_error_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_vdc_voltage_invalid;
+  __oe_levitation_board1_error_vdc_voltage_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_current_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_current_left_invalid;
+  __oe_levitation_board1_error_magnet_current_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_current_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_current_right_invalid;
+  __oe_levitation_board1_error_magnet_current_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_temperature_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_temperature_left_invalid;
+  __oe_levitation_board1_error_magnet_temperature_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_temperature_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_temperature_right_invalid;
+  __oe_levitation_board1_error_magnet_temperature_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board1_error_mcu_temperature_invalid(error_flag value){
+  extern error_flag __oe_levitation_board1_error_mcu_temperature_invalid;
+  __oe_levitation_board1_error_mcu_temperature_invalid = value;
+}
+
 static inline void canzero_set_levitation_board1_error_arming_failed(error_flag value){
   extern error_flag __oe_levitation_board1_error_arming_failed;
   __oe_levitation_board1_error_arming_failed = value;
@@ -2137,6 +2282,46 @@ static inline void canzero_set_levitation_board2_assertion_fault(error_flag valu
   __oe_levitation_board2_assertion_fault = value;
 }
 
+static inline void canzero_set_levitation_board2_error_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_airgap_left_invalid;
+  __oe_levitation_board2_error_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_airgap_right_invalid;
+  __oe_levitation_board2_error_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_vdc_voltage_invalid;
+  __oe_levitation_board2_error_vdc_voltage_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_current_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_current_left_invalid;
+  __oe_levitation_board2_error_magnet_current_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_current_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_current_right_invalid;
+  __oe_levitation_board2_error_magnet_current_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_temperature_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_temperature_left_invalid;
+  __oe_levitation_board2_error_magnet_temperature_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_temperature_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_temperature_right_invalid;
+  __oe_levitation_board2_error_magnet_temperature_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board2_error_mcu_temperature_invalid(error_flag value){
+  extern error_flag __oe_levitation_board2_error_mcu_temperature_invalid;
+  __oe_levitation_board2_error_mcu_temperature_invalid = value;
+}
+
 static inline void canzero_set_levitation_board2_error_arming_failed(error_flag value){
   extern error_flag __oe_levitation_board2_error_arming_failed;
   __oe_levitation_board2_error_arming_failed = value;
@@ -2205,6 +2390,46 @@ static inline void canzero_set_levitation_board3_config_hash(uint64_t value){
 static inline void canzero_set_levitation_board3_assertion_fault(error_flag value){
   extern error_flag __oe_levitation_board3_assertion_fault;
   __oe_levitation_board3_assertion_fault = value;
+}
+
+static inline void canzero_set_levitation_board3_error_airgap_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_airgap_left_invalid;
+  __oe_levitation_board3_error_airgap_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_airgap_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_airgap_right_invalid;
+  __oe_levitation_board3_error_airgap_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_vdc_voltage_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_vdc_voltage_invalid;
+  __oe_levitation_board3_error_vdc_voltage_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_current_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_current_left_invalid;
+  __oe_levitation_board3_error_magnet_current_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_current_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_current_right_invalid;
+  __oe_levitation_board3_error_magnet_current_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_temperature_left_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_temperature_left_invalid;
+  __oe_levitation_board3_error_magnet_temperature_left_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_temperature_right_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_temperature_right_invalid;
+  __oe_levitation_board3_error_magnet_temperature_right_invalid = value;
+}
+
+static inline void canzero_set_levitation_board3_error_mcu_temperature_invalid(error_flag value){
+  extern error_flag __oe_levitation_board3_error_mcu_temperature_invalid;
+  __oe_levitation_board3_error_mcu_temperature_invalid = value;
 }
 
 static inline void canzero_set_levitation_board3_error_arming_failed(error_flag value){
@@ -2677,6 +2902,8 @@ void canzero_send_motor_driver_error_acceleration_calibration_failed();
 
 void canzero_send_motor_driver_error_invalid_target_acceleration();
 
+void canzero_send_motor_driver_error_vdc_voltage_invalid();
+
 void canzero_send_motor_driver_error_board_temperature1_invalid();
 
 void canzero_send_motor_driver_error_board_temperature2_invalid();
@@ -2827,6 +3054,22 @@ void canzero_send_levitation_board1_config_hash();
 
 void canzero_send_levitation_board1_assertion_fault();
 
+void canzero_send_levitation_board1_error_airgap_left_invalid();
+
+void canzero_send_levitation_board1_error_airgap_right_invalid();
+
+void canzero_send_levitation_board1_error_vdc_voltage_invalid();
+
+void canzero_send_levitation_board1_error_magnet_current_left_invalid();
+
+void canzero_send_levitation_board1_error_magnet_current_right_invalid();
+
+void canzero_send_levitation_board1_error_magnet_temperature_left_invalid();
+
+void canzero_send_levitation_board1_error_magnet_temperature_right_invalid();
+
+void canzero_send_levitation_board1_error_mcu_temperature_invalid();
+
 void canzero_send_levitation_board1_error_arming_failed();
 
 void canzero_send_levitation_board1_error_precharge_failed();
@@ -2855,6 +3098,22 @@ void canzero_send_levitation_board2_config_hash();
 
 void canzero_send_levitation_board2_assertion_fault();
 
+void canzero_send_levitation_board2_error_airgap_left_invalid();
+
+void canzero_send_levitation_board2_error_airgap_right_invalid();
+
+void canzero_send_levitation_board2_error_vdc_voltage_invalid();
+
+void canzero_send_levitation_board2_error_magnet_current_left_invalid();
+
+void canzero_send_levitation_board2_error_magnet_current_right_invalid();
+
+void canzero_send_levitation_board2_error_magnet_temperature_left_invalid();
+
+void canzero_send_levitation_board2_error_magnet_temperature_right_invalid();
+
+void canzero_send_levitation_board2_error_mcu_temperature_invalid();
+
 void canzero_send_levitation_board2_error_arming_failed();
 
 void canzero_send_levitation_board2_error_precharge_failed();
@@ -2882,6 +3141,22 @@ void canzero_send_levitation_board3_sdc_status();
 void canzero_send_levitation_board3_config_hash();
 
 void canzero_send_levitation_board3_assertion_fault();
+
+void canzero_send_levitation_board3_error_airgap_left_invalid();
+
+void canzero_send_levitation_board3_error_airgap_right_invalid();
+
+void canzero_send_levitation_board3_error_vdc_voltage_invalid();
+
+void canzero_send_levitation_board3_error_magnet_current_left_invalid();
+
+void canzero_send_levitation_board3_error_magnet_current_right_invalid();
+
+void canzero_send_levitation_board3_error_magnet_temperature_left_invalid();
+
+void canzero_send_levitation_board3_error_magnet_temperature_right_invalid();
+
+void canzero_send_levitation_board3_error_mcu_temperature_invalid();
 
 void canzero_send_levitation_board3_error_arming_failed();
 
