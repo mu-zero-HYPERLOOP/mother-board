@@ -102,6 +102,9 @@ global_state fsm::states::levitation_stable(global_command cmd, Duration time_si
 
   if (time_since_last_transition > MIN_STABLE_TIME){
     return global_state_START_GUIDANCE;
+
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
   }
 
   // ===================== OUTPUT =======================

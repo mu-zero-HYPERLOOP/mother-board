@@ -114,6 +114,10 @@ global_state fsm::states::cruising(global_command cmd,
     return global_state_DECELERATION;
   }
 
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
+  }
+
   // =============== OUTPUTS =================
   canzero_set_guidance_command(guidance_command_NONE);
   canzero_set_levitation_command(levitation_command_NONE);

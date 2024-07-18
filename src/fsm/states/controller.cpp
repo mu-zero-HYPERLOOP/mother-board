@@ -110,6 +110,10 @@ global_state fsm::states::controller(global_command cmd,
   canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_TRUE);
 
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
+  }
+
   control::velocity::disable();
 
   float controller_input =

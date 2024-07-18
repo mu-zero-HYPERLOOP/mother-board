@@ -113,6 +113,10 @@ global_state fsm::states::guidance_stable(global_command cmd, Duration time_sinc
   if (global_command_START_CONTROLLER == cmd){
     return global_state_CONTROLLER;
   }
+
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
+  }
   
   // =================== OUTPUTS ======================
 

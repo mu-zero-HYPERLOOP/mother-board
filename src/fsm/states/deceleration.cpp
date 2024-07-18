@@ -114,6 +114,10 @@ global_state fsm::states::deceleration(global_command cmd,
   if (canzero_get_velocity() < static_cast<float>(VEL_CONSIDERED_STOPPED)) {
     return global_state_GUIDANCE_STABLE;
   }
+  
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
+  }
 
   // =============== OUTPUTS =================
   canzero_set_guidance_command(guidance_command_NONE);

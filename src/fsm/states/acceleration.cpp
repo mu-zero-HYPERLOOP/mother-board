@@ -133,6 +133,10 @@ global_state fsm::states::acceleration(global_command cmd,
   canzero_set_power_board24_command(pdu_24v_command_NONE);
   control::velocity::enable();
 
+  if (std::abs(canzero_get_velocity()) > 0.5){
+    return global_state_DISARMING45;
+  }
+
   control::velocity::target_velocity(
       Velocity(canzero_get_acceleration_target_velocity()));
 
