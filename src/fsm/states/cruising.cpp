@@ -90,8 +90,11 @@ global_state fsm::states::cruising(global_command cmd,
   }
 
   if (canzero_get_position() > 7.0f) {
-    return global_state_DISARMING45;
+    return global_state_STOP_LEVITATION;
   }
+  if (canzero_get_position() > 8.0f) {
+    return global_state_DISARMING45;
+  
 
   if (time_since_last_transition > STATE_TIMEOUT){
     return global_state_DISARMING45;
@@ -103,7 +106,7 @@ global_state fsm::states::cruising(global_command cmd,
 
   if (global_command_STOP_LEVITATION == cmd) {
     canzero_set_command(global_command_NONE);
-    return global_state_DISARMING45; // invalid command
+    return global_state_STOP_LEVITATION; // invalid command
   }
 
   if (global_command_STOP_PROPULSION == cmd || global_command_ABORT == cmd) {

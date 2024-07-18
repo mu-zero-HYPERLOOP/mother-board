@@ -102,9 +102,13 @@ global_state fsm::states::deceleration(global_command cmd,
     return global_state_DISARMING45;
   }
 
-  /* if (canzero_get_position() > 20.0f) { */
-  /*   return global_state_DISARMING45; */
-  /* } */
+  if (canzero_get_position() > 7.0f) {
+    return global_state_STOP_LEVITATION;
+  }
+
+  if (canzero_get_position() > 8.0f) {
+    return global_state_STOP_LEVITATION;
+  }
 
   // Transition back into levitation stable, when the velocity is below a threshold.
   if (canzero_get_velocity() < static_cast<float>(VEL_CONSIDERED_STOPPED)) {

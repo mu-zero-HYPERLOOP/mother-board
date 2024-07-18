@@ -13,6 +13,9 @@
 constexpr std::array<levitation_state, 4> ALLOWED_LEVITATION_STATES = {
     levitation_state_CONTROL, levitation_state_STOP, levitation_state_READY, levitation_state_START};
 
+constexpr std::array<motor_state, 4> ALLOWED_MOTOR_STATES = {
+    motor_state_READY, motor_state_CONTROL};
+
 constexpr Duration STATE_TIMEOUT = 10_s;
 
 // Invariants:
@@ -69,7 +72,7 @@ global_state fsm::states::stop_levitation(global_command cmd,
   }
 
   // Invariant: motor
-  if (motor_state_READY != motor_state && !DISABLE_MOTOR_SUBSYSTEM) {
+  if (!contains(ALLOWED_MOTOR_STATES, motor_state) && !DISABLE_MOTOR_SUBSYSTEM){
     return global_state_DISARMING45;
   }
 
