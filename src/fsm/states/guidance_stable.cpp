@@ -99,8 +99,12 @@ global_state fsm::states::guidance_stable(global_command cmd, Duration time_sinc
 
   // Transition into propulsion iff.
   // - ACCELERATE command
+  // - absolute position known
   if (global_command_START_PROPULSION == cmd){
     canzero_set_command(global_command_NONE);
+    if (canzero_get_absolute_position_known() == bool_t_FALSE) {
+      return global_state_STOP_GUIDANCE;
+    }
     return global_state_ACCELERATION;
   }
 
