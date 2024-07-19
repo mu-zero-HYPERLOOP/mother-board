@@ -115,10 +115,6 @@ global_state fsm::states::guidance_stable(global_command cmd, Duration time_sinc
     return global_state_CONTROLLER;
   }
 
-  if (std::abs(canzero_get_velocity()) > 0.5){
-    return global_state_DISARMING45;
-  }
-
   if (std::abs(canzero_get_velocity()) > limits::MAX_VEL
       && canzero_get_absolute_position_known() == bool_t_TRUE){
     return global_state_DISARMING45;

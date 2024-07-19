@@ -399,6 +399,14 @@ static inline error_flag canzero_get_motor_driver_error_heartbeat_miss() {
   extern error_flag __oe_motor_driver_error_heartbeat_miss;
   return __oe_motor_driver_error_heartbeat_miss;
 }
+static inline error_flag canzero_get_motor_driver_error_phase_current_unexpected() {
+  extern error_flag __oe_motor_driver_error_phase_current_unexpected;
+  return __oe_motor_driver_error_phase_current_unexpected;
+}
+static inline error_flag canzero_get_motor_driver_error_sdc_brake() {
+  extern error_flag __oe_motor_driver_error_sdc_brake;
+  return __oe_motor_driver_error_sdc_brake;
+}
 static inline error_level canzero_get_motor_driver_error_level_current_u1() {
   extern error_level __oe_motor_driver_error_level_current_u1;
   return __oe_motor_driver_error_level_current_u1;
@@ -438,6 +446,10 @@ static inline error_level canzero_get_motor_driver_error_level_mcu_temperature()
 static inline error_level canzero_get_motor_driver_error_level_lim_temperature() {
   extern error_level __oe_motor_driver_error_level_lim_temperature;
   return __oe_motor_driver_error_level_lim_temperature;
+}
+static inline error_flag canzero_get_motor_driver_phase_current_unexpected() {
+  extern error_flag __oe_motor_driver_phase_current_unexpected;
+  return __oe_motor_driver_phase_current_unexpected;
 }
 static inline guidance_command canzero_get_guidance_command() {
   extern guidance_command __oe_guidance_command;
@@ -1239,6 +1251,66 @@ static inline bool_t canzero_get_ignore_45v() {
   extern bool_t __oe_ignore_45v;
   return __oe_ignore_45v;
 }
+static inline error_flag canzero_get_guidance_board_front_error_sdc_brake() {
+  extern error_flag __oe_guidance_board_front_error_sdc_brake;
+  return __oe_guidance_board_front_error_sdc_brake;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_current_left_unexpected() {
+  extern error_flag __oe_guidance_board_front_error_magnet_current_left_unexpected;
+  return __oe_guidance_board_front_error_magnet_current_left_unexpected;
+}
+static inline error_flag canzero_get_guidance_board_front_error_magnet_current_right_unexpected() {
+  extern error_flag __oe_guidance_board_front_error_magnet_current_right_unexpected;
+  return __oe_guidance_board_front_error_magnet_current_right_unexpected;
+}
+static inline error_flag canzero_get_guidance_board_back_error_sdc_brake() {
+  extern error_flag __oe_guidance_board_back_error_sdc_brake;
+  return __oe_guidance_board_back_error_sdc_brake;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_current_left_unexpected() {
+  extern error_flag __oe_guidance_board_back_error_magnet_current_left_unexpected;
+  return __oe_guidance_board_back_error_magnet_current_left_unexpected;
+}
+static inline error_flag canzero_get_guidance_board_back_error_magnet_current_right_unexpected() {
+  extern error_flag __oe_guidance_board_back_error_magnet_current_right_unexpected;
+  return __oe_guidance_board_back_error_magnet_current_right_unexpected;
+}
+static inline error_flag canzero_get_levitation_board1_error_sdc_brake() {
+  extern error_flag __oe_levitation_board1_error_sdc_brake;
+  return __oe_levitation_board1_error_sdc_brake;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_current_left_unexpected() {
+  extern error_flag __oe_levitation_board1_error_magnet_current_left_unexpected;
+  return __oe_levitation_board1_error_magnet_current_left_unexpected;
+}
+static inline error_flag canzero_get_levitation_board1_error_magnet_current_right_unexpected() {
+  extern error_flag __oe_levitation_board1_error_magnet_current_right_unexpected;
+  return __oe_levitation_board1_error_magnet_current_right_unexpected;
+}
+static inline error_flag canzero_get_levitation_board2_error_sdc_brake() {
+  extern error_flag __oe_levitation_board2_error_sdc_brake;
+  return __oe_levitation_board2_error_sdc_brake;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_current_left_unexpected() {
+  extern error_flag __oe_levitation_board2_error_magnet_current_left_unexpected;
+  return __oe_levitation_board2_error_magnet_current_left_unexpected;
+}
+static inline error_flag canzero_get_levitation_board2_error_magnet_current_right_unexpected() {
+  extern error_flag __oe_levitation_board2_error_magnet_current_right_unexpected;
+  return __oe_levitation_board2_error_magnet_current_right_unexpected;
+}
+static inline error_flag canzero_get_levitation_board3_error_sdc_brake() {
+  extern error_flag __oe_levitation_board3_error_sdc_brake;
+  return __oe_levitation_board3_error_sdc_brake;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_current_left_unexpected() {
+  extern error_flag __oe_levitation_board3_error_magnet_current_left_unexpected;
+  return __oe_levitation_board3_error_magnet_current_left_unexpected;
+}
+static inline error_flag canzero_get_levitation_board3_error_magnet_current_right_unexpected() {
+  extern error_flag __oe_levitation_board3_error_magnet_current_right_unexpected;
+  return __oe_levitation_board3_error_magnet_current_right_unexpected;
+}
 typedef struct {
   get_resp_header m_header;
   uint32_t m_data;
@@ -1361,6 +1433,8 @@ typedef struct {
   error_flag m_error_lim_temperature3_invalid;
   error_flag m_error_lim_temperature4_invalid;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_phase_current_unexpected;
+  error_flag m_error_sdc_brake;
   error_level m_error_level_current_u1;
   error_level m_error_level_current_v1;
   error_level m_error_level_current_w1;
@@ -1371,6 +1445,7 @@ typedef struct {
   error_level m_error_level_board_temperature;
   error_level m_error_level_mcu_temperature;
   error_level m_error_level_lim_temperature;
+  error_flag m_phase_current_unexpected;
   uint8_t m_last_node_missed;
 } canzero_message_motor_driver_stream_errors;
 static const uint32_t canzero_message_motor_driver_stream_errors_id = 0x96;
@@ -1403,6 +1478,9 @@ typedef struct {
   error_flag m_error_magnet_temperature_left_invalid;
   error_flag m_error_magnet_temperature_right_invalid;
   error_flag m_error_mcu_temperature_invalid;
+  error_flag m_error_sdc_brake;
+  error_flag m_error_magnet_current_left_unexpected;
+  error_flag m_error_magnet_current_right_unexpected;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1442,6 +1520,9 @@ typedef struct {
   error_flag m_error_magnet_temperature_left_invalid;
   error_flag m_error_magnet_temperature_right_invalid;
   error_flag m_error_mcu_temperature_invalid;
+  error_flag m_error_sdc_brake;
+  error_flag m_error_magnet_current_left_unexpected;
+  error_flag m_error_magnet_current_right_unexpected;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1478,6 +1559,9 @@ typedef struct {
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_sdc_brake;
+  error_flag m_error_magnet_current_left_unexpected;
+  error_flag m_error_magnet_current_right_unexpected;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1514,6 +1598,9 @@ typedef struct {
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_sdc_brake;
+  error_flag m_error_magnet_current_left_unexpected;
+  error_flag m_error_magnet_current_right_unexpected;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1550,6 +1637,9 @@ typedef struct {
   error_flag m_error_arming_failed;
   error_flag m_error_precharge_failed;
   error_flag m_error_heartbeat_miss;
+  error_flag m_error_sdc_brake;
+  error_flag m_error_magnet_current_left_unexpected;
+  error_flag m_error_magnet_current_right_unexpected;
   error_level m_error_level_vdc_voltage;
   error_level m_error_level_magnet_current_left;
   error_level m_error_level_magnet_current_right;
@@ -1860,6 +1950,16 @@ static inline void canzero_set_motor_driver_error_heartbeat_miss(error_flag valu
   __oe_motor_driver_error_heartbeat_miss = value;
 }
 
+static inline void canzero_set_motor_driver_error_phase_current_unexpected(error_flag value){
+  extern error_flag __oe_motor_driver_error_phase_current_unexpected;
+  __oe_motor_driver_error_phase_current_unexpected = value;
+}
+
+static inline void canzero_set_motor_driver_error_sdc_brake(error_flag value){
+  extern error_flag __oe_motor_driver_error_sdc_brake;
+  __oe_motor_driver_error_sdc_brake = value;
+}
+
 static inline void canzero_set_motor_driver_error_level_current_u1(error_level value){
   extern error_level __oe_motor_driver_error_level_current_u1;
   __oe_motor_driver_error_level_current_u1 = value;
@@ -1908,6 +2008,11 @@ static inline void canzero_set_motor_driver_error_level_mcu_temperature(error_le
 static inline void canzero_set_motor_driver_error_level_lim_temperature(error_level value){
   extern error_level __oe_motor_driver_error_level_lim_temperature;
   __oe_motor_driver_error_level_lim_temperature = value;
+}
+
+static inline void canzero_set_motor_driver_phase_current_unexpected(error_flag value){
+  extern error_flag __oe_motor_driver_phase_current_unexpected;
+  __oe_motor_driver_phase_current_unexpected = value;
 }
 
 void canzero_set_guidance_command(guidance_command value);
@@ -2868,6 +2973,81 @@ void canzero_set_airgap_transition_mode(airgap_transition_mode value);
 
 void canzero_set_ignore_45v(bool_t value);
 
+static inline void canzero_set_guidance_board_front_error_sdc_brake(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_sdc_brake;
+  __oe_guidance_board_front_error_sdc_brake = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_current_left_unexpected(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_current_left_unexpected;
+  __oe_guidance_board_front_error_magnet_current_left_unexpected = value;
+}
+
+static inline void canzero_set_guidance_board_front_error_magnet_current_right_unexpected(error_flag value){
+  extern error_flag __oe_guidance_board_front_error_magnet_current_right_unexpected;
+  __oe_guidance_board_front_error_magnet_current_right_unexpected = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_sdc_brake(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_sdc_brake;
+  __oe_guidance_board_back_error_sdc_brake = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_current_left_unexpected(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_current_left_unexpected;
+  __oe_guidance_board_back_error_magnet_current_left_unexpected = value;
+}
+
+static inline void canzero_set_guidance_board_back_error_magnet_current_right_unexpected(error_flag value){
+  extern error_flag __oe_guidance_board_back_error_magnet_current_right_unexpected;
+  __oe_guidance_board_back_error_magnet_current_right_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board1_error_sdc_brake(error_flag value){
+  extern error_flag __oe_levitation_board1_error_sdc_brake;
+  __oe_levitation_board1_error_sdc_brake = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_current_left_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_current_left_unexpected;
+  __oe_levitation_board1_error_magnet_current_left_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board1_error_magnet_current_right_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board1_error_magnet_current_right_unexpected;
+  __oe_levitation_board1_error_magnet_current_right_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board2_error_sdc_brake(error_flag value){
+  extern error_flag __oe_levitation_board2_error_sdc_brake;
+  __oe_levitation_board2_error_sdc_brake = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_current_left_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_current_left_unexpected;
+  __oe_levitation_board2_error_magnet_current_left_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board2_error_magnet_current_right_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board2_error_magnet_current_right_unexpected;
+  __oe_levitation_board2_error_magnet_current_right_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board3_error_sdc_brake(error_flag value){
+  extern error_flag __oe_levitation_board3_error_sdc_brake;
+  __oe_levitation_board3_error_sdc_brake = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_current_left_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_current_left_unexpected;
+  __oe_levitation_board3_error_magnet_current_left_unexpected = value;
+}
+
+static inline void canzero_set_levitation_board3_error_magnet_current_right_unexpected(error_flag value){
+  extern error_flag __oe_levitation_board3_error_magnet_current_right_unexpected;
+  __oe_levitation_board3_error_magnet_current_right_unexpected = value;
+}
+
 void canzero_send_config_hash();
 
 void canzero_send_build_time();
@@ -2944,6 +3124,10 @@ void canzero_send_motor_driver_error_lim_temperature4_invalid();
 
 void canzero_send_motor_driver_error_heartbeat_miss();
 
+void canzero_send_motor_driver_error_phase_current_unexpected();
+
+void canzero_send_motor_driver_error_sdc_brake();
+
 void canzero_send_motor_driver_error_level_current_u1();
 
 void canzero_send_motor_driver_error_level_current_v1();
@@ -2963,6 +3147,8 @@ void canzero_send_motor_driver_error_level_board_temperature();
 void canzero_send_motor_driver_error_level_mcu_temperature();
 
 void canzero_send_motor_driver_error_level_lim_temperature();
+
+void canzero_send_motor_driver_phase_current_unexpected();
 
 void canzero_send_guidance_command();
 
@@ -3363,5 +3549,35 @@ void canzero_send_airgap_transition_duration();
 void canzero_send_airgap_transition_mode();
 
 void canzero_send_ignore_45v();
+
+void canzero_send_guidance_board_front_error_sdc_brake();
+
+void canzero_send_guidance_board_front_error_magnet_current_left_unexpected();
+
+void canzero_send_guidance_board_front_error_magnet_current_right_unexpected();
+
+void canzero_send_guidance_board_back_error_sdc_brake();
+
+void canzero_send_guidance_board_back_error_magnet_current_left_unexpected();
+
+void canzero_send_guidance_board_back_error_magnet_current_right_unexpected();
+
+void canzero_send_levitation_board1_error_sdc_brake();
+
+void canzero_send_levitation_board1_error_magnet_current_left_unexpected();
+
+void canzero_send_levitation_board1_error_magnet_current_right_unexpected();
+
+void canzero_send_levitation_board2_error_sdc_brake();
+
+void canzero_send_levitation_board2_error_magnet_current_left_unexpected();
+
+void canzero_send_levitation_board2_error_magnet_current_right_unexpected();
+
+void canzero_send_levitation_board3_error_sdc_brake();
+
+void canzero_send_levitation_board3_error_magnet_current_left_unexpected();
+
+void canzero_send_levitation_board3_error_magnet_current_right_unexpected();
 
 #endif
