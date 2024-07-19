@@ -3,6 +3,7 @@
 #include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
+#include "limit.h"
 #include "sdc.h"
 #include "subsystems.h"
 #include <algorithm>
@@ -110,7 +111,8 @@ global_state fsm::states::controller(global_command cmd,
   canzero_set_power_board24_command(pdu_24v_command_NONE);
   canzero_set_input_board_assert_45V_online(bool_t_TRUE);
 
-  if (std::abs(canzero_get_velocity()) > 0.5){
+  if (std::abs(canzero_get_velocity()) > limits::MAX_VEL
+      && canzero_get_absolute_position_known() == bool_t_TRUE){
     return global_state_DISARMING45;
   }
 

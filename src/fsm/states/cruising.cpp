@@ -3,6 +3,7 @@
 #include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
+#include "limit.h"
 #include "sdc.h"
 #include "subsystems.h"
 #include <array>
@@ -93,6 +94,11 @@ global_state fsm::states::cruising(global_command cmd,
     return global_state_STOP_LEVITATION;
   }
   if (canzero_get_position() > 8.0f) {
+    return global_state_DISARMING45;
+  }
+
+  if (std::abs(canzero_get_velocity()) > limits::MAX_VEL
+      && canzero_get_absolute_position_known() == bool_t_TRUE){
     return global_state_DISARMING45;
   }
   

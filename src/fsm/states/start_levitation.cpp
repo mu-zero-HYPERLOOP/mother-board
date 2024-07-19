@@ -126,7 +126,8 @@ fsm::states::start_levitation(global_command cmd,
     return global_state_LEVITATION_STABLE;
   }
 
-  if (std::abs(canzero_get_velocity()) > 0.5){
+  if (std::abs(canzero_get_velocity()) > limits::MAX_VEL
+      && canzero_get_absolute_position_known() == bool_t_TRUE){
     return global_state_DISARMING45;
   }
 

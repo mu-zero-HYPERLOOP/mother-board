@@ -3,6 +3,7 @@
 #include "error_handling.h"
 #include "fsm/invariants.h"
 #include "fsm/states.h"
+#include "limit.h"
 #include "sdc.h"
 #include <iostream>
 #include "subsystems.h"
@@ -113,7 +114,8 @@ global_state fsm::states::start_guidance(global_command cmd,
     return global_state_GUIDANCE_STABLE;
   }
 
-  if (std::abs(canzero_get_velocity()) > 0.5){
+  if (std::abs(canzero_get_velocity()) > limits::MAX_VEL
+      && canzero_get_absolute_position_known() == bool_t_TRUE){
     return global_state_DISARMING45;
   }
 
